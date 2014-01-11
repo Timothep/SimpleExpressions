@@ -35,14 +35,10 @@ namespace SimpleExpressions.Core
             return true;
         }
 
-        public override bool TryInvoke(InvokeBinder binder, object[] args, out object result)
-        {
-            return base.TryInvoke(binder, args, out result);
-        }
-
-        public void Generate()
+        public SimpleExpression Generate()
         {
             this.Pattern = RegexBuilder.Generate(this.Chain);
+            return this;
         }
     }
 }
