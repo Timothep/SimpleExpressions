@@ -1,34 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Dynamic;
 
 namespace SimpleExpressions.Core
 {
+    /// <summary>
+    ///     Use this object to construct SimpleExpressions, see https://github.com/Timothep/SimpleExpressions for more details
+    /// </summary>
     public class SimpleExpression : DynamicObject
     {
         public SimpleExpression()
         {
-            Initialize();
+            this.Initialize();
         }
 
         public SimpleExpression(string workObject)
         {
-            Initialize();
+            this.Initialize();
             this.WorkObject = workObject;
+        }
+
+        public string WorkObject { get; set; }
+        public IList<Function> TokenizedSimpleExpression { get; set; }
+        public IList<string> TokenizedRegularExpression { get; set; }
+
+        public string RegularExpressionPattern
+        {
+            get { return string.Join("", this.TokenizedRegularExpression); }
         }
 
         private void Initialize()
         {
-            this.Chain = new List<Function>(0);
-        }
-
-        public string WorkObject { get; set; }
-        public IList<Function> Chain { get; set; }
-        public IList<string> TokenizedPattern { get; set; }
-
-        public string Pattern
-        {
-            get { return string.Join("", this.TokenizedPattern ); }
+            this.TokenizedSimpleExpression = new List<Function>(0);
         }
 
         /// <summary>
@@ -36,7 +38,7 @@ namespace SimpleExpressions.Core
         /// </summary>
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            this.Chain.Add(new Function(binder.Name, args));
+            this.TokenizedSimpleExpression.Add(new Function(binder.Name, args));
             result = this;
             return true;
         }
@@ -46,14 +48,17 @@ namespace SimpleExpressions.Core
         /// </summary>
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
-            this.Chain.Add(new Function(binder.Name));
+            this.TokenizedSimpleExpression.Add(new Function(binder.Name));
             result = this;
             return true;
         }
 
+        /// <summary>
+        ///     Attempts to generates the regular expression
+        /// </summary>
         public SimpleExpression Generate()
         {
-            this.TokenizedPattern = RegexBuilder.Generate(this.Chain);
+            this.TokenizedRegularExpression = RegexBuilder.Generate(this.TokenizedSimpleExpression);
             return this;
         }
     }

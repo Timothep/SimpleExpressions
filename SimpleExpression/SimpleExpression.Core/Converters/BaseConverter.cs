@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace SimpleExpressions.Core.Tokens
+namespace SimpleExpressions.Core.Converters
 {
-    public abstract class BaseToken: IToken
+    public abstract class BaseConverter: IConverter
     {
         public abstract IList<string> Functions { get; }
 

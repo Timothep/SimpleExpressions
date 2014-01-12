@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace SimpleExpressions.Core.Tokens
+namespace SimpleExpressions.Core.Converters
 {
-    public class AtMost:BaseToken
+    public class AtMost:BaseConverter
     {
         private readonly IList<string> functions = new List<string> { "AtMost" };
         public override IList<string> Functions

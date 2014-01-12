@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace SimpleExpressions.Core.Tokens
+namespace SimpleExpressions.Core.Converters
 {
-    internal class SimpleSet: IToken
+    internal class SimpleSet: IConverter
     {
         private readonly IList<string> functions = new List<string> { "Alphanumeric", "Alphanumerics", "Letter", "Letters", "Number", "Numbers" };
 

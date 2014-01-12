@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace SimpleExpressions.Core.Tokens
+namespace SimpleExpressions.Core.Converters
 {
-    public interface IToken
+    public interface IConverter
     {
         bool CanParse(string token);
         IList<string> Generate(IList<Function> tokens, Function currentToken, IList<string> pattern);

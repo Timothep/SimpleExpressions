@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SimpleExpressions.Core.Tokens
+namespace SimpleExpressions.Core.Converters
 {
-    public class One: BaseToken
+    public class One: BaseConverter
     {
         private readonly IList<string> functions = new List<string>{ "One" };
         public override IList<string> Functions

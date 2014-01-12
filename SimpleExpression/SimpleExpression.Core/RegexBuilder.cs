@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Extensions;
-using SimpleExpressions.Core.Tokens;
 
 namespace SimpleExpressions.Core
 {
+    /// <summary>
+    /// Bootstrap container charged to dispatch the work to the correct converters
+    /// </summary>
     public static class RegexBuilder
     {
         public static IList<string> Generate(IList<Function> chain)
         {
             IList<string> pattern = new List<string>(0);
-            IList<IToken> tokenizers = new List<IToken>
+            IList<IConverter> converters = new List<IConverter>
                 {
                     new SimpleSet(),
                     new One(),
@@ -20,8 +23,12 @@ namespace SimpleExpressions.Core
 
             foreach (var function in chain)
             {
-                var tokenizer = tokenizers.GetTokenizer(function.Name);
-                pattern = tokenizer.Generate(chain, function, pattern);
+                var converter = converters.GetConverters(function.Name);
+                
+                if (converter == null)
+                    throw new NullReferenceException(string.Format("No matching converter for function '{0}' could be found", function.Name));
+
+                pattern = converter.Generate(chain, function, pattern);
             }
 
             return pattern;

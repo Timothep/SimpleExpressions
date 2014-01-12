@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SimpleExpressions.Core.Tokens
+namespace SimpleExpressions.Core.Converters
 {
-    public class AtLeast : BaseToken
+    public class AtLeast : BaseConverter
     {
         private readonly IList<string> functions = new List<string> { "AtLeast" };
         public override IList<string> Functions

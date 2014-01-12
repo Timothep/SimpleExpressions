@@ -24,7 +24,7 @@ namespace SimpleExpressions.Test
             var simpleExpression = result as SimpleExpression;
             Assert.IsNotNull(simpleExpression);
 
-            var pattern = simpleExpression.Pattern;
+            var pattern = simpleExpression.RegularExpressionPattern;
             Assert.AreEqual(@"\w{1,}@\w{1,}\.\w{2,5}", pattern);
         }
 
@@ -44,7 +44,7 @@ namespace SimpleExpressions.Test
             var simpleExpression = result as SimpleExpression;
             Assert.IsNotNull(simpleExpression);
 
-            var pattern = simpleExpression.Pattern;
+            var pattern = simpleExpression.RegularExpressionPattern;
             Assert.AreEqual(@"[0-9]{1,4}/[0-9]{1,2}/[0-9]{1,2}", pattern);
         }
     }
