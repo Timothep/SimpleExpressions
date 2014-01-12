@@ -28,7 +28,7 @@ namespace SimpleExpressions.Core
                 if (converter == null)
                     throw new NullReferenceException(string.Format("No matching converter for function '{0}' could be found", function.Name));
 
-                pattern = converter.Generate(chain, function, pattern);
+                pattern = converter.Generate(chain, chain.IndexOf(function), pattern);
             }
 
             return pattern;

@@ -11,6 +11,6 @@ namespace SimpleExpressions.Core.Converters
             return this.Functions.Contains(token);
         }
 
-        public abstract IList<string> Generate(IList<Function> tokens, Function currentToken, IList<string> pattern);
+        public abstract IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern);
     }
 }

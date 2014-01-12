@@ -11,9 +11,9 @@ namespace SimpleExpressions.Core.Converters
             return this.functions.Contains(token);
         }
 
-        public IList<string> Generate(IList<Function> tokens, Function currentToken, IList<string> pattern)
+        public IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
         {
-            switch (currentToken.Name)
+            switch (tokens[currentIndex].Name)
             {
                 case "Alphanumeric":
                     pattern.Add(@"\w");
