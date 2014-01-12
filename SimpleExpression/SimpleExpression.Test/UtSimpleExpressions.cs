@@ -9,7 +9,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void EmailRegex()
         {
-            dynamic se = new SimpleExpression("abcdefg");
+            dynamic se = new SimpleExpression();
             var result = se
                 .Alphanumerics.AtLeast(1)
                 .One("@")
@@ -19,8 +19,31 @@ namespace SimpleExpressions.Test
                 .Generate();
 
             Assert.IsNotNull(result);
-            var pattern = (result as SimpleExpression).Pattern;
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.Pattern;
             Assert.AreEqual(@"\w{1,}@\w{1,}\.\w{2,5}", pattern);
+        }
+
+        [TestMethod]
+        public void SimpleDate()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .Numbers.AtLeast(1).AtMost(4)
+                .One('/')
+                .Numbers.AtLeast(1).AtMost(2)
+                .One('/')
+                .Numbers.AtLeast(1).AtMost(2)
+                .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.Pattern;
+            Assert.AreEqual(@"[0-9]{1,4}/[0-9]{1,2}/[0-9]{1,2}", pattern);
         }
     }
 }

@@ -6,9 +6,19 @@ namespace SimpleExpressions.Core
 {
     public class SimpleExpression : DynamicObject
     {
+        public SimpleExpression()
+        {
+            Initialize();
+        }
+
         public SimpleExpression(string workObject)
         {
+            Initialize();
             this.WorkObject = workObject;
+        }
+
+        private void Initialize()
+        {
             this.Chain = new List<Function>(0);
         }
 
