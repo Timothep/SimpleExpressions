@@ -36,10 +36,17 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\IListExtension.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="RegexBuilder.cs" />
     <Compile Include="SimpleExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tokens\AtLeast.cs" />
+    <Compile Include="Tokens\AtMost.cs" />
+    <Compile Include="Tokens\BaseToken.cs" />
+    <Compile Include="Tokens\One.cs" />
+    <Compile Include="Tokens\SimpleSet.cs" />
+    <Compile Include="Tokens\IToken.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
