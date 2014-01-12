@@ -47,5 +47,45 @@ namespace SimpleExpressions.Test
             var pattern = simpleExpression.RegularExpressionPattern;
             Assert.AreEqual(@"[0-9]{1,4}/[0-9]{1,2}/[0-9]{1,2}", pattern);
         }
+
+        [Ignore]
+        [TestMethod]
+        public void SimpleDateWithRanges()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .Numbers.AtLeast(1).AtMost(4).InRange("1-9999")
+                .One('/')
+                .Numbers.AtLeast(1).AtMost(2).InRange("1-12")
+                .One('/')
+                .Numbers.AtLeast(1).AtMost(2).InRange("1-31")
+                .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"?????????????????", pattern);
+        }
+
+        [TestMethod]
+        public void OneConson()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .Letter
+                .Except("aeiou")
+                .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"[a-zA-Z-[aeiou]]", pattern);
+        }
+
+
     }
 }

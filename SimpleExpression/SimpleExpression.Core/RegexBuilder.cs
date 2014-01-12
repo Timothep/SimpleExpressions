@@ -19,6 +19,8 @@ namespace SimpleExpressions.Core
                     new One(),
                     new AtLeast(),
                     new AtMost(),
+                    new Except(),
+                    new InRange(),
                 };
 
             foreach (var function in chain)
