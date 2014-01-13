@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="RangeBuilderTest.cs" />
     <Compile Include="TestExpression.cs" />
     <Compile Include="UtSimpleExpressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

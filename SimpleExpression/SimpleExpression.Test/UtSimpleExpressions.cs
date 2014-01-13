@@ -58,17 +58,16 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"[0-9]{1,4}/[0-9]{1,2}/[0-9]{1,2}", pattern);
         }
 
-        [Ignore]
         [TestMethod]
         public void SimpleDateWithRanges()
         {
             dynamic se = new SimpleExpression();
             var result = se
-                .Numbers.AtLeast(1).AtMost(4).InRange("1-9999")
+                .Numbers.InRange("1-9999")
                 .One('/')
-                .Numbers.AtLeast(1).AtMost(2).InRange("1-12")
+                .Numbers.InRange("1-12")
                 .One('/')
-                .Numbers.AtLeast(1).AtMost(2).InRange("1-31")
+                .Numbers.InRange("1-31")
                 .Generate();
 
             Assert.IsNotNull(result);
@@ -76,7 +75,7 @@ namespace SimpleExpressions.Test
             Assert.IsNotNull(simpleExpression);
 
             var pattern = simpleExpression.Expression;
-            Assert.AreEqual(@"?????????????????", pattern);
+            Assert.AreEqual(@"([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-8][0-9][0-9][0-9]|9[0-8][0-9][0-9]|99[0-8][0-9]|999[0-9])/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3[0-1])", pattern);
         }
 
         [TestMethod]

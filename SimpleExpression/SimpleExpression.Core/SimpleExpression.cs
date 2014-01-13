@@ -12,13 +12,13 @@ namespace SimpleExpressions.Core
             this.Initialize();
         }
 
-        public SimpleExpression(string workObject)
-        {
-            this.Initialize();
-            this.WorkObject = workObject;
-        }
+        //public SimpleExpression(string workObject)
+        //{
+        //    this.Initialize();
+        //    this.WorkObject = workObject;
+        //}
 
-        private string WorkObject { get; set; }
+        //private string WorkObject { get; set; }
         private IList<Function> TokenizedSimpleExpression { get; set; }
         private IList<string> TokenizedRegularExpression { get; set; }
 
@@ -131,20 +131,24 @@ namespace SimpleExpressions.Core
             return this.Method("One", element);
         }
 
-        public SimpleExpression Or(dynamic arg)
-        {
-            return this.Method("Or", arg);
-        }
-
-        public SimpleExpression Exactly(dynamic args)
-        {
-            return this.Method("Exactly", args);
-        }
-
         public SimpleExpression Except(dynamic args)
         {
             return this.Method("Except", args);
         }
 
+        public SimpleExpression InRange(dynamic args)
+        {
+            return this.Method("InRange", args);
+        }
+
+        //public SimpleExpression Or(dynamic arg)
+        //{
+        //    return this.Method("Or", arg);
+        //}
+
+        //public SimpleExpression Exactly(dynamic args)
+        //{
+        //    return this.Method("Exactly", args);
+        //}
     }
 }
