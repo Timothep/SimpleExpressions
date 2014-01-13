@@ -24,7 +24,17 @@ namespace SimpleExpressions.Test
             var simpleExpression = result as SimpleExpression;
             Assert.IsNotNull(simpleExpression);
 
-            var pattern = simpleExpression.RegularExpressionPattern;
+            var pattern = simpleExpression.Expression;
+            Assert.AreEqual(@"\w{1,}@\w{1,}\.\w{2,5}", pattern);
+        }
+
+        [TestMethod]
+        public void EmailRegex2()
+        {
+            var te = new MailExpression();
+
+            var pattern = te.Expression;
+
             Assert.AreEqual(@"\w{1,}@\w{1,}\.\w{2,5}", pattern);
         }
 
@@ -44,7 +54,7 @@ namespace SimpleExpressions.Test
             var simpleExpression = result as SimpleExpression;
             Assert.IsNotNull(simpleExpression);
 
-            var pattern = simpleExpression.RegularExpressionPattern;
+            var pattern = simpleExpression.Expression;
             Assert.AreEqual(@"[0-9]{1,4}/[0-9]{1,2}/[0-9]{1,2}", pattern);
         }
 
@@ -65,7 +75,7 @@ namespace SimpleExpressions.Test
             var simpleExpression = result as SimpleExpression;
             Assert.IsNotNull(simpleExpression);
 
-            var pattern = simpleExpression.RegularExpressionPattern;
+            var pattern = simpleExpression.Expression;
             Assert.AreEqual(@"?????????????????", pattern);
         }
 
@@ -82,7 +92,7 @@ namespace SimpleExpressions.Test
             var simpleExpression = result as SimpleExpression;
             Assert.IsNotNull(simpleExpression);
 
-            var pattern = simpleExpression.RegularExpressionPattern;
+            var pattern = simpleExpression.Expression;
             Assert.AreEqual(@"[a-zA-Z-[aeiou]]", pattern);
         }
 

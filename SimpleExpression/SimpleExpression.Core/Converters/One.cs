@@ -15,13 +15,15 @@ namespace SimpleExpressions.Core.Converters
         {
             var currentToken = tokens[currentIndex];
 
-            if(currentToken.Arguments.Length != 1)
-                throw new ArgumentException("Incorrect number of arguments found");
+            if(currentToken.Arguments == null)
+                throw new ArgumentException("Missing argument for function");
 
-            string arg0 = currentToken.Arguments[0].ToString();
-            if (currentToken.Arguments[0].ToString() == ".")
-                arg0 = @"\" + arg0;
-            pattern.Add(arg0);
+            string tokenAsString = currentToken.Arguments.ToString();
+
+            if (tokenAsString.ToString() == ".")
+                tokenAsString = @"\" + tokenAsString;
+
+            pattern.Add(tokenAsString);
 
             return pattern;
         }

@@ -22,8 +22,11 @@ namespace SimpleExpressions.Core.Converters
             if (!lastPatternToken.EndsWith("]"))
                 throw new Exception("The Except function can only be called after a function defining an ensemble (Alphanumeric(s), Letter(s), Number(s) etc.");
 
+            string argumentAsString = currentToken.Arguments.ToString();
+
             pattern.Remove(lastPatternToken);
-            pattern.Add(lastPatternToken.Insert(lastPatternToken.Length - 1, "-[" + currentToken.Arguments[0] + "]"));
+            string tokenToInsert = lastPatternToken.Insert(lastPatternToken.Length - 1, "-[" + argumentAsString + "]");
+            pattern.Add(tokenToInsert);
 
             return pattern;
         }

@@ -16,8 +16,10 @@ namespace SimpleExpressions.Core.Converters
         {
             var currentToken = tokens[currentIndex];
 
-            if (currentToken.Arguments.Length != 1)
+            if (currentToken.Arguments == null)
                 throw new ArgumentException("Incorrect number of arguments found");
+
+            var tokenAsInt = Convert.ToInt32(currentToken.Arguments);
 
             var lastPatternToken = pattern.Last();
 
@@ -25,7 +27,9 @@ namespace SimpleExpressions.Core.Converters
                 throw new Exception("The AtMost function can only be called after an AtLeast function");
 
             pattern.Remove(lastPatternToken);
-            pattern.Add(lastPatternToken.Insert(lastPatternToken.Length - 1, currentToken.Arguments[0].ToString()));
+            
+            string tokenToInsert = lastPatternToken.Insert(lastPatternToken.Length - 1, tokenAsInt.ToString());
+            pattern.Add(tokenToInsert);
 
             return pattern;
         }

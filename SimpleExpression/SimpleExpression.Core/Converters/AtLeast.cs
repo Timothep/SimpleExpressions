@@ -15,12 +15,15 @@ namespace SimpleExpressions.Core.Converters
         public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
         {
             var currentToken = tokens[currentIndex];
-
-            if (currentToken.Arguments.Length != 1)
+            
+            if (currentToken.Arguments == null)
                 throw new ArgumentException("Incorrect number of arguments found");
 
+            var tokenAsInt = Convert.ToInt32(currentToken.Arguments);
+
             RemoveStar(pattern);
-            pattern.Add(@"{" + currentToken.Arguments[0] + ",}");
+            string additionalPattern = @"{" + tokenAsInt + ",}";
+            pattern.Add(additionalPattern);
 
             return pattern;
         }

@@ -1,17 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SimpleExpressions.Core;
+﻿using SimpleExpressions.Core;
 
 namespace SimpleExpressions.Test
 {
-    public class TestExpression: SimpleExpression
+    public class MailExpression: SimpleExpression
+    {
+        public MailExpression()
+        {
+            Alphanumerics.AtLeast(1)
+                .One("@")
+                .Alphanumerics.AtLeast(1)
+                .One(".")
+                .Alphanumerics.AtLeast(2).AtMost(5)
+                .Generate();
+        }
+    }
+
+    public class TestExpression : SimpleExpression
     {
         public TestExpression()
         {
-            var result = Alphanumerics.Generate();
+            //Either(Exactly("http")).Or(Exactly("ftp")).Generate();
+
+            //Group
+            //    .One("A").Or.One("X")
+            //.Anonymously
+            //.One("B")
+            //    .Or
+            //.One("Y");
         }
     }
 }

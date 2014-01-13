@@ -3,9 +3,9 @@
     public class Function
     {
         public string Name { get; set; }
-        public object[] Arguments { get; set; }
+        public dynamic Arguments { get; set; }
 
-        internal Function(string name, object[] arguments = null)
+        internal Function(string name, dynamic arguments = null)
         {
             this.Name = name;
             this.Arguments = arguments;
