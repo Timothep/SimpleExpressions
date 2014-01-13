@@ -61,5 +61,12 @@ namespace SimpleExpressions.Core
             this.TokenizedRegularExpression = RegexBuilder.Generate(this.TokenizedSimpleExpression);
             return this;
         }
+
+        //##############
+
+        public SimpleExpression Alphanumerics 
+        {
+            get { return this; }
+        }
     }
 }
