@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SimpleExpressions.Core.Converters
 {
-    public class As:BaseConverter
+    public class As : BaseConverter
     {
         private readonly IList<string> functions = new List<string> { "As" };
         public override IList<string> Functions

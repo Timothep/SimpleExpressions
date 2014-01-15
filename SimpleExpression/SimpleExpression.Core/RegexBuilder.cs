@@ -8,7 +8,7 @@ using TinyIoC;
 namespace SimpleExpressions.Core
 {
     /// <summary>
-    /// Bootstrap container charged to dispatch the work to the correct converters
+    ///   Bootstrap container charged to dispatch the work to the correct converters
     /// </summary>
     public static class RegexBuilder
     {
@@ -17,11 +17,10 @@ namespace SimpleExpressions.Core
             IList<string> pattern = new List<string>(0);
 
             //Via TinyIoC
-            //var Container = TinyIoCContainer.Current;
-            //Container.AutoRegister(false);
-            //var impl = Container.ResolveAll<IConverter>(true);
-
-            IList<IConverter> converters = new List<IConverter> //Handle automagically via TinyIOC
+            //var container = TinyIoCContainer.Current;
+            //container.AutoRegister(true, DuplicateImplementationActions.RegisterMultiple);
+            
+            IList<IConverter> converters = new List<IConverter>
                 {
                     new SimpleSet(),
                     new One(),
