@@ -16,24 +16,10 @@ namespace SimpleExpressions.Core
         {
             IList<string> pattern = new List<string>(0);
 
-            //Via TinyIoC
-            //var container = TinyIoCContainer.Current;
-            //container.AutoRegister(true, DuplicateImplementationActions.RegisterMultiple);
+            var container = TinyIoCContainer.Current;
+            container.AutoRegister(DuplicateImplementationActions.RegisterMultiple);
+            var converters = container.ResolveAll<IConverter>().ToList();
             
-            IList<IConverter> converters = new List<IConverter>
-                {
-                    new SimpleSet(),
-                    new One(),
-                    new AtLeast(),
-                    new AtMost(),
-                    new Except(),
-                    new InRange(),
-                    new Group(),
-                    new Together(),
-                    new As(),
-                    new Exactly()
-                };
-
             foreach (var function in chain)
             {
                 var converter = converters.GetConverters(function.Name);
