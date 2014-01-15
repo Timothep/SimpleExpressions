@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Converters\As.cs" />
     <Compile Include="Converters\Exactly.cs" />
     <Compile Include="Converters\ConverterStaticHelper.cs" />
@@ -54,6 +51,7 @@
     <Compile Include="Converters\One.cs" />
     <Compile Include="Converters\SimpleSet.cs" />
     <Compile Include="Converters\IConverter.cs" />
+    <Compile Include="TinyIoC.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -49,17 +49,16 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"[0-9]{1,4}/[0-9]{1,2}/[0-9]{1,2}", pattern);
         }
 
-        [Ignore]
         [TestMethod]
         public void SimpleDateWithRanges()
         {
             dynamic se = new SimpleExpression();
             var result = se
-                .Numbers.AtLeast(1).AtMost(4).InRange("1-9999")
+                .Numbers.InRange("1-9999")
                 .One('/')
-                .Numbers.AtLeast(1).AtMost(2).InRange("1-12")
+                .Numbers.InRange("1-12")
                 .One('/')
-                .Numbers.AtLeast(1).AtMost(2).InRange("1-31")
+                .Numbers.InRange("1-31")
                 .Generate();
 
             Assert.IsNotNull(result);

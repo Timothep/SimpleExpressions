@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Extensions;
+using TinyIoC;
 
 namespace SimpleExpressions.Core
 {
@@ -13,6 +15,12 @@ namespace SimpleExpressions.Core
         public static IList<string> Generate(IList<Function> chain)
         {
             IList<string> pattern = new List<string>(0);
+
+            //Via TinyIoC
+            //var Container = TinyIoCContainer.Current;
+            //Container.AutoRegister(false);
+            //var impl = Container.ResolveAll<IConverter>(true);
+
             IList<IConverter> converters = new List<IConverter> //Handle automagically via TinyIOC
                 {
                     new SimpleSet(),
