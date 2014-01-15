@@ -128,5 +128,40 @@ namespace SimpleExpressions.Test
             var names = reg.GetGroupNames();
             Assert.AreEqual("vowels", names[1]);
         }
+
+        [TestMethod]
+        public void BlockRepetition()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                    .Exactly("aei").Repeat.AtLeast(3)
+                    .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"(aei){3,}", pattern);
+        }
+
+        [TestMethod]
+        public void GroupRepetition()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                    .Group
+                        .Exactly("aei")
+                    .Together
+                    .Repeat.AtLeast(3)
+                    .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"(aei){3,}", pattern);
+        }
     }
 }

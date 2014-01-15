@@ -52,9 +52,8 @@
     <Compile Include="Converters\Group.cs" />
     <Compile Include="Converters\IConverter.cs" />
     <Compile Include="Converters\InRange.cs" />
-    <Compile Include="Converters\InRange2.cs" />
     <Compile Include="Converters\One.cs" />
-    <Compile Include="Converters\RangeBuilder.cs" />
+    <Compile Include="Converters\Repeat.cs" />
     <Compile Include="Converters\SimpleSet.cs" />
     <Compile Include="Converters\Together.cs" />
     <Compile Include="Extensions\IListExtension.cs" />
