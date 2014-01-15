@@ -36,10 +36,12 @@
     <Compile Include="Converters\As.cs" />
     <Compile Include="Converters\Exactly.cs" />
     <Compile Include="Converters\ConverterStaticHelper.cs" />
+    <Compile Include="Converters\InRange.cs" />
+    <Compile Include="Converters\RangeBuilder.cs" />
     <Compile Include="Converters\Together.cs" />
     <Compile Include="Converters\Except.cs" />
     <Compile Include="Converters\Group.cs" />
-    <Compile Include="Converters\InRange.cs" />
+    <Compile Include="Converters\InRange2.cs" />
     <Compile Include="Extensions\IListExtension.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="RegexBuilder.cs" />

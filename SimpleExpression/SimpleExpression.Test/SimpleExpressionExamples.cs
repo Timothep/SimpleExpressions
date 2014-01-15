@@ -66,7 +66,7 @@ namespace SimpleExpressions.Test
             Assert.IsNotNull(simpleExpression);
 
             var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"?????????????????", pattern);
+            Assert.AreEqual(@"([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-8][0-9][0-9][0-9]|9[0-8][0-9][0-9]|99[0-8][0-9]|999[0-9])/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3[0-1])", pattern);
         }
 
         [TestMethod]
