@@ -19,7 +19,7 @@ namespace SimpleExpressions.Core.Converters
                 throw new ArgumentException("Incorrect number of arguments found");
 
             string arg0 = currentToken.Arguments[0].ToString();
-            pattern.Add(arg0);
+            pattern.Add("{" + arg0 + "}");
 
             return pattern;
         }

@@ -15,9 +15,9 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Alphanumerics.AtLeast(1)
-                .One("@")
+                .Text("@")
                 .Alphanumerics.AtLeast(1)
-                .One(".")
+                .Text(".")
                 .Alphanumerics.AtLeast(2).AtMost(5)
                 .Generate();
 
@@ -35,9 +35,9 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Numbers.AtLeast(1).AtMost(4)
-                .One('/')
+                .Text('/')
                 .Numbers.AtLeast(1).AtMost(2)
-                .One('/')
+                .Text('/')
                 .Numbers.AtLeast(1).AtMost(2)
                 .Generate();
 
@@ -55,9 +55,9 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Numbers.InRange("1-9999")
-                .One('/')
+                .Text('/')
                 .Numbers.InRange("1-12")
-                .One('/')
+                .Text('/')
                 .Numbers.InRange("1-31")
                 .Generate();
 
@@ -92,8 +92,8 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Group
-                    .Exactly("aei")
-                    .Exactly("ou")
+                    .Text("aei")
+                    .Text("ou")
                 .Together
                 .Generate();
 
@@ -111,8 +111,8 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Group
-                    .Exactly("aei")
-                    .Exactly("ou")
+                    .Text("aei")
+                    .Text("ou")
                 .Together.As("vowels")
                 .Generate();
 
@@ -134,7 +134,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             var result = se
-                    .Exactly("aei").Repeat.AtLeast(3)
+                    .Text("aei").Repeat.AtLeast(3)
                     .Generate();
 
             Assert.IsNotNull(result);
@@ -151,7 +151,7 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                     .Group
-                        .Exactly("aei")
+                        .Text("aei")
                     .Together
                     .Repeat.AtLeast(3)
                     .Generate();
@@ -162,6 +162,25 @@ namespace SimpleExpressions.Test
 
             var pattern = simpleExpression.RegularExpressionPattern;
             Assert.AreEqual(@"(aei){3,}", pattern);
+        }
+
+        [TestMethod]
+        public void Repetition()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                    .Group
+                        .Text("aei")
+                    .Together
+                    .Repeat.Exactly(3)
+                    .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"(aei){3}", pattern);
         }
     }
 }

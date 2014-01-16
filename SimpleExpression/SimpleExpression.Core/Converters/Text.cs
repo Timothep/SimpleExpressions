@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SimpleExpressions.Core.Converters
 {
-    public class One: BaseConverter
+    public class Text: BaseConverter
     {
-        private readonly IList<string> functions = new List<string>{ "One" };
+        private readonly IList<string> functions = new List<string>{ "Text" };
         public override IList<string> Functions
         {
             get { return this.functions; }
