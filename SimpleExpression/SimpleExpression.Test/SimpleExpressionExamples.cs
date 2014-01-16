@@ -8,6 +8,7 @@ namespace SimpleExpressions.Test
     public class SimpleExpressionExamples
     {
         /// http://regexpal.com/
+        /// http://regexstorm.net/tester
 
         [TestMethod]
         public void EmailRegex()
@@ -26,7 +27,7 @@ namespace SimpleExpressions.Test
             Assert.IsNotNull(simpleExpression);
 
             var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"\w{1,}@\w{1,}\.\w{2,5}", pattern);
+            Assert.AreEqual(@"[a-zA-Z0-9]{1,}@[a-zA-Z0-9]{1,}\.[a-zA-Z0-9]{2,5}", pattern);
         }
 
         [TestMethod]
@@ -199,5 +200,31 @@ namespace SimpleExpressions.Test
             var pattern = simpleExpression.RegularExpressionPattern;
             Assert.AreEqual(@"aeiou", pattern);
         }
+
+        [TestMethod]
+        public void ExceptRegex()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .Letters
+                .Except("a-e")
+                .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"[a-zA-Z-[a-e]]*", pattern);
+
+            var reg = new Regex(pattern);
+            var matches = reg.Matches("smthng");
+            Assert.AreEqual(2, matches.Count);
+
+            matches = reg.Matches("something");
+            Assert.AreEqual(4, matches.Count);
+
+        }
     }
 }
+
