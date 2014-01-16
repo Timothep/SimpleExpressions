@@ -51,28 +51,6 @@ namespace SimpleExpressions.Test
         }
 
         [TestMethod]
-        public void SimpleDateWithRanges()
-        {
-            dynamic se = new SimpleExpression();
-            var result = se
-                .Numbers.InRange("1-9999")
-                .Text('/')
-                .Numbers.InRange("1-12")
-                .Text('/')
-                .Numbers.InRange("1-31")
-                .Generate();
-
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-8][0-9][0-9][0-9]|9[0-8][0-9][0-9]|99[0-8][0-9]|999[0-9])/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3[0-1])", pattern);
-        }
-
-        
-
-        [TestMethod]
         public void SimpleGroup()
         {
             dynamic se = new SimpleExpression();
