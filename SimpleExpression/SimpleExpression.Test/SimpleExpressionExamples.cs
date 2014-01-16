@@ -70,22 +70,7 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-8][0-9][0-9][0-9]|9[0-8][0-9][0-9]|99[0-8][0-9]|999[0-9])/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3[0-1])", pattern);
         }
 
-        [TestMethod]
-        public void OneConson()
-        {
-            dynamic se = new SimpleExpression();
-            var result = se
-                .Letter
-                .Except("aeiou")
-                .Generate();
-
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"[a-zA-Z-[aeiou]]", pattern);
-        }
+        
 
         [TestMethod]
         public void SimpleGroup()
@@ -201,30 +186,6 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"aeiou", pattern);
         }
 
-        [TestMethod]
-        public void ExceptRegex()
-        {
-            dynamic se = new SimpleExpression();
-            var result = se
-                .Letters
-                .Except("a-e")
-                .Generate();
-
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"[a-zA-Z-[a-e]]*", pattern);
-
-            var reg = new Regex(pattern);
-            var matches = reg.Matches("smthng");
-            Assert.AreEqual(2, matches.Count);
-
-            matches = reg.Matches("something");
-            Assert.AreEqual(4, matches.Count);
-
-        }
     }
 }
 

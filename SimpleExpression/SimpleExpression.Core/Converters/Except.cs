@@ -44,10 +44,12 @@ namespace SimpleExpressions.Core.Converters
             get { return this.functions; }
         }
 
+        //^(.(?!arg))*$
         public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
         {
             var currentToken = tokens[currentIndex];
             var lastPatternToken = pattern.Last();
+            var arg = currentToken.Arguments[0];
             pattern.Remove(lastPatternToken);
             pattern.Add(lastPatternToken.Insert(lastPatternToken.Length - 1, "[^" + currentToken.Arguments[0] + "]"));
             return pattern;

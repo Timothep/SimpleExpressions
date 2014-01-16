@@ -52,6 +52,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ExceptTests.cs" />
+    <Compile Include="MaybeTests.cs" />
     <Compile Include="SimpleExpressionExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
