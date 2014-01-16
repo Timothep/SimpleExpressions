@@ -182,5 +182,22 @@ namespace SimpleExpressions.Test
             var pattern = simpleExpression.RegularExpressionPattern;
             Assert.AreEqual(@"(aei){3}", pattern);
         }
+
+        [TestMethod]
+        public void ExactMatchRegex()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .Text('a')
+                .ei
+                .Text("ou")
+                .Generate();
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"aeiou", pattern);
+        }
     }
 }
