@@ -25,7 +25,7 @@ The various "functions" you can use are listed here below. Some are methods with
 
 SimpleExpressions is based on the C# 4.0 `dynamic` keyword, thus you don't have IntelliSense support. But be reassured, the number of functions you can write is quite small and the combinations are almost entirely up to you, you can chain up pretty much anything to everything. The only thing you need to care is not messing up the spelling, but the errors thrown by SimpleExpressions will help you there as well.
 
-Head over to the Wiki for the full list of supported functions and examples.
+Head over [to the Wiki](https://github.com/Timothep/SimpleExpressions/wiki) for the full list of supported functions and examples.
 
 ### Requirements:
 
