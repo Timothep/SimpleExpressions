@@ -1,8 +1,10 @@
+### SimpleExpressions
+
 Wouldn't it be easier if you could write stuff like `Repeat.Sequence("repeatMe").AtLeast(2).AtMost(4).Times` or `Group.Sequence("aeiou").As("vowels")` instead of those nasty Regular Expressions and let a tool generate the expressions for you?
 
 Because having to write regexes is what makes us avoid using them in the first place, isn't it?
 
-=================
+### Usage
 
 Start with instanciating a new `SimpleExpression` object and store it as `dynamic`:
 
@@ -35,21 +37,17 @@ Here are all the functions that SimpleExpressions currently supports:
 * [`Maybe(string)`](https://github.com/Timothep/SimpleExpressions/wiki/Maybe)
 * [`Group`, `Together`, `As(string)`](https://github.com/Timothep/SimpleExpressions/wiki/Group)
 
-***
+### Requirements:
 
-Requirements:
 * .NET 4.0
 
-***
+### Installation
 
 The project is in its early stages and only available via Github. You will ultimately be able to install it via Nuget.
 
-***
-
 ### WIP, functions and ideas
 
-* Either
-* Or
+* Either/Or
 * CaseInsensitive
 * StartWith
 * EndOfWord
@@ -57,11 +55,8 @@ The project is in its early stages and only available via Github. You will ultim
 * AsLine
 * EndOfLine
 * Anything
-* Silent times: "Repeat.AtLeast().Times"
 * Greedy
 
-* Invert Repeat => Repeat.Blah.AtLeast(4)
-
-### Structural checks
+Structural checks
 * Group+Together or Group+Together+As or Group+As
 * AtLeast/AtMost not with Exactly
