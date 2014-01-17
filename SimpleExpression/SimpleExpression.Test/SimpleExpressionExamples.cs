@@ -94,6 +94,22 @@ namespace SimpleExpressions.Test
             var pattern = simpleExpression.RegularExpressionPattern;
             Assert.AreEqual(@"\.", pattern);
         }
+
+        [TestMethod]
+        public void CharactersRangeRegex()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .Characters("az")
+                .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"[az]", pattern);
+        }
     }
 }
 

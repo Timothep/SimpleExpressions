@@ -16,7 +16,7 @@ namespace SimpleExpressions.Core.Converters
             if (arg0.Contains("."))
                 arg0 = arg0.Insert(arg0.IndexOf(".", StringComparison.Ordinal), @"\");
 
-            pattern.Add(arg0);
+            pattern.Add("[" + arg0 + "]");
             return pattern;
         }
     }
