@@ -57,6 +57,8 @@
     <Compile Include="Converters\Repeat.cs" />
     <Compile Include="Converters\SimpleSet.cs" />
     <Compile Include="Converters\Together.cs" />
+    <Compile Include="Converters\Sequence.cs" />
+    <Compile Include="Converters\Word.cs" />
     <Compile Include="Extensions\IListExtension.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

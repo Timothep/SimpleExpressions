@@ -57,6 +57,7 @@
     <Compile Include="InRangeTests.cs" />
     <Compile Include="MaybeTests.cs" />
     <Compile Include="RepetitionsTests.cs" />
+    <Compile Include="WordTests.cs" />
     <Compile Include="SimpleExpressionExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

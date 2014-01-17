@@ -31,7 +31,7 @@ namespace SimpleExpressions.Core
                     {
                         converter = new Characters();
                         function.Arguments = new object[] { function.Name };
-                        function.Name = "Word";
+                        function.Name = "Sequence";
                     }
                     else
                         throw new NullReferenceException(string.Format("No matching converter for function '{0}' could be found", function.Name));

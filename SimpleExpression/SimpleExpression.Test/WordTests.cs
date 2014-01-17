@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
 
 namespace SimpleExpressions.Test
 {
     [TestClass]
-    public class MaybeTests
+    public class WordTests
     {
         [TestMethod]
-        public void SimpleMaybeTest()
+        public void SimpleSequenceTest()
         {
             dynamic se = new SimpleExpression();
             var result = se
-                .http
-                .Maybe("s")
-                .Sequence("://")
+                .Word("ponys")
+                .AlphanumericsAndWhitespaces
+                .Word("rainbows")
                 .Generate();
 
             Assert.IsNotNull(result);
@@ -25,7 +22,7 @@ namespace SimpleExpressions.Test
             Assert.IsNotNull(simpleExpression);
 
             var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"http(s)?://", pattern);
+            Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", pattern);
         }
     }
 }

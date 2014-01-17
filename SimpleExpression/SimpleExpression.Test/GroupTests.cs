@@ -17,8 +17,8 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Group
-                    .Characters("aei")
-                    .Characters("ou")
+                    .Sequence("aei")
+                    .Sequence("ou")
                 .Together
                 .Generate();
 
@@ -36,8 +36,8 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Group
-                    .Characters("aei")
-                    .Characters("ou")
+                    .Sequence("aei")
+                    .Sequence("ou")
                 .Together.As("vowels")
                 .Generate();
 

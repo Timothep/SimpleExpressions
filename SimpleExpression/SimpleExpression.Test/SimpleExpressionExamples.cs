@@ -45,13 +45,30 @@ namespace SimpleExpressions.Test
         }
 
         [TestMethod]
+        public void SimpleWildcardsWithWhitespacesRegex()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .LettersAndWhitespaces
+                .Number
+                .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"[a-zA-Z\s]*[0-9]", pattern);
+        }
+
+        [TestMethod]
         public void ExactMatchRegex()
         {
             dynamic se = new SimpleExpression();
             var result = se
-                .Characters('a')
+                .Character('a')
                 .ei
-                .Characters("ou")
+                .Sequence("ou")
                 .Generate();
 
             Assert.IsNotNull(result);
@@ -67,7 +84,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             var result = se
-                .Characters('.')
+                .Character('.')
                 .Generate();
 
             Assert.IsNotNull(result);
