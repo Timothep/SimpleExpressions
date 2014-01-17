@@ -8,7 +8,7 @@ namespace SimpleExpressions.Core.Converters
         internal static IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
         {
             var currentToken = tokens[currentIndex];
-
+            
             if (currentToken.Arguments.Length != 1)
                 throw new ArgumentException("Incorrect number of arguments found");
 
@@ -32,6 +32,10 @@ namespace SimpleExpressions.Core.Converters
 
         public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
         {
+            var currentToken = tokens[currentIndex];
+            if (currentToken.Arguments.Length != 1 && currentToken.Arguments[0].ToString().Length != 1)
+                throw new ArgumentException("Use the singular version 'Character' if you want to check for one character only");
+
             return CharacterHelper.Generate(tokens, currentIndex, pattern);
         }
     }
