@@ -46,7 +46,7 @@
     <Compile Include="Converters\AtLeast.cs" />
     <Compile Include="Converters\AtMost.cs" />
     <Compile Include="Converters\BaseConverter.cs" />
-    <Compile Include="Converters\ConverterStaticHelper.cs" />
+    <Compile Include="Converters\_ConverterStaticHelper.cs" />
     <Compile Include="Converters\Max.cs" />
     <Compile Include="Converters\Maybe.cs" />
     <Compile Include="Converters\Exactly.cs" />

@@ -2,7 +2,7 @@
 
 Wouldn't it be easier if you could write stuff like `Repeat.Sequence("repeatMe").AtLeast(2).AtMost(4).Times` or `Group.Sequence("aeiou").As("vowels")` instead of those nasty Regular Expressions and let a tool generate the expressions for you?
 
-Because having to write regexes is what makes us avoid using them in the first place, isn't it?
+Because having to write regexes is what makes mortals avoid using them in the first place, isn't it?
 
 ### Usage
 
@@ -23,7 +23,7 @@ The generated expression is available on the result object via the `Expression` 
 
 The various "functions" you can use are listed here below. Some are methods with parameters, others are member-calls without parameters and without parenthesis `(` and `)`.
 
-SimpleExpressions is based on the C# 4.0 `dynamic` keyword, thus you don't have IntelliSense support. But be reassured, the number of functions you can write is quite small and the combinations are almost entirely up to you, you can chain up pretty much anything to everything.
+SimpleExpressions is based on the C# 4.0 `dynamic` keyword, thus you don't have IntelliSense support. But be reassured, the number of functions you can write is quite small and the combinations are almost entirely up to you, you can chain up pretty much anything to everything. The only thing you need to care is not messing up the spelling, but the errors thrown by SimpleExpressions will help you there as well.
 
 Here are all the functions that SimpleExpressions currently supports:
 * [`Alphanumeric`, `Alphanumerics`, `Letter`, `Letters`, `Number`, `Numbers`](https://github.com/Timothep/SimpleExpressions/wiki/Base-constructs)
