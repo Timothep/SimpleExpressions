@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace SimpleExpressions.Core.Converters
@@ -11,7 +10,7 @@ namespace SimpleExpressions.Core.Converters
 
         public bool CanParse(string token)
         {
-            return this.functions.Any(function => token.Contains(function));
+            return this.functions.Any(token.Contains);
         }
 
         private string FormatPattern(bool lower, bool upper, bool number, bool white, bool multiple)

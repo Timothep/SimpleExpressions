@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace SimpleExpressions.Core.Converters
@@ -51,7 +50,7 @@ namespace SimpleExpressions.Core.Converters
             var lastPatternToken = pattern.Last();
             var arg = currentToken.Arguments[0];
             pattern.Remove(lastPatternToken);
-            pattern.Add(lastPatternToken.Insert(lastPatternToken.Length - 1, "[^" + currentToken.Arguments[0] + "]"));
+            pattern.Add(lastPatternToken.Insert(lastPatternToken.Length - 1, "[^" + arg + "]"));
             return pattern;
         }
     }

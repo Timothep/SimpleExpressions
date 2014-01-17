@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace SimpleExpressions.Core.Converters
 {
@@ -63,18 +64,18 @@ namespace SimpleExpressions.Core.Converters
             }
 
             IList<string> ranges = new List<string>(0);
-            ranges.Add(from.ToString());
+            ranges.Add(from.ToString(CultureInfo.InvariantCulture));
 
             DecomposeSteps(@from, to, ranges);
 
-            ranges.Add((to + 1).ToString());
+            ranges.Add((to + 1).ToString(CultureInfo.InvariantCulture));
             //var regex = "/^(?:";
             var regex = "(";//"?:";
 
             for (var i = 0; i < ranges.Count - 1; i++)
             {
                 string strFrom = ranges[i];
-                string strTo = ((Convert.ToInt64(ranges[i + 1])) - 1).ToString();
+                string strTo = ((Convert.ToInt64(ranges[i + 1])) - 1).ToString(CultureInfo.InvariantCulture);
 
                 for (var j = 0; j < strFrom.Length; j++)
                 {
@@ -107,7 +108,7 @@ namespace SimpleExpressions.Core.Converters
                 {
                     if (next <= to)
                     {
-                        ranges.Add(next.ToString());
+                        ranges.Add(next.ToString(CultureInfo.InvariantCulture));
                     }
                     increment /= 10;
                     higher = false;
@@ -116,7 +117,7 @@ namespace SimpleExpressions.Core.Converters
                 {
                     if (next % (increment * 10) == 0)
                     {
-                        ranges.Add(next.ToString());
+                        ranges.Add(next.ToString(CultureInfo.InvariantCulture));
                         increment = higher ? increment * 10 : increment / 10;
                     }
                 }
