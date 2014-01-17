@@ -25,17 +25,7 @@ The various "functions" you can use are listed here below. Some are methods with
 
 SimpleExpressions is based on the C# 4.0 `dynamic` keyword, thus you don't have IntelliSense support. But be reassured, the number of functions you can write is quite small and the combinations are almost entirely up to you, you can chain up pretty much anything to everything. The only thing you need to care is not messing up the spelling, but the errors thrown by SimpleExpressions will help you there as well.
 
-Here are all the functions that SimpleExpressions currently supports:
-* [`Alphanumeric`, `Alphanumerics`, `Letter`, `Letters`, `Number`, `Numbers`](https://github.com/Timothep/SimpleExpressions/wiki/Base-constructs)
-* [`-AndWhitespaces`](https://github.com/Timothep/SimpleExpressions/wiki/Whitespace) (likely to change)
-* [`Character(char)`, `Characters(string)`](https://github.com/Timothep/SimpleExpressions/wiki/Character)
-* [`Sequence(string)`](https://github.com/Timothep/SimpleExpressions/wiki/Sequence)
-* [`Word(string)`](https://github.com/Timothep/SimpleExpressions/wiki/Word)
-* [`Repeat`, `Exactly(int)`, `AtLeast(int)`, `AtMost(int)`, `Times`](https://github.com/Timothep/SimpleExpressions/wiki/Repetition)
-* [`InRange(string)`](https://github.com/Timothep/SimpleExpressions/wiki/Range)
-* [`Except(string)`](https://github.com/Timothep/SimpleExpressions/wiki/Except)
-* [`Maybe(string)`](https://github.com/Timothep/SimpleExpressions/wiki/Maybe)
-* [`Group`, `Together`, `As(string)`](https://github.com/Timothep/SimpleExpressions/wiki/Group)
+Head over to the Wiki for the full list of supported functions and examples.
 
 ### Requirements:
 
@@ -44,19 +34,3 @@ Here are all the functions that SimpleExpressions currently supports:
 ### Installation
 
 The project is in its early stages and only available via Github. You will ultimately be able to install it via Nuget.
-
-### WIP, functions and ideas
-
-* Either/Or
-* CaseInsensitive
-* StartWith
-* EndOfWord
-* AsWord
-* AsLine
-* EndOfLine
-* Anything
-* Greedy
-
-Structural checks
-* Group+Together or Group+Together+As or Group+As
-* AtLeast/AtMost not with Exactly

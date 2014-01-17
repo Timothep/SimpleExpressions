@@ -42,24 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\As.cs" />
-    <Compile Include="Converters\AtLeast.cs" />
-    <Compile Include="Converters\AtMost.cs" />
+    <Compile Include="Converters\Either.cs" />
+    <Compile Include="Converters\Grouping\As.cs" />
+    <Compile Include="Converters\Repetitions\AtLeast.cs" />
+    <Compile Include="Converters\Repetitions\AtMost.cs" />
     <Compile Include="Converters\BaseConverter.cs" />
     <Compile Include="Converters\_ConverterStaticHelper.cs" />
-    <Compile Include="Converters\Max.cs" />
     <Compile Include="Converters\Maybe.cs" />
-    <Compile Include="Converters\Exactly.cs" />
+    <Compile Include="Converters\Repetitions\Exactly.cs" />
     <Compile Include="Converters\Except.cs" />
-    <Compile Include="Converters\Group.cs" />
+    <Compile Include="Converters\Grouping\Group.cs" />
     <Compile Include="Converters\IConverter.cs" />
     <Compile Include="Converters\InRange.cs" />
     <Compile Include="Converters\Characters.cs" />
-    <Compile Include="Converters\Min.cs" />
-    <Compile Include="Converters\Repeat.cs" />
+    <Compile Include="Converters\Repetitions\Repeat.cs" />
     <Compile Include="Converters\SimpleSet.cs" />
-    <Compile Include="Converters\Times.cs" />
-    <Compile Include="Converters\Together.cs" />
+    <Compile Include="Converters\Repetitions\Times.cs" />
+    <Compile Include="Converters\Grouping\Together.cs" />
     <Compile Include="Converters\Sequence.cs" />
     <Compile Include="Converters\Word.cs" />
     <Compile Include="Extensions\IListExtension.cs" />

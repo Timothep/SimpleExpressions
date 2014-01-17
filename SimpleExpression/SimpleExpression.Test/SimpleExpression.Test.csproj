@@ -52,14 +52,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="LengthBounds.cs" />
+    <Compile Include="EitherTests.cs" />
+    <Compile Include="LengthBoundsTest.cs" />
     <Compile Include="ExceptTests.cs" />
     <Compile Include="GroupTests.cs" />
     <Compile Include="InRangeTests.cs" />
     <Compile Include="MaybeTests.cs" />
     <Compile Include="RepetitionsTests.cs" />
+    <Compile Include="StructuralChecksTests.cs" />
     <Compile Include="WordTests.cs" />
-    <Compile Include="SimpleExpressionExamples.cs" />
+    <Compile Include="SimpleExpressionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

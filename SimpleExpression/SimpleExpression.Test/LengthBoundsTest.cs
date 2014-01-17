@@ -8,7 +8,7 @@ using SimpleExpressions.Core;
 namespace SimpleExpressions.Test
 {
     [TestClass]
-    public class LengthBounds
+    public class LengthBoundsTest
     {
         [TestMethod]
         public void EmailRegex()

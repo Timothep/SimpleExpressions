@@ -4,7 +4,7 @@ using SimpleExpressions.Core;
 namespace SimpleExpressions.Test
 {
     [TestClass]
-    public class SimpleExpressionExamples
+    public class SimpleExpressionTests
     {
         /// http://regexpal.com/
         /// http://regexstorm.net/tester
