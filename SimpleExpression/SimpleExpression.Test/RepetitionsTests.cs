@@ -14,7 +14,7 @@ namespace SimpleExpressions.Test
                 .Repeat.http.Exactly(3).Times
                 .Generate();
 
-            Assert.AreEqual(@"(http){3}", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"(http){3}", (result as SimpleExpression).Expression);
         }
         
         [TestMethod]
@@ -25,7 +25,7 @@ namespace SimpleExpressions.Test
                     .Repeat.Sequence("aei").AtLeast(3).Times //AtLeast3Times?
                     .Generate();
 
-            Assert.AreEqual(@"(aei){3,}", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"(aei){3,}", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace SimpleExpressions.Test
                     .AtLeast(3).Times
                     .Generate();
 
-            Assert.AreEqual(@"(?<vowels>(aeiou)){3,}", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"(?<vowels>(aeiou)){3,}", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace SimpleExpressions.Test
                 .Repeat.Sequence("42").AtLeast(2).AtMost(4).Times
                 .Generate();
 
-        Assert.AreEqual(@"(42){2,4}", (result as SimpleExpression).RegularExpressionPattern);
+        Assert.AreEqual(@"(42){2,4}", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -60,7 +60,7 @@ namespace SimpleExpressions.Test
                     .Repeat.Sequence("42").Exactly(3).Times
                     .Generate();
 
-            Assert.AreEqual(@"(42){3}", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"(42){3}", (result as SimpleExpression).Expression);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SimpleExpressions.Test
                 .Together
                 .Generate();
 
-            Assert.AreEqual(@"(aeiou)", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"(aeiou)", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace SimpleExpressions.Test
                 .Together.As("vowels")
                 .Generate();
 
-            var pattern = (result as SimpleExpression).RegularExpressionPattern;
+            var pattern = (result as SimpleExpression).Expression;
             Assert.AreEqual(@"(?<vowels>aeiou)", pattern);
 
             var reg = new Regex(pattern);

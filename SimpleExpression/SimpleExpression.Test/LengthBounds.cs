@@ -22,7 +22,7 @@ namespace SimpleExpressions.Test
                 .Alphanumerics.AtLeast(2).AtMost(5)
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z0-9]{1,}@[a-zA-Z0-9]{1,}\.[a-zA-Z0-9]{2,5}", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"[a-zA-Z0-9]{1,}@[a-zA-Z0-9]{1,}\.[a-zA-Z0-9]{2,5}", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace SimpleExpressions.Test
                 .Numbers.AtLeast(1).AtMost(2)
                 .Generate();
 
-            Assert.AreEqual(@"[0-9]{1,4}/[0-9]{1,2}/[0-9]{1,2}", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"[0-9]{1,4}/[0-9]{1,2}/[0-9]{1,2}", (result as SimpleExpression).Expression);
         }
     }
 }

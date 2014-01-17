@@ -23,7 +23,7 @@ namespace SimpleExpressions.Core
         public IList<Function> TokenizedSimpleExpression { get; set; }
         public IList<string> TokenizedRegularExpression { get; set; }
 
-        public string RegularExpressionPattern
+        public string Expression
         {
             get { return string.Join("", this.TokenizedRegularExpression); }
         }

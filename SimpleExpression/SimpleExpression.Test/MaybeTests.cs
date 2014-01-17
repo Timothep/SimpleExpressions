@@ -20,7 +20,7 @@ namespace SimpleExpressions.Test
                 .Sequence("://")
                 .Generate();
 
-            Assert.AreEqual(@"http(s)?://", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"http(s)?://", (result as SimpleExpression).Expression);
         }
     }
 }

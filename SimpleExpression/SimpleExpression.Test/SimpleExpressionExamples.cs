@@ -18,7 +18,7 @@ namespace SimpleExpressions.Test
                 .Numbers
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z]*[0-9]*", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"[a-zA-Z]*[0-9]*", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace SimpleExpressions.Test
                 .Number
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z][0-9]", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"[a-zA-Z][0-9]", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace SimpleExpressions.Test
                 .Number
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z\s]*[0-9]", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"[a-zA-Z\s]*[0-9]", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -55,7 +55,7 @@ namespace SimpleExpressions.Test
                 .Sequence("ou")
                 .Generate();
 
-            Assert.AreEqual(@"aeiou", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"aeiou", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace SimpleExpressions.Test
                 .Character('.')
                 .Generate();
 
-            Assert.AreEqual(@"\.", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"\.", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace SimpleExpressions.Test
                 .Characters("az")
                 .Generate();
 
-            Assert.AreEqual(@"[az]", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"[az]", (result as SimpleExpression).Expression);
         }
 
         [TestMethod]
@@ -90,7 +90,7 @@ namespace SimpleExpressions.Test
                 .Characters("x-z")
                 .Generate();
 
-            Assert.AreEqual(@"a[ij][x-z]", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"a[ij][x-z]", (result as SimpleExpression).Expression);
         }
     }
 }

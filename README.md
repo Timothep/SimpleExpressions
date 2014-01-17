@@ -1,12 +1,6 @@
-SimpleExpressions
+Wouldn't it be easier if you could write stuff like `Repeat.Sequence("repeatMe").AtLeast(2).AtMost(4).Times` or `Group.Sequence("aeiou").As("vowels")` instead of those nasty Regular Expressions and let a tool generate the expressions for you?
 
-=================
-
-... because having to write regexes is what makes me avoid using them in the first place!
-
-Wouldn't it be easier if you could write stuff like `Repeat.Sequence("repeatMe").AtLeast(2).AtMost(4).Times` or `Group.Sequence("aeiou").As("vowels")`?
-
-Well, that's what you can do with SimpleExpressions.
+Because having to write regexes is what makes us avoid using them in the first place, isn't it?
 
 =================
 
@@ -18,7 +12,8 @@ This object is then the source of your query. Chain the query to that object as 
 
     SimpleExpression result = se.Letters.Generate();
       
-The object returned is a `SimpleExpression` itself. The generated expression is available on the result object via the `Expression` property.
+The object returned is a `SimpleExpression` itself so you can chain up some more stuff on it.
+The generated expression is available on the result object via the `Expression` property.
 
     string expression = result.Expression;
 
@@ -42,7 +37,16 @@ Here are all the functions that SimpleExpressions currently supports:
 
 ***
 
-### WIP Functions
+Requirements:
+* .NET 4.0
+
+***
+
+The project is in its early stages and only available via Github. You will ultimately be able to install it via Nuget.
+
+***
+
+### WIP, functions and ideas
 
 * Either
 * Or

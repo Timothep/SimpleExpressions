@@ -16,7 +16,7 @@ namespace SimpleExpressions.Test
                 .Word("rainbows")
                 .Generate();
 
-            Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", (result as SimpleExpression).RegularExpressionPattern);
+            Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", (result as SimpleExpression).Expression);
 
 
         }
