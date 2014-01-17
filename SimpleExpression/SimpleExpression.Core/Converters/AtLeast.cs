@@ -29,7 +29,7 @@ namespace SimpleExpressions.Core.Converters
             return pattern;
         }
 
-        private bool IsPartOfARepeatLoop(IList<Function> tokens, int currentIndex)
+        private static bool IsPartOfARepeatLoop(IList<Function> tokens, int currentIndex)
         {
             //If there is a "Times" token on the right (maybe with a AtMost() in between)
             if ((tokens.Count > (currentIndex + 1) && tokens[currentIndex + 1].Name == "Times")
