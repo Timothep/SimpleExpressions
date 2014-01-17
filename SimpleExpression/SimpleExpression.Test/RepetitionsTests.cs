@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
 
 namespace SimpleExpressions.Test
@@ -11,61 +7,25 @@ namespace SimpleExpressions.Test
     public class RepetitionsTests
     {
         [TestMethod]
-        public void EmailRegex()
+        public void SequenceRepeatTest()
         {
             dynamic se = new SimpleExpression();
             var result = se
-                .Alphanumerics.AtLeast(1)
-                .Character("@")
-                .Alphanumerics.AtLeast(1)
-                .Character(".")
-                .Alphanumerics.AtLeast(2).AtMost(5)
+                .Repeat.http.Exactly(3).Times
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"[a-zA-Z0-9]{1,}@[a-zA-Z0-9]{1,}\.[a-zA-Z0-9]{2,5}", pattern);
+            Assert.AreEqual(@"(http){3}", (result as SimpleExpression).RegularExpressionPattern);
         }
-
-        [TestMethod]
-        public void SimpleDate()
-        {
-            dynamic se = new SimpleExpression();
-            var result = se
-                .Numbers.AtLeast(1).AtMost(4)
-                .Character('/')
-                .Numbers.AtLeast(1).AtMost(2)
-                .Character('/')
-                .Numbers.AtLeast(1).AtMost(2)
-                .Generate();
-
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"[0-9]{1,4}/[0-9]{1,2}/[0-9]{1,2}", pattern);
-        }
-
+        
         [TestMethod]
         public void BlockRepetition()
         {
             dynamic se = new SimpleExpression();
             var result = se
-                    .Sequence("aei")
-                    .Repeat
-                    .AtLeast(3)
+                    .Repeat.Sequence("aei").AtLeast(3).Times //AtLeast3Times?
                     .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"(aei){3,}", pattern);
+            Assert.AreEqual(@"(aei){3,}", (result as SimpleExpression).RegularExpressionPattern);
         }
 
         [TestMethod]
@@ -73,37 +33,34 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             var result = se
-                    .Group
-                        .Sequence("aei")
-                    .Together
-                    .Repeat.AtLeast(3)
+                    .Repeat
+                        .Group.Sequence("aeiou").As("vowels")
+                    .AtLeast(3).Times
                     .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"(aei){3,}", pattern);
+            Assert.AreEqual(@"(?<vowels>(aeiou)){3,}", (result as SimpleExpression).RegularExpressionPattern);
         }
 
         [TestMethod]
-        public void Repetition()
+        public void BountRepetitionTests()
         {
             dynamic se = new SimpleExpression();
             var result = se
-                    .Group
-                        .Sequence("aei")
-                    .Together
-                    .Repeat.Exactly(3)
+                .Repeat.Sequence("42").AtLeast(2).AtMost(4).Times
+                .Generate();
+
+        Assert.AreEqual(@"(42){2,4}", (result as SimpleExpression).RegularExpressionPattern);
+        }
+
+        [TestMethod]
+        public void FixedRepetitionTests()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                    .Repeat.Sequence("42").Exactly(3).Times
                     .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"(aei){3}", pattern);
+            Assert.AreEqual(@"(42){3}", (result as SimpleExpression).RegularExpressionPattern);
         }
     }
 }

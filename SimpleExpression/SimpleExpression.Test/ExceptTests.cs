@@ -20,12 +20,7 @@ namespace SimpleExpressions.Test
                 .Except("aeiou")
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"[a-zA-Z-[aeiou]]", pattern);
+            Assert.AreEqual(@"[a-zA-Z-[aeiou]]", (result as SimpleExpression).RegularExpressionPattern);
         }
 
         [TestMethod]
@@ -37,11 +32,7 @@ namespace SimpleExpressions.Test
                 .Except("a-e")
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
+            var pattern =  (result as SimpleExpression).RegularExpressionPattern;
             Assert.AreEqual(@"[a-zA-Z-[a-e]]*", pattern);
 
             var reg = new Regex(pattern);
@@ -66,11 +57,7 @@ namespace SimpleExpressions.Test
                 .ExceptWord("rainbow")
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
+            var pattern =  (result as SimpleExpression).RegularExpressionPattern;
             Assert.AreEqual(@"^(.(?!rainbow))*$", pattern);
 
             var reg = new Regex(pattern);

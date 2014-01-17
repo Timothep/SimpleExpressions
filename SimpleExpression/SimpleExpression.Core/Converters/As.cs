@@ -26,7 +26,11 @@ namespace SimpleExpressions.Core.Converters
             //Handle a "Group.xyz.As()" without "Together"
             var lastPatternToken = pattern.Last();
             if (!lastPatternToken.EndsWith(")"))
-                lastPatternToken += ")";
+            {
+                var correctedLastPatternToken = lastPatternToken + ")";
+                pattern.Remove(lastPatternToken);
+                pattern.Add(correctedLastPatternToken);
+            }
 
             //Find the location of the matching parenthesis
             var openingParenthesisLocation = ConverterStaticHelper.FindMatchingParenthesisIndex(pattern, new Tuple<int, int>(pattern.Count - 1, lastPatternToken.Length - 1));

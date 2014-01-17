@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SimpleExpressions.Core.Converters
 {
-    public class Exactly: BaseConverter
+    public class Min: BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "Exactly" };
+        private readonly IList<string> functions = new List<string> { "Min" };
         public override IList<string> Functions
         {
             get { return this.functions; }
@@ -15,7 +15,7 @@ namespace SimpleExpressions.Core.Converters
         {
             var currentToken = tokens[currentIndex];
 
-            if(currentToken.Arguments.Length != 1)
+            if (currentToken.Arguments.Length != 1)
                 throw new ArgumentException("Incorrect number of arguments found");
 
             //Close the repeat ")"

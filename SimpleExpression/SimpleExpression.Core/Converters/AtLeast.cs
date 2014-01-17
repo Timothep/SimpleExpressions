@@ -19,10 +19,26 @@ namespace SimpleExpressions.Core.Converters
             if (currentToken.Arguments.Length != 1)
                 throw new ArgumentException("Incorrect number of arguments found");
 
+            //If it is the first after the repeat, close the ")"
+            if(IsPartOfARepeatLoop(tokens, currentIndex))
+                pattern.Add(")");
+
             RemoveStar(pattern);
             pattern.Add(@"{" + currentToken.Arguments[0] + ",}");
 
             return pattern;
+        }
+
+        private bool IsPartOfARepeatLoop(IList<Function> tokens, int currentIndex)
+        {
+            //If there is a "Times" token on the right (maybe with a AtMost() in between)
+            if ((tokens.Count > (currentIndex + 1) && tokens[currentIndex + 1].Name == "Times")
+                ||
+                (tokens.Count > (currentIndex + 2) && tokens[currentIndex + 1].Name == "AtMost" &&
+                    tokens[currentIndex + 2].Name == "Times"))
+                return true;
+
+            return false;
         }
 
         private static void RemoveStar(IList<string> pattern)

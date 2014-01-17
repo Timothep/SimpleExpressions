@@ -19,12 +19,7 @@ namespace SimpleExpressions.Test
                 .InRange("1-5")
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"([1-4]|5)", pattern);
+            Assert.AreEqual(@"([1-4]|5)", (result as SimpleExpression).RegularExpressionPattern);
         }
 
         [TestMethod]
@@ -39,12 +34,8 @@ namespace SimpleExpressions.Test
                 .Numbers.InRange("1-31")
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-8][0-9][0-9][0-9]|9[0-8][0-9][0-9]|99[0-8][0-9]|999[0-9])/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3[0-1])", pattern);
+            Assert.AreEqual(@"([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-8][0-9][0-9][0-9]|9[0-8][0-9][0-9]|99[0-8][0-9]|999[0-9])/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3[0-1])",
+                (result as SimpleExpression).RegularExpressionPattern);
         }
     }
 }

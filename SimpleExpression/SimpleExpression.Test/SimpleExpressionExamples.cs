@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
 
 namespace SimpleExpressions.Test
@@ -19,12 +18,7 @@ namespace SimpleExpressions.Test
                 .Numbers
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"[a-zA-Z]*[0-9]*", pattern);
+            Assert.AreEqual(@"[a-zA-Z]*[0-9]*", (result as SimpleExpression).RegularExpressionPattern);
         }
 
         [TestMethod]
@@ -36,12 +30,7 @@ namespace SimpleExpressions.Test
                 .Number
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"[a-zA-Z][0-9]", pattern);
+            Assert.AreEqual(@"[a-zA-Z][0-9]", (result as SimpleExpression).RegularExpressionPattern);
         }
 
         [TestMethod]
@@ -53,12 +42,7 @@ namespace SimpleExpressions.Test
                 .Number
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"[a-zA-Z\s]*[0-9]", pattern);
+            Assert.AreEqual(@"[a-zA-Z\s]*[0-9]", (result as SimpleExpression).RegularExpressionPattern);
         }
 
         [TestMethod]
@@ -71,12 +55,7 @@ namespace SimpleExpressions.Test
                 .Sequence("ou")
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"aeiou", pattern);
+            Assert.AreEqual(@"aeiou", (result as SimpleExpression).RegularExpressionPattern);
         }
 
         [TestMethod]
@@ -87,12 +66,7 @@ namespace SimpleExpressions.Test
                 .Character('.')
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
-
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"\.", pattern);
+            Assert.AreEqual(@"\.", (result as SimpleExpression).RegularExpressionPattern);
         }
 
         [TestMethod]
@@ -103,12 +77,20 @@ namespace SimpleExpressions.Test
                 .Characters("az")
                 .Generate();
 
-            Assert.IsNotNull(result);
-            var simpleExpression = result as SimpleExpression;
-            Assert.IsNotNull(simpleExpression);
+            Assert.AreEqual(@"[az]", (result as SimpleExpression).RegularExpressionPattern);
+        }
 
-            var pattern = simpleExpression.RegularExpressionPattern;
-            Assert.AreEqual(@"[az]", pattern);
+        [TestMethod]
+        public void CharactersMixRegex()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .Character('a')
+                .Characters("ij")
+                .Characters("x-z")
+                .Generate();
+
+            Assert.AreEqual(@"a[ij][x-z]", (result as SimpleExpression).RegularExpressionPattern);
         }
     }
 }
