@@ -52,6 +52,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ExceptTests.cs" />
+    <Compile Include="GroupTests.cs" />
+    <Compile Include="InRangeTests.cs" />
+    <Compile Include="MaybeTests.cs" />
+    <Compile Include="RepetitionsTests.cs" />
     <Compile Include="SimpleExpressionExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

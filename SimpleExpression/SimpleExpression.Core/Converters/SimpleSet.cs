@@ -16,10 +16,10 @@ namespace SimpleExpressions.Core.Converters
             switch (tokens[currentIndex].Name)
             {
                 case "Alphanumeric":
-                    pattern.Add(@"\w");
+                    pattern.Add(@"[a-zA-Z0-9]");
                     break;
                 case "Alphanumerics":
-                    pattern.Add(@"\w*");
+                    pattern.Add(@"[a-zA-Z0-9]*");
                     break;
                 case "Letter":
                     pattern.Add(@"[a-zA-Z]");

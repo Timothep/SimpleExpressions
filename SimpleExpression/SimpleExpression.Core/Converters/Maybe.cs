@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SimpleExpressions.Core.Converters
 {
-    public class One: BaseConverter
+    public class Maybe: BaseConverter
     {
-        private readonly IList<string> functions = new List<string>{ "One" };
+        private readonly IList<string> functions = new List<string> { "Maybe" };
         public override IList<string> Functions
         {
             get { return this.functions; }
@@ -19,9 +19,7 @@ namespace SimpleExpressions.Core.Converters
                 throw new ArgumentException("Incorrect number of arguments found");
 
             string arg0 = currentToken.Arguments[0].ToString();
-            if (currentToken.Arguments[0].ToString() == ".")
-                arg0 = @"\" + arg0;
-            pattern.Add(arg0);
+            pattern.Add("(" + arg0 + ")?");
 
             return pattern;
         }

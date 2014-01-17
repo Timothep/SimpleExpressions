@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SimpleExpressions.Core.Converters
 {
-    public class Exactly: BaseConverter
+    public class Text: BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "Exactly" };
+        private readonly IList<string> functions = new List<string>{ "Text" };
         public override IList<string> Functions
         {
             get { return this.functions; }
@@ -19,7 +19,9 @@ namespace SimpleExpressions.Core.Converters
                 throw new ArgumentException("Incorrect number of arguments found");
 
             string arg0 = currentToken.Arguments[0].ToString();
-            pattern.Add("{" + arg0 + "}");
+            if (currentToken.Arguments[0].ToString() == ".")
+                arg0 = @"\" + arg0;
+            pattern.Add(arg0);
 
             return pattern;
         }

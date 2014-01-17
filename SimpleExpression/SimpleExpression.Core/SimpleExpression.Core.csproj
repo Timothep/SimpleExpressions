@@ -47,12 +47,13 @@
     <Compile Include="Converters\AtMost.cs" />
     <Compile Include="Converters\BaseConverter.cs" />
     <Compile Include="Converters\ConverterStaticHelper.cs" />
+    <Compile Include="Converters\Maybe.cs" />
     <Compile Include="Converters\Exactly.cs" />
     <Compile Include="Converters\Except.cs" />
     <Compile Include="Converters\Group.cs" />
     <Compile Include="Converters\IConverter.cs" />
     <Compile Include="Converters\InRange.cs" />
-    <Compile Include="Converters\One.cs" />
+    <Compile Include="Converters\Text.cs" />
     <Compile Include="Converters\Repeat.cs" />
     <Compile Include="Converters\SimpleSet.cs" />
     <Compile Include="Converters\Together.cs" />
