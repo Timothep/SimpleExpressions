@@ -16,9 +16,9 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Alphanumerics.AtLeast(1)
-                .Text("@")
+                .Characters("@")
                 .Alphanumerics.AtLeast(1)
-                .Text(".")
+                .Characters(".")
                 .Alphanumerics.AtLeast(2).AtMost(5)
                 .Generate();
 
@@ -36,9 +36,9 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Numbers.AtLeast(1).AtMost(4)
-                .Text('/')
+                .Characters('/')
                 .Numbers.AtLeast(1).AtMost(2)
-                .Text('/')
+                .Characters('/')
                 .Numbers.AtLeast(1).AtMost(2)
                 .Generate();
 
@@ -55,7 +55,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             var result = se
-                    .Text("aei").Repeat.AtLeast(3)
+                    .Characters("aei").Repeat.AtLeast(3)
                     .Generate();
 
             Assert.IsNotNull(result);
@@ -72,7 +72,7 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                     .Group
-                        .Text("aei")
+                        .Characters("aei")
                     .Together
                     .Repeat.AtLeast(3)
                     .Generate();
@@ -91,7 +91,7 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                     .Group
-                        .Text("aei")
+                        .Characters("aei")
                     .Together
                     .Repeat.Exactly(3)
                     .Generate();

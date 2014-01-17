@@ -17,7 +17,7 @@ namespace SimpleExpressions.Test
             var result = se
                 .http
                 .Maybe("s")
-                .Text("://")
+                .Characters("://")
                 .Generate();
 
             Assert.IsNotNull(result);

@@ -14,7 +14,10 @@ namespace SimpleExpressions.Test
         public void MultiWildcardsRegex()
         {
             dynamic se = new SimpleExpression();
-            var result = se.Letters.Numbers.Generate();
+            var result = se
+                .Letters
+                .Numbers
+                .Generate();
 
             Assert.IsNotNull(result);
             var simpleExpression = result as SimpleExpression;
@@ -28,7 +31,10 @@ namespace SimpleExpressions.Test
         public void SimpleWildcardsRegex()
         {
             dynamic se = new SimpleExpression();
-            var result = se.Letter.Number.Generate();
+            var result = se
+                .Letter
+                .Number
+                .Generate();
 
             Assert.IsNotNull(result);
             var simpleExpression = result as SimpleExpression;
@@ -43,9 +49,9 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             var result = se
-                .Text('a')
+                .Characters('a')
                 .ei
-                .Text("ou")
+                .Characters("ou")
                 .Generate();
 
             Assert.IsNotNull(result);
@@ -54,6 +60,22 @@ namespace SimpleExpressions.Test
 
             var pattern = simpleExpression.RegularExpressionPattern;
             Assert.AreEqual(@"aeiou", pattern);
+        }
+
+        [TestMethod]
+        public void CharacterDotRegex()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .Characters('.')
+                .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"\.", pattern);
         }
     }
 }

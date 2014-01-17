@@ -33,9 +33,9 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Numbers.InRange("1-9999")
-                .Text('/')
+                .Characters('/')
                 .Numbers.InRange("1-12")
-                .Text('/')
+                .Characters('/')
                 .Numbers.InRange("1-31")
                 .Generate();
 

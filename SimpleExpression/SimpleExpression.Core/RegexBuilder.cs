@@ -26,12 +26,12 @@ namespace SimpleExpressions.Core
 
                 if (converter == null)
                 {
-                    //If no parameters, consider it as a String and handle it as an Text(xyz)
+                    //If no parameters, consider it as a String and handle it as an Characters(xyz)
                     if (function.Arguments == null || function.Arguments.Length == 0)
                     {
-                        converter = new Text();
+                        converter = new Characters();
                         function.Arguments = new object[] { function.Name };
-                        function.Name = "Text";
+                        function.Name = "Word";
                     }
                     else
                         throw new NullReferenceException(string.Format("No matching converter for function '{0}' could be found", function.Name));
