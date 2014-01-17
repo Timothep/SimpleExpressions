@@ -10,12 +10,61 @@ namespace SimpleExpressions.Test
         /// http://regexpal.com/
 
         [TestMethod]
+        public void MultiWildcardsRegex()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se.Letters.Numbers.Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"[a-zA-Z]*[0-9]*", pattern);
+        }
+
+        [TestMethod]
+        public void SimpleWildcardsRegex()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se.Letter.Number.Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"[a-zA-Z][0-9]", pattern);
+        }
+
+        [TestMethod]
+        public void ExactMatchRegex()
+        {
+            dynamic se = new SimpleExpression();
+            var result = se
+                .One('a')
+                .One("ei")
+                .Exactly("ou")
+                //.Xyz
+                .Generate();
+
+            Assert.IsNotNull(result);
+            var simpleExpression = result as SimpleExpression;
+            Assert.IsNotNull(simpleExpression);
+
+            var pattern = simpleExpression.RegularExpressionPattern;
+            Assert.AreEqual(@"aeiou", pattern);
+            //Assert.AreEqual(@"aeiouxyz", pattern);
+        }
+        
+
+        [TestMethod]
         public void EmailRegex()
         {
             dynamic se = new SimpleExpression();
             var result = se
                 .Alphanumerics.AtLeast(1)
-                .One("@")
+                .One('@')
                 .Alphanumerics.AtLeast(1)
                 .One(".")
                 .Alphanumerics.AtLeast(2).AtMost(5)
@@ -92,7 +141,8 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             var result = se
                 .Group
-                    .Exactly("aei")
+                    .One("aei")
+                    //.Exactly("aei")
                     .Exactly("ou")
                 .Together
                 .Generate();
