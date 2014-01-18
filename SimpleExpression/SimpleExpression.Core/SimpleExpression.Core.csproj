@@ -42,11 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\AnyCharacter.cs" />
     <Compile Include="Converters\Either.cs" />
+    <Compile Include="Converters\EndOfLine.cs" />
     <Compile Include="Converters\Grouping\As.cs" />
+    <Compile Include="Converters\Or.cs" />
     <Compile Include="Converters\Repetitions\AtLeast.cs" />
     <Compile Include="Converters\Repetitions\AtMost.cs" />
     <Compile Include="Converters\BaseConverter.cs" />
+    <Compile Include="Converters\StartsWith.cs" />
     <Compile Include="Converters\_ConverterStaticHelper.cs" />
     <Compile Include="Converters\Maybe.cs" />
     <Compile Include="Converters\Repetitions\Exactly.cs" />

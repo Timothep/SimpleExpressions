@@ -11,21 +11,21 @@ namespace SimpleExpressions.Test
         public void SimpleGroup()
         {
             dynamic se = new SimpleExpression();
-            var result = se
+            SimpleExpression result = se
                 .Group
                     .Sequence("aei")
                     .Sequence("ou")
                 .Together
                 .Generate();
 
-            Assert.AreEqual(@"(aeiou)", (result as SimpleExpression).Expression);
+            Assert.AreEqual(@"(aeiou)", result.Expression);
         }
 
         [TestMethod]
         public void SimpleNamedGroup()
         {
             dynamic se = new SimpleExpression();
-            var result = se
+            SimpleExpression result = se
                 .Group
                     .Sequence("aei")
                     .Sequence("ou")

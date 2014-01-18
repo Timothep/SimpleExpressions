@@ -10,13 +10,13 @@ namespace SimpleExpressions.Test
         public void SimpleWordTest()
         {
             dynamic se = new SimpleExpression();
-            var result = se
+            SimpleExpression result = se
                 .Word("ponys")
                 .AlphanumericsAndWhitespaces
                 .Word("rainbows")
                 .Generate();
 
-            Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", (result as SimpleExpression).Expression);
+            Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", result.Expression);
 
 
         }

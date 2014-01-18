@@ -14,13 +14,13 @@ namespace SimpleExpressions.Test
         public void SimpleMaybeTest()
         {
             dynamic se = new SimpleExpression();
-            var result = se
+            SimpleExpression result = se
                 .http
                 .Maybe("s")
                 .Sequence("://")
                 .Generate();
 
-            Assert.AreEqual(@"http(s)?://", (result as SimpleExpression).Expression);
+            Assert.AreEqual(@"http(s)?://", result.Expression);
         }
     }
 }

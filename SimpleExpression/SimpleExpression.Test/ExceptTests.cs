@@ -15,19 +15,19 @@ namespace SimpleExpressions.Test
         public void OneConson()
         {
             dynamic se = new SimpleExpression();
-            var result = se
+            SimpleExpression result = se
                 .Letter
                 .Except("aeiou")
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z-[aeiou]]", (result as SimpleExpression).Expression);
+            Assert.AreEqual(@"[a-zA-Z-[aeiou]]", result.Expression);
         }
 
         [TestMethod]
         public void ExceptRegex()
         {
             dynamic se = new SimpleExpression();
-            var result = se
+            SimpleExpression result = se
                 .Letters
                 .Except("a-e")
                 .Generate();
@@ -52,7 +52,7 @@ namespace SimpleExpressions.Test
         public void ExceptWordRegex()
         {
             dynamic se = new SimpleExpression();
-            var result = se
+            SimpleExpression result = se
                 .Letters
                 .ExceptWord("rainbow")
                 .Generate();
