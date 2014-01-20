@@ -4,7 +4,7 @@ using SimpleExpressions.Core;
 namespace SimpleExpressions.Test
 {
     [TestClass]
-    public class RepetitionsTests
+    public class RepetitionsMultiTests
     {
         [TestMethod]
         public void SequenceRepeatTest()

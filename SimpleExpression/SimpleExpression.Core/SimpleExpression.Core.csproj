@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\AnyCharacter.cs" />
+    <Compile Include="Converters\Anything.cs" />
     <Compile Include="Converters\Either.cs" />
     <Compile Include="Converters\EndOfLine.cs" />
     <Compile Include="Converters\Grouping\As.cs" />
@@ -67,9 +67,11 @@
     <Compile Include="Converters\Word.cs" />
     <Compile Include="Extensions\IListExtension.cs" />
     <Compile Include="Function.cs" />
+    <Compile Include="SyntaxTree\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexBuilder.cs" />
     <Compile Include="SimpleExpression.cs" />
+    <Compile Include="SyntaxTree\SyntaxTree.cs" />
     <Compile Include="TinyIoC.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

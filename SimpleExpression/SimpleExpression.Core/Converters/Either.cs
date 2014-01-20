@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SimpleExpressions.Core.Converters
 {
-    public class Either:BaseConverter
+    public class EitherOf:BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "Either" };
+        private readonly IList<string> functions = new List<string> { "EitherOf" };
         public override IList<string> Functions
         {
             get { return this.functions; }

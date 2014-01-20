@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SimpleExpressions.Core.Converters
+namespace SimpleExpressions.Core.Converters.Repetitions
 {
     public class Exactly: BaseConverter
     {

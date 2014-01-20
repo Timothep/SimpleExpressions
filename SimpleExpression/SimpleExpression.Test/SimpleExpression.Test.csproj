@@ -52,13 +52,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="EitherTests.cs" />
+    <Compile Include="EitherOrThen.cs" />
+    <Compile Include="RepetitionsSingleTests.cs" />
     <Compile Include="LengthBoundsTest.cs" />
     <Compile Include="ExceptTests.cs" />
     <Compile Include="GroupTests.cs" />
     <Compile Include="InRangeTests.cs" />
     <Compile Include="MaybeTests.cs" />
-    <Compile Include="RepetitionsTests.cs" />
+    <Compile Include="RepetitionsMultiTests.cs" />
     <Compile Include="StructuralChecksTests.cs" />
     <Compile Include="WordTests.cs" />
     <Compile Include="SimpleExpressionTests.cs" />

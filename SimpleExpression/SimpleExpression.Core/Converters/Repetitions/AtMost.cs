@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SimpleExpressions.Core.Converters
+namespace SimpleExpressions.Core.Converters.Repetitions
 {
     public class AtMost:BaseConverter
     {

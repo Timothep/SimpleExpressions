@@ -54,6 +54,7 @@
     <Compile Include="ConverterStaticHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeBuilderTest.cs" />
+    <Compile Include="TreeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleExpression.Core\SimpleExpression.Core.csproj">

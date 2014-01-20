@@ -19,7 +19,7 @@ namespace SimpleExpressions.Core
             var container = TinyIoCContainer.Current;
             container.AutoRegister(DuplicateImplementationActions.RegisterMultiple);
             var converters = container.ResolveAll<IConverter>().ToList();
-            
+
             foreach (var function in chain)
             {
                 var converter = converters.GetConverters(function.Name);
@@ -30,12 +30,14 @@ namespace SimpleExpressions.Core
                     if (function.Arguments == null || function.Arguments.Length == 0)
                     {
                         converter = new Sequence();
-                        function.Arguments = new object[] { function.Name };
+                        function.Arguments = new object[] {function.Name};
                         function.Name = "Sequence";
                     }
                     else
-                        throw new NullReferenceException(string.Format("No matching converter for function '{0}' could be found", function.Name));
+                        throw new NullReferenceException(
+                            string.Format("No matching converter for function '{0}' could be found", function.Name));
                 }
+
 
                 pattern = converter.Generate(chain, chain.IndexOf(function), pattern);
             }

@@ -19,7 +19,7 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
 
             SimpleExpression result = se
-                .Sequence("Group").AnyCharacters
+                .Sequence("Group").Anything
                 .Sequence("Together").Maybe(".As")
                 .Generate();
 
@@ -37,30 +37,29 @@ namespace SimpleExpressions.Test
 
             SimpleExpression result = se
                 .StartsWith
-                .Sequence("Repeat").AnyCharacters
-
-                //EITHER-OR + GROUPS
+                .Sequence("Repeat").Anything
                 .Either
                     .Group
-                        .Sequence("AtLeast").AnyCharacters
-                        .Maybe("AtMost").AnyCharacters
+                        .Sequence("AtLeast").Anything
+                        .Maybe("AtMost").Anything
                     .Together
                 .Or
                     .Group
-                        .Sequence("Exactly").AnyCharacters
+                        .Sequence("Exactly").Anything
                     .Together
                 .Sequence("Times")
+                .EndOfLine
+                .Generate();
 
-                //EITHER-OR-THEN and no groups
+            dynamic se2 = new SimpleExpression();
+            SimpleExpression result2 = se2
                 .Either
-                    .Sequence("AtLeast").AnyCharacters
-                    .Maybe("AtMost").AnyCharacters
+                    .Sequence("AtLeast").Anything
+                    .Maybe("AtMost").Anything
                 .Or
-                    .Sequence("Exactly").AnyCharacters
+                    .Sequence("Exactly").Anything
                 .Then
                 .Sequence("Times")
-
-
                 .EndOfLine
                 .Generate();
 

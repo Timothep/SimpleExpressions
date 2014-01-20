@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace SimpleExpressions.Core.Converters.Repetitions
+namespace SimpleExpressions.Core.Converters
 {
-    public class Repeat: BaseConverter
+    public class Anything : BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "Repeat" };
+        private readonly IList<string> functions = new List<string> { "Anything" };
         public override IList<string> Functions
         {
             get { return this.functions; }
@@ -12,7 +12,7 @@ namespace SimpleExpressions.Core.Converters.Repetitions
 
         public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
         {
-            pattern.Add("(");
+            pattern.Add(@".*");
             return pattern;
         }
     }
