@@ -12,7 +12,7 @@ namespace SimpleExpressions.Core
     /// </summary>
     public static class RegexBuilder
     {
-        public static IList<string> Generate(IList<Function> chain)
+        public static IList<string> Generate(IList<Function> tokenizedChain)
         {
             IList<string> pattern = new List<string>(0);
 
@@ -20,7 +20,7 @@ namespace SimpleExpressions.Core
             container.AutoRegister(DuplicateImplementationActions.RegisterMultiple);
             var converters = container.ResolveAll<IConverter>().ToList();
 
-            foreach (var function in chain)
+            foreach (var function in tokenizedChain)
             {
                 var converter = converters.GetConverters(function.Name);
 
@@ -38,8 +38,7 @@ namespace SimpleExpressions.Core
                             string.Format("No matching converter for function '{0}' could be found", function.Name));
                 }
 
-
-                pattern = converter.Generate(chain, chain.IndexOf(function), pattern);
+                pattern = converter.Generate(tokenizedChain, tokenizedChain.IndexOf(function), pattern);
             }
 
             return pattern;
