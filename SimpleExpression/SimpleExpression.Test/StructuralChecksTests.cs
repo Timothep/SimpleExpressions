@@ -19,8 +19,8 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
 
             SimpleExpression result = se
-                .Sequence("Group").Anything
-                .Sequence("Together").Maybe(".As")
+                .Text("Group").Anything
+                .Text("Together").Maybe(".As")
                 .Generate();
 
             Assert.AreEqual(@"Group.*Together(.As)?", result.Expression);
@@ -37,40 +37,63 @@ namespace SimpleExpressions.Test
 
             SimpleExpression result = se
                 .StartsWith
-                .Sequence("Repeat").Anything
-                .Either
-                    .Group
-                        .Sequence("AtLeast").Anything
-                        .Maybe("AtMost").Anything
-                    .Together
-                .Or
-                    .Group
-                        .Sequence("Exactly").Anything
-                    .Together
-                .Sequence("Times")
+                .Group
+                    .Text("Repeat").Anything
+                    .Either
+                        .Group
+                            .Text("AtLeast").Anything
+                            .Maybe("AtMost").Anything
+                        .Together
+                    .Or
+                        .Group
+                            .Text("Exactly").Anything
+                        .Together
+                     .Then
+                    .Text("Times")
+                .Together
                 .EndOfLine
                 .Generate();
-
-            dynamic se2 = new SimpleExpression();
-            SimpleExpression result2 = se2
-                .Either
-                    .Sequence("AtLeast").Anything
-                    .Maybe("AtMost").Anything
-                .Or
-                    .Sequence("Exactly").Anything
-                .Then
-                .Sequence("Times")
-                .EndOfLine
-                .Generate();
-
-            //Assert.AreEqual(@"Repeat.*AtLeast.*(AtMost)?.*Times", result.Expression);
 
             var regex = new Regex(result.Expression, RegexOptions.ExplicitCapture);
-            Assert.IsTrue(regex.IsMatch("Repeat.http.AtLeast(2).Times"));
-            Assert.IsTrue(regex.IsMatch("Repeat.http.AtLeast(2).AtMost(5).Times"));
+            Assert.IsTrue(regex.IsMatch("Repeat.http.AtLeast(2).Times"), "AtLeast");
+            Assert.IsTrue(regex.IsMatch("Repeat.http.AtLeast(2).AtMost(5).Times"), "AtLeast.AtMost");
+            Assert.IsTrue(regex.IsMatch("Repeat.http.Exactly(2).Times"), "Exactly");
+            
+            //Wrong, the produced regex has too many wildcards that make the matching succeed in those cases
+            Assert.IsFalse(regex.IsMatch("Repeat.http.AtMost(2).AtLeast(2).Times"), "AtMost.AtLeast");
+            Assert.IsFalse(regex.IsMatch("Repeat.http.Exactly(2).AtLeast(5).Times"), "Exactly.AtLeast");
+            Assert.IsFalse(regex.IsMatch("Repeat.http.Exactly(2).AtMost(5).Times"), "Exactly.AtMost");
+        }
 
-            var condition = regex.Match("Repeat.http.Exactly(5).Times");
-            Assert.AreEqual("Repeat.http.Exactly(5).Times", condition.Captures[0].Value);
+        [TestMethod]
+        [Ignore]
+        public void RepeatAtLeastAtMostTimesStructuralChecksTest2()
+        {
+            dynamic se = new SimpleExpression();
+            SimpleExpression result = se
+                 .StartsWith
+                 .Group
+                 .Text("Repeat").Anything
+                    .Either
+                        .Text("AtLeast").Anything
+                        .Maybe("AtMost").Anything
+                    .Or
+                        .Text("Exactly").Anything
+                    .Then
+                    .Text("Times")
+                .Together.As("Whole")
+                .EndOfLine
+                .Generate();
+
+            var regex = new Regex(result.Expression, RegexOptions.ExplicitCapture);
+            Assert.IsTrue(regex.IsMatch("Repeat.http.AtLeast(2).Times"), "AtLeast");
+            Assert.IsTrue(regex.IsMatch("Repeat.http.AtLeast(2).AtMost(5).Times"), "AtLeast.AtMost");
+            Assert.IsTrue(regex.IsMatch("Repeat.http.Exactly(2).Times"), "Exactly");
+
+            //Wrong, the produced regex has too many wildcards that make the matching succeed in those cases
+            Assert.IsFalse(regex.IsMatch("Repeat.http.AtMost(2).AtLeast(2).Times"), "AtMost.AtLeast");
+            Assert.IsFalse(regex.IsMatch("Repeat.http.Exactly(2).AtLeast(5).Times"), "Exactly.AtLeast");
+            Assert.IsFalse(regex.IsMatch("Repeat.http.Exactly(2).AtMost(5).Times"), "Exactly.AtMost");
         }
     }
 }

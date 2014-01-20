@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace SimpleExpressions.Core.Converters
+namespace SimpleExpressions.Core.Converters.EitherOr
 {
-    public class Or: BaseConverter
+    public class Either: BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "Or" };
+        private readonly IList<string> functions = new List<string> { "Either" };
         public override IList<string> Functions
         {
             get { return this.functions; }
@@ -12,11 +12,7 @@ namespace SimpleExpressions.Core.Converters
 
         public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
         {
-            //Find the bounds of the previous group to add "("
-
-            //Find the bound of the next group to close the ")"... how?
-
-            pattern.Add("|");
+            pattern.Add("((");
             return pattern;
         }
     }

@@ -22,7 +22,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                    .Repeat.Sequence("aei").AtLeast(3).Times //AtLeast3Times?
+                    .Repeat.Text("aei").AtLeast(3).Times //AtLeast3Times?
                     .Generate();
 
             Assert.AreEqual(@"(aei){3,}", result.Expression);
@@ -34,7 +34,7 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
                     .Repeat
-                        .Group.Sequence("aeiou").As("vowels")
+                        .Group.Text("aeiou").As("vowels")
                     .AtLeast(3).Times
                     .Generate();
 
@@ -46,7 +46,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Repeat.Sequence("42").AtLeast(2).AtMost(4).Times
+                .Repeat.Text("42").AtLeast(2).AtMost(4).Times
                 .Generate();
 
         Assert.AreEqual(@"(42){2,4}", result.Expression);
@@ -57,7 +57,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                    .Repeat.Sequence("42").Exactly(3).Times
+                    .Repeat.Text("42").Exactly(3).Times
                     .Generate();
 
             Assert.AreEqual(@"(42){3}", result.Expression);

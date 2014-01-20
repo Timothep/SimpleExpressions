@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\Anything.cs" />
-    <Compile Include="Converters\Either.cs" />
+    <Compile Include="Converters\EitherOf.cs" />
+    <Compile Include="Converters\EitherOr\Then.cs" />
+    <Compile Include="Converters\EitherOr\Either.cs" />
     <Compile Include="Converters\EndOfLine.cs" />
     <Compile Include="Converters\Grouping\As.cs" />
-    <Compile Include="Converters\Or.cs" />
+    <Compile Include="Converters\EitherOr\Or.cs" />
     <Compile Include="Converters\Repetitions\AtLeast.cs" />
     <Compile Include="Converters\Repetitions\AtMost.cs" />
     <Compile Include="Converters\BaseConverter.cs" />
@@ -63,7 +65,7 @@
     <Compile Include="Converters\SimpleSet.cs" />
     <Compile Include="Converters\Repetitions\Times.cs" />
     <Compile Include="Converters\Grouping\Together.cs" />
-    <Compile Include="Converters\Sequence.cs" />
+    <Compile Include="Converters\Text.cs" />
     <Compile Include="Converters\Word.cs" />
     <Compile Include="Extensions\IListExtension.cs" />
     <Compile Include="Function.cs" />

@@ -52,7 +52,7 @@ namespace SimpleExpressions.Test
             SimpleExpression result = se
                 .One('a')
                 .ei
-                .Sequence("ou")
+                .Text("ou")
                 .Generate();
 
             Assert.AreEqual(@"aeiou", result.Expression);

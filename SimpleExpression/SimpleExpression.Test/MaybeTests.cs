@@ -17,7 +17,7 @@ namespace SimpleExpressions.Test
             SimpleExpression result = se
                 .http
                 .Maybe("s")
-                .Sequence("://")
+                .Text("://")
                 .Generate();
 
             Assert.AreEqual(@"http(s)?://", result.Expression);

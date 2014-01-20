@@ -29,7 +29,7 @@ namespace SimpleExpressions.Core
                     //If no parameters, consider it as a String and handle it as an Characters(xyz)
                     if (function.Arguments == null || function.Arguments.Length == 0)
                     {
-                        converter = new Sequence();
+                        converter = new Text();
                         function.Arguments = new object[] {function.Name};
                         function.Name = "Sequence";
                     }
