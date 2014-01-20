@@ -38,13 +38,29 @@ namespace SimpleExpressions.Test
             SimpleExpression result = se
                 .StartsWith
                 .Sequence("Repeat").AnyCharacters
+
+                //EITHER-OR + GROUPS
+                .Either
+                    .Group
+                        .Sequence("AtLeast").AnyCharacters
+                        .Maybe("AtMost").AnyCharacters
+                    .Together
+                .Or
+                    .Group
+                        .Sequence("Exactly").AnyCharacters
+                    .Together
+                .Sequence("Times")
+
+                //EITHER-OR-THEN and no groups
                 .Either
                     .Sequence("AtLeast").AnyCharacters
                     .Maybe("AtMost").AnyCharacters
                 .Or
                     .Sequence("Exactly").AnyCharacters
-                //trdfzghpöoiugolih
+                .Then
                 .Sequence("Times")
+
+
                 .EndOfLine
                 .Generate();
 
