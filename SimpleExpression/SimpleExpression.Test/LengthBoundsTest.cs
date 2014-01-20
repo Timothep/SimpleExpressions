@@ -16,9 +16,9 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
                 .Alphanumerics.AtLeast(1)
-                .Character("@")
+                .One("@")
                 .Alphanumerics.AtLeast(1)
-                .Character(".")
+                .One(".")
                 .Alphanumerics.AtLeast(2).AtMost(5)
                 .Generate();
 
@@ -31,9 +31,9 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
                 .Numbers.AtLeast(1).AtMost(4)
-                .Character('/')
+                .One('/')
                 .Numbers.AtLeast(1).AtMost(2)
-                .Character('/')
+                .One('/')
                 .Numbers.AtLeast(1).AtMost(2)
                 .Generate();
 

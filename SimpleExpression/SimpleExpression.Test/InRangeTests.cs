@@ -28,9 +28,9 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
                 .Numbers.InRange("1-9999")
-                .Character('/')
+                .One('/')
                 .Numbers.InRange("1-12")
-                .Character('/')
+                .One('/')
                 .Numbers.InRange("1-31")
                 .Generate();
 

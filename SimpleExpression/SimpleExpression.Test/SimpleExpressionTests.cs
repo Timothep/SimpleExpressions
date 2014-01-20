@@ -50,7 +50,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Character('a')
+                .One('a')
                 .ei
                 .Sequence("ou")
                 .Generate();
@@ -63,7 +63,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Character('.')
+                .One('.')
                 .Generate();
 
             Assert.AreEqual(@"\.", result.Expression);
@@ -74,7 +74,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Characters("az")
+                .OneOf("az")
                 .Generate();
 
             Assert.AreEqual(@"[az]", result.Expression);
@@ -85,9 +85,9 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Character('a')
-                .Characters("ij")
-                .Characters("x-z")
+                .One('a')
+                .OneOf("ij")
+                .OneOf("x-z")
                 .Generate();
 
             Assert.AreEqual(@"a[ij][x-z]", result.Expression);
