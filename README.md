@@ -1,6 +1,11 @@
 ### SimpleExpressions
 
-**WARNING: THIS API IS CURRENTLY COMPLETELY "WORK IN PROGRESS" AND SUBJECT TO DAILY CHANGES!!**
+**##################################################################################**
+**###################################### WARNING ###################################**
+**THIS API IS CURRENTLY COMPLETELY "WORK IN PROGRESS" AND SUBJECT TO DAILY CHANGES!!**
+**THE SAMPLE CODE IS USED TO RESEARCH THE API AND WILL BE COMPLETELY REWRITTEN SOON**
+**##################################################################################**
+
 
 Wouldn't it be easier if you could write stuff like `Repeat.Sequence("repeatMe").AtLeast(2).AtMost(4).Times` or `Group.Sequence("aeiou").As("vowels")` instead of those nasty Regular Expressions and let a tool generate the expressions for you?
 
