@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using SimpleExpressions.Core.Parser;
 
-namespace SimpleExpressions.Core.Converters.Grouping
+namespace SimpleExpressions.Core.Converters
 {
-    public class Group:BaseConverter
+    public class OneOrMore: BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "Group" };
+        private readonly IList<string> functions = new List<string> { "OneOrMore" };
         public override IList<string> Functions
         {
             get { return this.functions; }
         }
 
-        private const NodeType Type = NodeType.Operator;
+        private const NodeType Type = NodeType.PrefixedQualifier;
         public override NodeType NodeType
         {
             get { return Type; }
@@ -19,7 +19,6 @@ namespace SimpleExpressions.Core.Converters.Grouping
 
         public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
         {
-            pattern.Add("(");
             return pattern;
         }
     }

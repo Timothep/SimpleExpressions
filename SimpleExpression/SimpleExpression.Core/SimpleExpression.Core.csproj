@@ -43,16 +43,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\Anything.cs" />
+    <Compile Include="Converters\OneOrMore.cs" />
     <Compile Include="Converters\EitherOf.cs" />
     <Compile Include="Converters\EitherOr\Then.cs" />
     <Compile Include="Converters\EitherOr\Either.cs" />
     <Compile Include="Converters\EndOfLine.cs" />
+    <Compile Include="Converters\FollowedBy.cs" />
     <Compile Include="Converters\Grouping\As.cs" />
     <Compile Include="Converters\EitherOr\Or.cs" />
     <Compile Include="Converters\Repetitions\AtLeast.cs" />
     <Compile Include="Converters\Repetitions\AtMost.cs" />
     <Compile Include="Converters\BaseConverter.cs" />
     <Compile Include="Converters\StartsWith.cs" />
+    <Compile Include="Converters\ZeroOrMore.cs" />
     <Compile Include="Converters\_ConverterStaticHelper.cs" />
     <Compile Include="Converters\Maybe.cs" />
     <Compile Include="Converters\Repetitions\Exactly.cs" />
@@ -69,6 +72,9 @@
     <Compile Include="Converters\Word.cs" />
     <Compile Include="Extensions\IListExtension.cs" />
     <Compile Include="Function.cs" />
+    <Compile Include="Parser\NodeType.cs" />
+    <Compile Include="Parser\Parser.cs" />
+    <Compile Include="Parser\SyntaxFiller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexBuilder.cs" />
     <Compile Include="SimpleExpression.cs" />

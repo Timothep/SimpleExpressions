@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SimpleExpressions.Core.Parser;
 
 namespace SimpleExpressions.Core.Converters.Repetitions
 {
@@ -9,6 +10,12 @@ namespace SimpleExpressions.Core.Converters.Repetitions
         public override IList<string> Functions
         {
             get { return this.functions; }
+        }
+
+        private const NodeType Type = NodeType.PostfixedQualifier;
+        public override NodeType NodeType
+        {
+            get { return Type; }
         }
 
         public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)

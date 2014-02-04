@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SimpleExpressions.Core.Parser;
 
 namespace SimpleExpressions.Core.Converters
 {
-    internal class SimpleSet: IConverter
+    public class SimpleSet: IConverter
     {
         private const string AndWhitespaces = "AndWhitespaces";
         private readonly IList<string> functions = new List<string> { "Alphanumeric", "Alphanumerics", "Letter", "Letters", "Number", "Numbers" };
+
+        internal NodeType Type = NodeType.SimpleNode;
+        public NodeType NodeType { get { return Type; } }
 
         public bool CanParse(string token)
         {
