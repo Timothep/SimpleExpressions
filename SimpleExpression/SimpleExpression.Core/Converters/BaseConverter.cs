@@ -1,19 +1,33 @@
 ﻿using System.Collections.Generic;
-using SimpleExpressions.Core.Parser;
+ 
 
 namespace SimpleExpressions.Core.Converters
 {
     public abstract class BaseConverter: IConverter
     {
-        public abstract IList<string> Functions { get; }
+        /// <summary>
+        /// The functions the converter can support
+        /// </summary>
+        public abstract IList<string> SupportedFunctionNames { get; }
 
-        public abstract IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern);
+        /// <summary>
+        /// The function the converter will handle
+        /// </summary>
+        public Function Function { get; set; }
 
-        public bool CanParse(string token)
+        /// <summary>
+        /// Generates the part of the regex it can handle inside the global chain
+        /// </summary>
+        /// <param name="regularExpressionSofar">The regular expression being built</param>
+        public abstract IList<string> Generate(IList<string> regularExpressionSofar);
+
+        /// <summary>
+        /// Used to know if this converter can parse the given function
+        /// </summary>
+        /// <param name="functionName">The name of the function to be converted</param>
+        public bool CanParse(string functionName)
         {
-            return this.Functions.Contains(token);
+            return this.SupportedFunctionNames.Contains(functionName);
         }
-
-        public abstract NodeType NodeType { get; }
     }
 }

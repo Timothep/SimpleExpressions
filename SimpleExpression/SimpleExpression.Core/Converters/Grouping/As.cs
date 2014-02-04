@@ -1,28 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SimpleExpressions.Core.Parser;
+ 
 
 namespace SimpleExpressions.Core.Converters.Grouping
 {
     public class As : BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "As" };
-        public override IList<string> Functions
+        private readonly IList<string> supportedFunctionNames = new List<string> { "As" };
+        public override IList<string> SupportedFunctionNames
         {
-            get { return this.functions; }
+            get { return this.supportedFunctionNames; }
         }
 
-        private const NodeType Type = NodeType.PostfixedQualifier;
-        public override NodeType NodeType
-        {
-            get { return Type; }
-        }
-
-        public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
+        public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
             //Handle arguments
-            var currentToken = tokens[currentIndex];
+            var currentToken = this.Function;
             if (currentToken.Arguments.Length != 1)
                 throw new ArgumentException("Incorrect number of arguments found");
             var arg = currentToken.Arguments[0];
@@ -31,26 +25,26 @@ namespace SimpleExpressions.Core.Converters.Grouping
             var namedGroup = string.Format("?<{0}>", arg);
 
             //Handle a "Group.xyz.As()" without "Together"
-            var lastPatternToken = pattern.Last();
+            var lastPatternToken = regularExpressionSofar.Last();
             if (!lastPatternToken.EndsWith(")"))
             {
                 var correctedLastPatternToken = lastPatternToken + ")";
-                pattern.Remove(lastPatternToken);
-                pattern.Add(correctedLastPatternToken);
+                regularExpressionSofar.Remove(lastPatternToken);
+                regularExpressionSofar.Add(correctedLastPatternToken);
             }
 
             //Find the location of the matching parenthesis
-            var openingParenthesisLocation = ConverterStaticHelper.FindMatchingParenthesisIndex(pattern, new Tuple<int, int>(pattern.Count - 1, lastPatternToken.Length - 1));
+            var openingParenthesisLocation = ConverterStaticHelper.FindMatchingParenthesisIndex(regularExpressionSofar, new Tuple<int, int>(regularExpressionSofar.Count - 1, lastPatternToken.Length - 1));
 
             //Insert the string
-            var patternToEdit = pattern[openingParenthesisLocation.Item1];
+            var patternToEdit = regularExpressionSofar[openingParenthesisLocation.Item1];
             var editedGroup = patternToEdit.Insert(openingParenthesisLocation.Item2 + 1, namedGroup);
 
             //Insert the group in the list
-            pattern.RemoveAt(openingParenthesisLocation.Item1);
-            pattern.Insert(openingParenthesisLocation.Item1, editedGroup);
+            regularExpressionSofar.RemoveAt(openingParenthesisLocation.Item1);
+            regularExpressionSofar.Insert(openingParenthesisLocation.Item1, editedGroup);
 
-            return pattern;
+            return regularExpressionSofar;
         }
     }
 }

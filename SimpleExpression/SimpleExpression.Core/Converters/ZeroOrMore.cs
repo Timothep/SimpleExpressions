@@ -1,25 +1,19 @@
 ﻿using System.Collections.Generic;
-using SimpleExpressions.Core.Parser;
+ 
 
 namespace SimpleExpressions.Core.Converters
 {
     public class ZeroOrMore: BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "ZeroOrMore" };
-        public override IList<string> Functions
+        private readonly IList<string> supportedFunctionNames = new List<string> { "ZeroOrMore" };
+        public override IList<string> SupportedFunctionNames
         {
-            get { return this.functions; }
+            get { return this.supportedFunctionNames; }
         }
 
-        private const NodeType Type = NodeType.PrefixedQualifier;
-        public override NodeType NodeType
+        public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
-            get { return Type; }
-        }
-
-        public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
-        {
-            return pattern;
+            return regularExpressionSofar;
         }
     }
 }

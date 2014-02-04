@@ -1,20 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using SimpleExpressions.Core.Parser;
+ 
 
 namespace SimpleExpressions.Core.Converters
 {
     public class SimpleSet: IConverter
     {
+        public Function Function { get; set; }
         private const string AndWhitespaces = "AndWhitespaces";
         private readonly IList<string> functions = new List<string> { "Alphanumeric", "Alphanumerics", "Letter", "Letters", "Number", "Numbers" };
 
-        internal NodeType Type = NodeType.SimpleNode;
-        public NodeType NodeType { get { return Type; } }
-
-        public bool CanParse(string token)
+        public bool CanParse(string functionName)
         {
-            return this.functions.Any(token.Contains);
+            return this.functions.Any(functionName.Contains);
         }
 
         private string FormatPattern(bool lower, bool upper, bool number, bool white, bool multiple)
@@ -33,7 +31,7 @@ namespace SimpleExpressions.Core.Converters
                 multiple ? multiplicity : "");
         }
 
-        public IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
+        public IList<string> Generate(IList<string> regularExpressionSofar)
         {
             var formattedPattern = "";
 
@@ -43,7 +41,7 @@ namespace SimpleExpressions.Core.Converters
             const bool white = true;
             const bool multiple = true;
 
-            var name = tokens[currentIndex].Name;
+            var name = this.Function.Name;
             if (name == "Alphanumerics")
                 formattedPattern = FormatPattern(lower, upper, number, !white, multiple);
             else if(name.StartsWith("Alphanumerics") && name.EndsWith(AndWhitespaces))
@@ -71,8 +69,8 @@ namespace SimpleExpressions.Core.Converters
             else if (name.StartsWith("Number") && name.EndsWith(AndWhitespaces))
                 formattedPattern = FormatPattern(!lower, !upper, number, white, !multiple);
 
-            pattern.Add(formattedPattern);
-            return pattern;
+            regularExpressionSofar.Add(formattedPattern);
+            return regularExpressionSofar;
         }
     }
 }

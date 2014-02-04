@@ -1,37 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using SimpleExpressions.Core.Parser;
+ 
 
 namespace SimpleExpressions.Core.Converters
 {
     public class InRange : BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "InRange" };
-        public override IList<string> Functions
+        private readonly IList<string> supportedFunctionNames = new List<string> { "InRange" };
+        public override IList<string> SupportedFunctionNames
         {
-            get { return this.functions; }
+            get { return this.supportedFunctionNames; }
         }
 
-        private const NodeType Type = NodeType.PostfixedQualifier;
-        public override NodeType NodeType
+        public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
-            get { return Type; }
-        }
-
-        public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
-        {
-            var currentToken = tokens[currentIndex];
+            var currentToken = this.Function;
 
             if (currentToken.Arguments == null)
                 throw new ArgumentException("Missing argument");
 
-            var findLastGroupTokenIndex = FindLastGroupTokenIndex(pattern);
+            var findLastGroupTokenIndex = FindLastGroupTokenIndex(regularExpressionSofar);
 
-            pattern.RemoveAt(findLastGroupTokenIndex);
-            pattern.Insert(findLastGroupTokenIndex, RangeBuilder.CreateRange(currentToken.Arguments[0].ToString()));
+            regularExpressionSofar.RemoveAt(findLastGroupTokenIndex);
+            regularExpressionSofar.Insert(findLastGroupTokenIndex, RangeBuilder.CreateRange(currentToken.Arguments[0].ToString()));
 
-            return pattern;
+            return regularExpressionSofar;
         }
 
         private static int FindLastGroupTokenIndex(IList<string> pattern)

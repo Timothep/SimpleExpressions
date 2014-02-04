@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NodeType = SimpleExpressions.Core.Parser.NodeType;
+  
 
 namespace SimpleExpressions.Core.Converters
 {
@@ -12,30 +12,24 @@ namespace SimpleExpressions.Core.Converters
 
     public class Except : BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "Except" };
-        public override IList<string> Functions
+        private readonly IList<string> supportedFunctionNames = new List<string> { "Except" };
+        public override IList<string> SupportedFunctionNames
         {
-            get { return this.functions; }
+            get { return this.supportedFunctionNames; }
         }
 
-        private const NodeType Type = NodeType.HeadOperator;
-        public override NodeType NodeType
+        public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
-            get { return Type; }
-        }
-
-        public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
-        {
-            var currentToken = tokens[currentIndex];
-            var lastPatternToken = pattern.Last();
-            pattern.Remove(lastPatternToken);
+            var currentToken = this.Function;
+            var lastPatternToken = regularExpressionSofar.Last();
+            regularExpressionSofar.Remove(lastPatternToken);
 
             var offset = 1;
             if (lastPatternToken.EndsWith("*"))
                 offset = 2;
 
-            pattern.Add(lastPatternToken.Insert(lastPatternToken.Length - offset, "-[" + currentToken.Arguments[0] + "]"));
-            return pattern;
+            regularExpressionSofar.Add(lastPatternToken.Insert(lastPatternToken.Length - offset, "-[" + currentToken.Arguments[0] + "]"));
+            return regularExpressionSofar;
         }
     }
 
@@ -44,27 +38,21 @@ namespace SimpleExpressions.Core.Converters
     /// </summary>
     public class ExceptWord : BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "ExceptWord" };
-        public override IList<string> Functions
+        private readonly IList<string> supportedFunctionNames = new List<string> { "ExceptWord" };
+        public override IList<string> SupportedFunctionNames
         {
-            get { return this.functions; }
-        }
-
-        private const NodeType Type = NodeType.SimpleNode;
-        public override NodeType NodeType
-        {
-            get { return Type; }
+            get { return this.supportedFunctionNames; }
         }
 
         //^(.(?!arg))*$
-        public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
+        public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
-            var currentToken = tokens[currentIndex];
-            var lastPatternToken = pattern.Last();
+            var currentToken = this.Function;
+            var lastPatternToken = regularExpressionSofar.Last();
             var arg = currentToken.Arguments[0];
-            pattern.Remove(lastPatternToken);
-            pattern.Add(lastPatternToken.Insert(lastPatternToken.Length - 1, "[^" + arg + "]"));
-            return pattern;
+            regularExpressionSofar.Remove(lastPatternToken);
+            regularExpressionSofar.Add(lastPatternToken.Insert(lastPatternToken.Length - 1, "[^" + arg + "]"));
+            return regularExpressionSofar;
         }
     }
 }

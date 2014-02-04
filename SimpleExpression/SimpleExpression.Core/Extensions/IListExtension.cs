@@ -6,7 +6,7 @@ namespace SimpleExpressions.Core.Extensions
 {
     public static class ListExtension
     {
-        public static IConverter GetConverters(this IList<IConverter> tokenizers, string token)
+        public static IConverter GetConverter(this IList<IConverter> tokenizers, string token)
         {
             return tokenizers.FirstOrDefault(tokenizer => tokenizer.CanParse(token));
         }

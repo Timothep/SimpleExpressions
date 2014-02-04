@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
+using SimpleExpressions.Core.Rewriters;
 
 namespace SimpleExpressions.Core
 {
@@ -8,6 +9,10 @@ namespace SimpleExpressions.Core
     /// </summary>
     public class SimpleExpression : DynamicObject
     {
+        private readonly ConverterBoostrapper converterBootstrapper = new ConverterBoostrapper();
+        private readonly ExpressionRewriter expressionRewriter = new ExpressionRewriter();
+        private readonly ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+
         public SimpleExpression()
         {
             this.Initialize();
@@ -20,17 +25,17 @@ namespace SimpleExpressions.Core
         }
 
         public string WorkObject { get; set; }
-        public IList<Function> TokenizedSimpleExpression { get; set; }
-        public IList<string> TokenizedRegularExpression { get; set; }
+        public IList<Function> SimpleExpressionChain { get; set; }
+        public IList<string> RegularExpressionChain { get; set; }
 
         public string Expression
         {
-            get { return string.Join("", this.TokenizedRegularExpression); }
+            get { return string.Join("", this.RegularExpressionChain); }
         }
 
         private void Initialize()
         {
-            this.TokenizedSimpleExpression = new List<Function>(0);
+            this.SimpleExpressionChain = new List<Function>(0);
         }
 
         /// <summary>
@@ -38,7 +43,7 @@ namespace SimpleExpressions.Core
         /// </summary>
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            this.TokenizedSimpleExpression.Add(new Function(binder.Name, args));
+            this.SimpleExpressionChain.Add(new Function(binder.Name, args));
             result = this;
             return true;
         }
@@ -48,7 +53,7 @@ namespace SimpleExpressions.Core
         /// </summary>
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
-            this.TokenizedSimpleExpression.Add(new Function(binder.Name));
+            this.SimpleExpressionChain.Add(new Function(binder.Name));
             result = this;
             return true;
         }
@@ -58,7 +63,15 @@ namespace SimpleExpressions.Core
         /// </summary>
         public SimpleExpression Generate()
         {
-            this.TokenizedRegularExpression = RegexBuilder.Generate(this.TokenizedSimpleExpression);
+            // Find the matching converters
+            var converterChain = converterBootstrapper.CreateConverterChain(this.SimpleExpressionChain);
+            
+            // Modify the SimpleExpression to be convertible
+            var completedConverterChain = expressionRewriter.CompleteConverterChain(converterChain);
+            
+            // Generate the regular expression
+            this.RegularExpressionChain = expressionBuilder.GenerateRegularExpression(completedConverterChain);
+
             return this;
         }
     }

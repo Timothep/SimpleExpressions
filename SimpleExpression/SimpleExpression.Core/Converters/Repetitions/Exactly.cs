@@ -1,37 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using SimpleExpressions.Core.Parser;
+ 
 
 namespace SimpleExpressions.Core.Converters.Repetitions
 {
     public class Exactly: BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "Exactly" };
-        public override IList<string> Functions
+        private readonly IList<string> supportedFunctionNames = new List<string> { "Exactly" };
+        public override IList<string> SupportedFunctionNames
         {
-            get { return this.functions; }
+            get { return this.supportedFunctionNames; }
         }
 
-        private const NodeType Type = NodeType.PostfixedQualifier;
-        public override NodeType NodeType
+        public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
-            get { return Type; }
-        }
-
-        public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
-        {
-            var currentToken = tokens[currentIndex];
+            var currentToken = this.Function;
 
             if(currentToken.Arguments.Length != 1)
                 throw new ArgumentException("Incorrect number of arguments found");
 
             //Close the repeat ")"
-            pattern.Add(")");
+            regularExpressionSofar.Add(")");
 
             string arg0 = currentToken.Arguments[0].ToString();
-            pattern.Add("{" + arg0 + "}");
+            regularExpressionSofar.Add("{" + arg0 + "}");
 
-            return pattern;
+            return regularExpressionSofar;
         }
     }
 }

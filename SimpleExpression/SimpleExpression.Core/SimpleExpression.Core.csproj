@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\Anything.cs" />
+    <Compile Include="Converters\One.cs" />
     <Compile Include="Converters\OneOrMore.cs" />
     <Compile Include="Converters\EitherOf.cs" />
     <Compile Include="Converters\EitherOr\Then.cs" />
@@ -70,13 +71,14 @@
     <Compile Include="Converters\Grouping\Together.cs" />
     <Compile Include="Converters\Text.cs" />
     <Compile Include="Converters\Word.cs" />
+    <Compile Include="ExpressionBuilder.cs" />
+    <Compile Include="Rewriters\ExpressionRewriter.cs" />
     <Compile Include="Extensions\IListExtension.cs" />
     <Compile Include="Function.cs" />
-    <Compile Include="Parser\NodeType.cs" />
-    <Compile Include="Parser\Parser.cs" />
-    <Compile Include="Parser\SyntaxFiller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegexBuilder.cs" />
+    <Compile Include="ConverterBoostrapper.cs" />
+    <Compile Include="Rewriters\GroupRewriter.cs" />
+    <Compile Include="Rewriters\IRewriter.cs" />
     <Compile Include="SimpleExpression.cs" />
     <Compile Include="TinyIoC.cs" />
   </ItemGroup>

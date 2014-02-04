@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Extensions;
-using SimpleExpressions.Core.Parser;
+ 
 using TinyIoC;
 
 namespace SimpleExpressions.Core
@@ -11,20 +11,32 @@ namespace SimpleExpressions.Core
     /// <summary>
     ///   Bootstrap container charged to dispatch the work to the correct converters
     /// </summary>
-    public static class RegexBuilder
+    public class ConverterBoostrapper
     {
-        public static IList<string> Generate(IList<Function> tokenizedChain)
-        {
-            IList<string> pattern = new List<string>(0);
+        public IList<IConverter> Converters { get; set; }
 
+        public ConverterBoostrapper()
+        {
+            // Lazy load all the available containers
             var container = TinyIoCContainer.Current;
             container.AutoRegister(DuplicateImplementationActions.RegisterMultiple);
-            IList<IConverter> converters = container.ResolveAll<IConverter>().ToList();
-            converters = SyntaxFiller.AddMissingOperators(converters);
+            this.Converters = container.ResolveAll<IConverter>().ToList();
+        }
 
+        /// <summary>
+        /// Matches the functions to their converters
+        /// </summary>
+        /// <param name="tokenizedChain">The SimpleExpression as a function chain</param>
+        /// <returns>The SimpleExpression from its converters point of view</returns>
+        public IList<IConverter> CreateConverterChain(IList<Function> tokenizedChain)
+        {
+            IList<IConverter> converterChain = new List<IConverter>(0);
+
+            // Scan each of the functions of the tokenized command chain
             foreach (var function in tokenizedChain)
             {
-                var converter = converters.GetConverters(function.Name);
+                // Find the correct converter
+                var converter = this.Converters.GetConverter(function.Name);
 
                 if (converter == null)
                 {
@@ -40,10 +52,12 @@ namespace SimpleExpressions.Core
                             string.Format("No matching converter for function '{0}' could be found", function.Name));
                 }
 
-                pattern = converter.Generate(tokenizedChain, tokenizedChain.IndexOf(function), pattern);
+                //Save each function inside its converter (1-1 relationship)
+                converter.Function = function;
+                converterChain.Add(converter);
             }
 
-            return pattern;
+            return converterChain;
         }
     }
 }

@@ -1,39 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SimpleExpressions.Core.Parser;
+ 
 
 namespace SimpleExpressions.Core.Converters.Repetitions
 {
     public class AtLeast : BaseConverter
     {
-        private readonly IList<string> functions = new List<string> { "AtLeast" };
-        public override IList<string> Functions
+        private readonly IList<string> supportedFunctionNames = new List<string> { "AtLeast" };
+        public override IList<string> SupportedFunctionNames
         {
-            get { return this.functions; }
+            get { return this.supportedFunctionNames; }
         }
 
-        private const NodeType Type = NodeType.PostfixedQualifier;
-        public override NodeType NodeType
+        public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
-            get { return Type; }
-        }
+            //var currentToken = this.Function;
 
-        public override IList<string> Generate(IList<Function> tokens, int currentIndex, IList<string> pattern)
-        {
-            var currentToken = tokens[currentIndex];
+            //if (currentToken.Arguments.Length != 1)
+            //    throw new ArgumentException("Incorrect number of arguments found");
 
-            if (currentToken.Arguments.Length != 1)
-                throw new ArgumentException("Incorrect number of arguments found");
+            ////If it is the first after the repeat, close the ")"
+            //if(IsPartOfARepeatLoop(tokens, currentIndex))
+            //    regularExpressionSofar.Add(")");
 
-            //If it is the first after the repeat, close the ")"
-            if(IsPartOfARepeatLoop(tokens, currentIndex))
-                pattern.Add(")");
+            //RemoveStar(regularExpressionSofar);
+            //regularExpressionSofar.Add(@"{" + currentToken.Arguments[0] + ",}");
 
-            RemoveStar(pattern);
-            pattern.Add(@"{" + currentToken.Arguments[0] + ",}");
-
-            return pattern;
+            return regularExpressionSofar;
         }
 
         private static bool IsPartOfARepeatLoop(IList<Function> tokens, int currentIndex)
