@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Extensions;
+using SimpleExpressions.Core.Parser;
 using TinyIoC;
 
 namespace SimpleExpressions.Core
@@ -18,7 +19,8 @@ namespace SimpleExpressions.Core
 
             var container = TinyIoCContainer.Current;
             container.AutoRegister(DuplicateImplementationActions.RegisterMultiple);
-            var converters = container.ResolveAll<IConverter>().ToList();
+            IList<IConverter> converters = container.ResolveAll<IConverter>().ToList();
+            converters = SyntaxFiller.AddMissingOperators(converters);
 
             foreach (var function in tokenizedChain)
             {

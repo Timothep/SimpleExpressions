@@ -11,7 +11,7 @@ namespace SimpleExpressions.Core.Converters.EitherOr
             get { return this.functions; }
         }
 
-        private const NodeType Type = NodeType.Operator;
+        private const NodeType Type = NodeType.EnclosedOperator;
         public override NodeType NodeType
         {
             get { return Type; }

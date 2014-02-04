@@ -11,7 +11,7 @@ namespace SimpleExpressions.Core.Converters
             get { return this.functions; }
         }
 
-        private const NodeType Type = NodeType.Operator;
+        private const NodeType Type = NodeType.HeadOperator;
         public override NodeType NodeType
         {
             get { return Type; }

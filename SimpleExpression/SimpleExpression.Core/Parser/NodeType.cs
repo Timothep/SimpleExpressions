@@ -3,7 +3,8 @@
     public enum NodeType
     {
         SimpleNode = 0,
-        Operator,
+        HeadOperator,
+        EnclosedOperator,
         PostfixedQualifier,
         PrefixedQualifier,
         SilentNode,

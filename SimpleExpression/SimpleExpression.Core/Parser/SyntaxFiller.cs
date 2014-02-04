@@ -17,12 +17,8 @@ namespace SimpleExpressions.Core.Parser
 
                 if (index == converterChain.Count - 1) break;
 
-                if ((converterChain[index].NodeType != NodeType.Operator
-                     && converterChain[index].NodeType != NodeType.PrefixedQualifier
-                     && converterChain[index + 1].NodeType == NodeType.SimpleNode)
-                    || (converterChain[index].NodeType == NodeType.SimpleNode
-                        && (converterChain[index + 1].NodeType == NodeType.Operator
-                            || converterChain[index + 1].NodeType == NodeType.PrefixedQualifier)))
+                if (((converterChain[index].NodeType == NodeType.SimpleNode || converterChain[index].NodeType == NodeType.PostfixedQualifier || converterChain[index].NodeType == NodeType.SilentNode) && converterChain[index + 1].NodeType == NodeType.SimpleNode)
+                    || (converterChain[index].NodeType == NodeType.SimpleNode && (converterChain[index + 1].NodeType == NodeType.HeadOperator || converterChain[index + 1].NodeType == NodeType.PrefixedQualifier)))
                     newChain.Add(new FollowedBy());
             }
             return newChain;
