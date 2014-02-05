@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.Grouping;
@@ -18,6 +15,10 @@ namespace SimpleExpression.UnitTests
             IList<IConverter> converterChain = new List<IConverter> { new Group(), new Text(), new Together() };
             var rewriter = new GroupRewriter();
             var completedChain = rewriter.CompleteConverterChain(converterChain);
+
+            Assert.IsTrue(completedChain[0] is Group);
+            Assert.IsTrue(completedChain[1] is Text);
+            Assert.IsTrue(completedChain[2] is Together);
         }
 
         [TestMethod]
@@ -26,6 +27,11 @@ namespace SimpleExpression.UnitTests
             IList<IConverter> converterChain = new List<IConverter> { new Group(), new Text(), new Together(), new As() };
             var rewriter = new GroupRewriter();
             var completedChain = rewriter.CompleteConverterChain(converterChain);
+
+            Assert.IsTrue(completedChain[0] is Group);
+            Assert.IsTrue(completedChain[1] is As);
+            Assert.IsTrue(completedChain[2] is Text);
+            Assert.IsTrue(completedChain[3] is Together);
         }
 
         [TestMethod]
@@ -35,9 +41,13 @@ namespace SimpleExpression.UnitTests
             var rewriter = new GroupRewriter();
             var completedChain = rewriter.CompleteConverterChain(converterChain);
 
+            Assert.IsTrue(completedChain[0] is Group);
             Assert.IsTrue(completedChain[1] is As);
+            Assert.IsTrue(completedChain[2] is Text);
             Assert.IsTrue(completedChain[3] is Together);
+            Assert.IsTrue(completedChain[4] is Group);
             Assert.IsTrue(completedChain[5] is As);
+            Assert.IsTrue(completedChain[6] is Text);
             Assert.IsTrue(completedChain[7] is Together);
         }
 
@@ -47,6 +57,13 @@ namespace SimpleExpression.UnitTests
             IList<IConverter> converterChain = new List<IConverter> { new Group(), new Text(), new Together(), new Group(), new Text(), new Together() };
             var rewriter = new GroupRewriter();
             var completedChain = rewriter.CompleteConverterChain(converterChain);
+
+            Assert.IsTrue(completedChain[0] is Group);
+            Assert.IsTrue(completedChain[1] is Text);
+            Assert.IsTrue(completedChain[2] is Together);
+            Assert.IsTrue(completedChain[3] is Group);
+            Assert.IsTrue(completedChain[4] is Text);
+            Assert.IsTrue(completedChain[5] is Together);
         }
 
         [TestMethod]
@@ -55,6 +72,13 @@ namespace SimpleExpression.UnitTests
             IList<IConverter> converterChain = new List<IConverter> { new Group(), new Group(), new Text(), new Together(), new As(), new Together() };
             var rewriter = new GroupRewriter();
             var completedChain = rewriter.CompleteConverterChain(converterChain);
+
+            Assert.IsTrue(completedChain[0] is Group);
+            Assert.IsTrue(completedChain[1] is Group);
+            Assert.IsTrue(completedChain[2] is As);
+            Assert.IsTrue(completedChain[3] is Text);
+            Assert.IsTrue(completedChain[4] is Together);
+            Assert.IsTrue(completedChain[5] is Together);
         }
     }
 }
