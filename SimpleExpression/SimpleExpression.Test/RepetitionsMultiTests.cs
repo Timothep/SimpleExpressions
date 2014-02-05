@@ -38,7 +38,7 @@ namespace SimpleExpressions.Test
                     .AtLeast(3).Times
                     .Generate();
 
-            Assert.AreEqual(@"(?<vowels>(aeiou)){3,}", result.Expression);
+            Assert.AreEqual(@"(?<vowels>aeiou){3,}", result.Expression);
         }
 
         [TestMethod]

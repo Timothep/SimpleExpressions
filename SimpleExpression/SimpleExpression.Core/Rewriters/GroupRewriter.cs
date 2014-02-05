@@ -5,12 +5,12 @@ using SimpleExpressions.Core.Converters.Grouping;
 
 namespace SimpleExpressions.Core.Rewriters
 {
-    public class GroupRewriter : IRewriter
+    public class GroupRewriter : BaseRewriter
     {
         /// <summary>
         ///   Inserts the "Together" instruction - if missing - and moves the "As" instruction - if present - right after the "Group"
         /// </summary>
-        public IList<IConverter> CompleteConverterChain(IList<IConverter> converterChain)
+        public override IList<IConverter> CompleteConverterChain(IList<IConverter> converterChain)
         {
             // Split the groups in lists
             IList<object> mainList = new List<object>(0);
@@ -44,22 +44,6 @@ namespace SimpleExpressions.Core.Rewriters
             }
 
             return FlattenList(mainList);
-        }
-
-        /// <summary>
-        ///   Recursively flattens a list of lists
-        /// </summary>
-        private static IList<IConverter> FlattenList(IEnumerable<object> listToFlatten)
-        {
-            var outputList = new List<IConverter>(0);
-            foreach (var element in listToFlatten)
-            {
-                if (element is IConverter)
-                    outputList.Add(element as IConverter);
-                else
-                    outputList = outputList.Concat(FlattenList(element as IList<object>)).ToList();
-            }
-            return outputList;
         }
     }
 }

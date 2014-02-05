@@ -55,6 +55,8 @@
     <Compile Include="Converters\Repetitions\AtLeast.cs" />
     <Compile Include="Converters\Repetitions\AtMost.cs" />
     <Compile Include="Converters\BaseConverter.cs" />
+    <Compile Include="Converters\Repetitions\EndRepetitionQualifier.cs" />
+    <Compile Include="Converters\Repetitions\RepetitionQualifier.cs" />
     <Compile Include="Converters\StartsWith.cs" />
     <Compile Include="Converters\ZeroOrMore.cs" />
     <Compile Include="Converters\_ConverterStaticHelper.cs" />
@@ -72,6 +74,8 @@
     <Compile Include="Converters\Text.cs" />
     <Compile Include="Converters\Word.cs" />
     <Compile Include="ExpressionBuilder.cs" />
+    <Compile Include="Rewriters\BaseRewriter.cs" />
+    <Compile Include="Rewriters\RepeatRewriter.cs" />
     <Compile Include="Rewriters\ExpressionRewriter.cs" />
     <Compile Include="Extensions\IListExtension.cs" />
     <Compile Include="Function.cs" />

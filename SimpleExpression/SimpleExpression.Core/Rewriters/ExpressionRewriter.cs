@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using SimpleExpressions.Core.Converters;
 
 namespace SimpleExpressions.Core.Rewriters
@@ -10,6 +11,7 @@ namespace SimpleExpressions.Core.Rewriters
         public ExpressionRewriter()
         {
             this.rewriters.Add(new GroupRewriter());
+            this.rewriters.Add(new RepeatRewriter());
         }
 
         public IList<IConverter> CompleteConverterChain(IList<IConverter> converterChain)
@@ -29,12 +31,7 @@ namespace SimpleExpressions.Core.Rewriters
              * 
             */
 
-            foreach (var rewriter in this.rewriters)
-            {
-                converterChain = rewriter.CompleteConverterChain(converterChain);
-            }
-
-            return converterChain;
+            return this.rewriters.Aggregate(converterChain, (current, rewriter) => rewriter.CompleteConverterChain(current));
         }
     }
 }

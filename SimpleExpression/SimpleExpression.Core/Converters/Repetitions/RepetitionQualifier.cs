@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
- 
+﻿using System;
+using System.Collections.Generic;
 
 namespace SimpleExpressions.Core.Converters.Repetitions
 {
-    public class Times : BaseConverter
+    public class RepetitionQualifier: BaseConverter
     {
-        private readonly IList<string> supportedFunctionNames = new List<string> {"Times", "Time"};
+        private readonly IList<string> supportedFunctionNames = new List<string> { "RepetitionQualifier" };
         public override IList<string> SupportedFunctionNames
         {
             get { return this.supportedFunctionNames; }
@@ -13,7 +13,7 @@ namespace SimpleExpressions.Core.Converters.Repetitions
 
         public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
-            regularExpressionSofar.Add(")");
+            regularExpressionSofar.Add("{");
             return regularExpressionSofar;
         }
     }
