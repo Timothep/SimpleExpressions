@@ -26,15 +26,20 @@ namespace SimpleExpressions.Core.Rewriters
                     currentList.Add(newList);
                     listStack.Add(newList);
                 }
-                else if (index < converterChain.Count - 1 && IsRepetitionQualifier(converterChain[index]) && !IsRepetitionQualifier(converterChain[index - 1]))
+                else if (IsRepetitionQualifier(converterChain[index]))
                 {
-                    currentList.Add(new RepetitionQualifier());
+                    // If the previous element is not a repetition qualifier
+                    if (!IsRepetitionQualifier(converterChain[index - 1]))
+                        currentList.Add(new RepetitionQualifier());
+
                     currentList.Add(converterChain[index]);
+
+                    //If the next element is not a repetition qualifier
+                    if(index + 1 == converterChain.Count || !IsRepetitionQualifier(converterChain[index + 1]))
+                        currentList.Add(new EndRepetitionQualifier());
                 }
                 else if (converterChain[index] is Times)
                 {
-                    currentList.Add(new EndRepetitionQualifier());
-
                     var insertionIndex = FindTimesInsertionSpot(currentList);
                     currentList.Insert(insertionIndex, converterChain[index]);
                     listStack.RemoveAt(listStack.Count - 1);
@@ -44,11 +49,6 @@ namespace SimpleExpressions.Core.Rewriters
             }
 
             return FlattenList(mainList);
-        }
-
-        private static bool IsRepetitionQualifier(IConverter converter)
-        {
-            return converter is Exactly || converter is AtLeast || converter is AtMost;
         }
 
         private static int FindTimesInsertionSpot(IList<object> currentList)

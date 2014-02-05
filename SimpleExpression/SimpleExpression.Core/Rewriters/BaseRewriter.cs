@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using SimpleExpressions.Core.Converters;
+using SimpleExpressions.Core.Converters.Repetitions;
+using SimpleExpressions.Core.Converters.Sets;
 
 namespace SimpleExpressions.Core.Rewriters
 {
@@ -22,6 +24,26 @@ namespace SimpleExpressions.Core.Rewriters
                     outputList = outputList.Concat(FlattenList(element as IList<object>)).ToList();
             }
             return outputList;
+        }
+
+        public static bool IsRepetitionQualifier(IConverter converter)
+        {
+            return converter is Exactly || converter is AtLeast || converter is AtMost;
+        }
+
+        public static bool IsRepetitionBounds(IConverter converter)
+        {
+            return converter is RepetitionQualifier || converter is EndRepetitionQualifier;
+        }
+
+        public bool IsSimpleSet(IConverter converter)
+        {
+            return converter is Letters || converter is Numbers || converter is Alphanumerics;
+        }
+
+        public bool IsQualifier(IConverter converter)
+        {
+            return converter is Maybe || converter is Except || converter is InRange;
         }
     }
 }

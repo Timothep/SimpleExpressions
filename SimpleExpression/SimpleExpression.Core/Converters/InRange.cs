@@ -20,23 +20,9 @@ namespace SimpleExpressions.Core.Converters
             if (currentToken.Arguments == null)
                 throw new ArgumentException("Missing argument");
 
-            var findLastGroupTokenIndex = FindLastGroupTokenIndex(regularExpressionSofar);
-
-            regularExpressionSofar.RemoveAt(findLastGroupTokenIndex);
-            regularExpressionSofar.Insert(findLastGroupTokenIndex, RangeBuilder.CreateRange(currentToken.Arguments[0].ToString()));
+            regularExpressionSofar.Add(RangeBuilder.CreateRange(currentToken.Arguments[0].ToString()));
 
             return regularExpressionSofar;
-        }
-
-        private static int FindLastGroupTokenIndex(IList<string> pattern)
-        {
-            var i = -1;
-            for (var j = 0; j < pattern.Count; j++)
-            {
-                if (pattern[j].Contains("]"))
-                    i = j;
-            }
-            return i;
         }
     }
 

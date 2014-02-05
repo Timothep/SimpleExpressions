@@ -26,11 +26,11 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Letter
-                .Number
+                .Letters.Exactly(1)
+                .Numbers.Exactly(1)
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z][0-9]", result.Expression);
+            Assert.AreEqual(@"[a-zA-Z]{1}[0-9]{1}", result.Expression);
         }
 
         [TestMethod]
@@ -39,10 +39,10 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
                 .LettersAndWhitespaces
-                .Number
+                .Numbers
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z\s]*[0-9]", result.Expression);
+            Assert.AreEqual(@"[a-zA-Z\s]*[0-9]{1}", result.Expression);
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
                 .One('a')
-                .ei
+                .Text("ei")
                 .Text("ou")
                 .Generate();
 

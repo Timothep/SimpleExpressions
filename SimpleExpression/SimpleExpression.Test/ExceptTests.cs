@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
 
@@ -16,11 +12,11 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Letter
+                .Letters
                 .Except("aeiou")
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z-[aeiou]]", result.Expression);
+            Assert.AreEqual(@"[a-zA-Z-[aeiou]]*", result.Expression);
         }
 
         [TestMethod]

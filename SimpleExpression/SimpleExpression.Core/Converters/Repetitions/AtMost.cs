@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SimpleExpressions.Core.Converters.Repetitions
 {
@@ -19,21 +18,9 @@ namespace SimpleExpressions.Core.Converters.Repetitions
             if (currentToken.Arguments.Length != 1)
                 throw new ArgumentException("Incorrect number of arguments found");
 
-            var lastPatternToken = regularExpressionSofar.Last();
-
-            regularExpressionSofar.Remove(lastPatternToken);
-            regularExpressionSofar.Add(lastPatternToken.Insert(lastPatternToken.Length - 1, currentToken.Arguments[0].ToString()));
+            regularExpressionSofar.Add(currentToken.Arguments[0].ToString());
 
             return regularExpressionSofar;
         }
-
-        //private static bool IsPartOfARepeatLoop(IList<Function> tokens, int currentIndex)
-        //{
-        //    //If there is a "Times" functionName on the right (maybe with a AtMost() in between)
-        //    if (tokens.Count > (currentIndex + 1) && tokens[currentIndex + 1].Name == "Times")
-        //        return true;
-
-        //    return false;
-        //}
     }
 }

@@ -15,7 +15,7 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .http
+                .Text("http")
                 .Maybe("s")
                 .Text("://")
                 .Generate();

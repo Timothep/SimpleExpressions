@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using SimpleExpressions.Core.Converters;
+using SimpleExpressions.Core.Exceptions;
 using SimpleExpressions.Core.Extensions;
  
 using TinyIoC;
@@ -36,7 +38,16 @@ namespace SimpleExpressions.Core
             foreach (var function in tokenizedChain)
             {
                 // Find the correct converter
-                var converter = this.Converters.GetConverter(function.Name);
+                var singletonConverter = this.Converters.GetConverter(function.Name);
+                IConverter converter = null;
+                try
+                {
+                    converter = TinyIoCContainer.Current.Resolve(singletonConverter.GetType()) as IConverter;
+                }
+                catch (NullReferenceException)
+                {
+                    throw new SyntaxException(String.Format("The function '{0}' could not be resolved, please verify the spelling", function.Name));
+                }
 
                 if (converter == null)
                 {

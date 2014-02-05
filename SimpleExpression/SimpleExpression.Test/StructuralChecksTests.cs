@@ -38,12 +38,12 @@ namespace SimpleExpressions.Test
                 .StartsWith
                 .Either
                     .Group
-                        .Text("AtLeast").One("\\(").Number.AtLeast(1).One("\\)")
-                        .Maybe("\\.AtMost").One("\\(").Number.AtLeast(1).One("\\)")
+                        .Text("AtLeast").One("\\(").Numbers.AtLeast(1).One("\\)")
+                        .Maybe("\\.AtMost").One("\\(").Numbers.AtLeast(1).One("\\)")
                     .Together
                 .Or
                     .Group
-                        .Text("Exactly").One("\\(").Number.AtLeast(1).One("\\)")
+                        .Text("Exactly").One("\\(").Numbers.AtLeast(1).One("\\)")
                     .Together
                     .Then
                 .Text("\\.Times")

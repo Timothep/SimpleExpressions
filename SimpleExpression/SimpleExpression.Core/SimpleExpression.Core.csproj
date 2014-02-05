@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\Anything.cs" />
+    <Compile Include="Converters\Sets\EndSet.cs" />
+    <Compile Include="Converters\Sets\Letters.cs" />
+    <Compile Include="Converters\Sets\Numbers.cs" />
     <Compile Include="Converters\One.cs" />
-    <Compile Include="Converters\OneOrMore.cs" />
     <Compile Include="Converters\EitherOf.cs" />
     <Compile Include="Converters\EitherOr\Then.cs" />
     <Compile Include="Converters\EitherOr\Either.cs" />
@@ -56,9 +58,10 @@
     <Compile Include="Converters\Repetitions\AtMost.cs" />
     <Compile Include="Converters\BaseConverter.cs" />
     <Compile Include="Converters\Repetitions\EndRepetitionQualifier.cs" />
+    <Compile Include="Converters\Repetitions\RepeatWildcard.cs" />
     <Compile Include="Converters\Repetitions\RepetitionQualifier.cs" />
+    <Compile Include="Converters\Sets\Set.cs" />
     <Compile Include="Converters\StartsWith.cs" />
-    <Compile Include="Converters\ZeroOrMore.cs" />
     <Compile Include="Converters\_ConverterStaticHelper.cs" />
     <Compile Include="Converters\Maybe.cs" />
     <Compile Include="Converters\Repetitions\Exactly.cs" />
@@ -66,15 +69,17 @@
     <Compile Include="Converters\Grouping\Group.cs" />
     <Compile Include="Converters\IConverter.cs" />
     <Compile Include="Converters\InRange.cs" />
-    <Compile Include="Converters\Characters.cs" />
+    <Compile Include="Converters\OneOf.cs" />
     <Compile Include="Converters\Repetitions\Repeat.cs" />
-    <Compile Include="Converters\SimpleSet.cs" />
+    <Compile Include="Converters\Sets\Alphanumerics.cs" />
     <Compile Include="Converters\Repetitions\Times.cs" />
     <Compile Include="Converters\Grouping\Together.cs" />
     <Compile Include="Converters\Text.cs" />
     <Compile Include="Converters\Word.cs" />
+    <Compile Include="Exceptions\SyntaxException.cs" />
     <Compile Include="ExpressionBuilder.cs" />
     <Compile Include="Rewriters\BaseRewriter.cs" />
+    <Compile Include="Rewriters\CardinalityRewriter.cs" />
     <Compile Include="Rewriters\RepeatRewriter.cs" />
     <Compile Include="Rewriters\ExpressionRewriter.cs" />
     <Compile Include="Extensions\IListExtension.cs" />
@@ -83,6 +88,7 @@
     <Compile Include="ConverterBoostrapper.cs" />
     <Compile Include="Rewriters\GroupRewriter.cs" />
     <Compile Include="Rewriters\IRewriter.cs" />
+    <Compile Include="Rewriters\SetsRewriter.cs" />
     <Compile Include="SimpleExpression.cs" />
     <Compile Include="TinyIoC.cs" />
   </ItemGroup>

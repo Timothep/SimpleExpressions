@@ -21,14 +21,8 @@ namespace SimpleExpressions.Core.Converters
         public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
             var currentToken = this.Function;
-            var lastPatternToken = regularExpressionSofar.Last();
-            regularExpressionSofar.Remove(lastPatternToken);
-
-            var offset = 1;
-            if (lastPatternToken.EndsWith("*"))
-                offset = 2;
-
-            regularExpressionSofar.Add(lastPatternToken.Insert(lastPatternToken.Length - offset, "-[" + currentToken.Arguments[0] + "]"));
+            
+            regularExpressionSofar.Add("-[" + currentToken.Arguments[0] + "]");
             return regularExpressionSofar;
         }
     }

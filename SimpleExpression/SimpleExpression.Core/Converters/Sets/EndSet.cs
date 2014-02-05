@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
- 
 
-namespace SimpleExpressions.Core.Converters
+namespace SimpleExpressions.Core.Converters.Sets
 {
-    public class OneOrMore: BaseConverter
+    public class EndSet : BaseConverter
     {
-        private readonly IList<string> supportedFunctionNames = new List<string> { "OneOrMore" };
+        private readonly IList<string> supportedFunctionNames = new List<string> { "EndSet" };
+
         public override IList<string> SupportedFunctionNames
         {
             get { return this.supportedFunctionNames; }
@@ -13,6 +13,7 @@ namespace SimpleExpressions.Core.Converters
 
         public override IList<string> Generate(IList<string> regularExpressionSofar)
         {
+            regularExpressionSofar.Add("]");
             return regularExpressionSofar;
         }
     }

@@ -4,7 +4,7 @@ using SimpleExpressions.Core;
 namespace SimpleExpressions.Test
 {
     [TestClass]
-    public class RepetitionsSingleTests
+    public class EitherOfTests
     {
         [TestMethod]
         public void CharsOnlyEither()
