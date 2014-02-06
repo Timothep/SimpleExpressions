@@ -2,9 +2,9 @@
 
 namespace SimpleExpressions.Core.Converters.Sets
 {
-    public class EndSet : BaseConverter
+    public class SetEnd : BaseConverter
     {
-        private readonly IList<string> supportedFunctionNames = new List<string> { "EndSet" };
+        private readonly IList<string> supportedFunctionNames = new List<string> { "SetEnd" };
 
         public override IList<string> SupportedFunctionNames
         {

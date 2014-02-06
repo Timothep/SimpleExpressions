@@ -26,6 +26,12 @@ namespace SimpleExpressions.Core.Rewriters
             return outputList;
         }
 
+        public static bool IsContentElement(IConverter converter)
+        {
+            return converter is Letters || converter is Numbers || converter is Alphanumerics || converter is Text 
+                || converter is One || converter is OneOf || converter is EitherOf || converter is Anything || converter is Maybe;
+        }
+
         public static bool IsRepetitionQualifier(IConverter converter)
         {
             return converter is Exactly || converter is AtLeast || converter is AtMost;
@@ -41,9 +47,9 @@ namespace SimpleExpressions.Core.Rewriters
             return converter is Letters || converter is Numbers || converter is Alphanumerics;
         }
 
-        public bool IsQualifier(IConverter converter)
+        public bool IsModifier(IConverter converter)
         {
-            return converter is Maybe || converter is Except || converter is InRange;
+            return converter is Except || converter is InRange;
         }
     }
 }

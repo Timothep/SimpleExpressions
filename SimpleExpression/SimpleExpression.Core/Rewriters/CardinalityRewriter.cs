@@ -20,7 +20,7 @@ namespace SimpleExpressions.Core.Rewriters
             for (var index = 0; index < converterChain.Count; index++)
             {
                 var currentList = listStack.Last();
-                if (converterChain[index] is EndSet
+                if (converterChain[index] is SetEnd
                     && (index + 1 == converterChain.Count || !(IsRepetitionQualifier(converterChain[index + 1]) || IsRepetitionBounds(converterChain[index + 1]))))
                 {
                     currentList.Add(converterChain[index]);

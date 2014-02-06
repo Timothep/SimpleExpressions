@@ -11,9 +11,9 @@ namespace SimpleExpressions.Core.Rewriters
         public ExpressionRewriter()
         {
             this.rewriters.Add(new GroupRewriter());
+            this.rewriters.Add(new SetRewriter());
             this.rewriters.Add(new RepeatRewriter());
-            this.rewriters.Add(new SetsRewriter());
-            
+
             // Must be last
             this.rewriters.Add(new CardinalityRewriter());
         }

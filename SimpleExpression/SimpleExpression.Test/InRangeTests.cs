@@ -6,7 +6,7 @@ namespace SimpleExpressions.Test
     [TestClass]
     public class InRangeTests
     {
-        [Ignore] //Set and InRange are creating a [()] structure that is not allowed by the C# Regex compiler
+        [Ignore] //SetBegin and InRange are creating a [()] structure that is not allowed by the C# Regex compiler
         [TestMethod]
         public void SimpleRangeTest()
         {
