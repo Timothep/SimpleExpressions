@@ -55,6 +55,7 @@
     <Compile Include="CardinalityTests.cs" />
     <Compile Include="EitherOrThen.cs" />
     <Compile Include="EitherOfTests.cs" />
+    <Compile Include="Examples.cs" />
     <Compile Include="LengthBoundsTest.cs" />
     <Compile Include="ExceptTests.cs" />
     <Compile Include="GroupTests.cs" />
