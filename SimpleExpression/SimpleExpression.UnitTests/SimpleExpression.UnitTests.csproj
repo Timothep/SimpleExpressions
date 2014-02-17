@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AstTests.cs" />
     <Compile Include="ConverterStaticHelperTests.cs" />
     <Compile Include="SetRewriterTests.cs" />
     <Compile Include="GroupRewriterTests.cs" />
