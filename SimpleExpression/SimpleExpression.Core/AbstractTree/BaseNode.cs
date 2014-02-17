@@ -4,13 +4,18 @@ namespace SimpleExpressions.Core.AbstractTree
 {
     public interface INode
     {
-        BaseNode Parent { get; set; }
+        INode Parent { get; set; }
         Cardinality Cardinality { get; set; }
     }
 
-    public class BaseNode: INode
+    public interface IMotherNode
     {
-        public BaseNode Parent { get; set; }
+        void AddChild(INode node);
+    }
+
+    public abstract class BaseNode: INode
+    {
+        public INode Parent { get; set; }
         public Cardinality Cardinality { get; set; }
     }
 
@@ -18,9 +23,40 @@ namespace SimpleExpressions.Core.AbstractTree
     {
         public int Min { get; set; }
         public int Max { get; set; }
+
+        public Cardinality(CardinalityEnum card = CardinalityEnum.ExactlyOne)
+        {
+            switch (card)
+            {
+                case CardinalityEnum.ZeroOrMore:
+                    this.Min = 0;
+                    this.Max = int.MaxValue;
+                    break;
+                case CardinalityEnum.ZeroToOne:
+                    this.Min = 0;
+                    this.Max = 1;
+                    break;
+                case CardinalityEnum.ExactlyOne:
+                    this.Min = 1;
+                    this.Max = 1;
+                    break;
+                case CardinalityEnum.OneOrMore:
+                    this.Min = 1;
+                    this.Max = int.MaxValue;
+                    break;
+            }
+        }
     }
 
-    public abstract class BlockNode: BaseNode
+    public enum CardinalityEnum
+    {
+        ZeroOrMore = 0,
+        ZeroToOne,
+        ExactlyOne,
+        OneOrMore,
+    }
+
+    public abstract class BlockNode: BaseNode, IMotherNode
     {
         public IList<INode> Children { get; set; }
 
@@ -28,18 +64,27 @@ namespace SimpleExpressions.Core.AbstractTree
         {
             Children = new List<INode>(0);
         }
+
+        public void AddChild(INode node)
+        {
+            this.Children.Add(node);
+        }
     }
 
-    public class GroupNode: BlockNode
+    public abstract class GroupNode : BlockNode
     {
         public string Name { get; set; }
     }
 
-    public class ClassNode: BlockNode { }
+    public class ClassNode : BlockNode
+    {
+    }
 
-    public class ConcatNode: BlockNode { }
+    public class ConcatNode: BlockNode
+    {
+    }
 
-    public class LeafNode: BaseNode
+    public class TextNode: BaseNode
     {
         public string Value { get; set; }
     }

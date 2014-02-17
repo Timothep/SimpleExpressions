@@ -7,35 +7,56 @@ namespace SimpleExpressions.Core.AbstractTree
 {
     public interface IBuilder
     {
-        void AddCurrentNode(INode current, IConverter converter);
-        bool CanHandle(Function function);
+        INode AddNode(INode currentParent, IConverter converter);
+        bool CanHandle(IConverter converter);
     }
 
     public class ConcatBuilder: IBuilder
     {
-        public void AddCurrentNode(INode current, IConverter converter)
+        public INode AddNode(INode currentParent, IConverter converter)
         {
             throw new NotImplementedException();
         }
 
-        public bool CanHandle(Function function)
+        public bool CanHandle(IConverter converter)
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 
     public class TextBuilder: IBuilder
     {
-        private const string FunctionName = "Text";
-
-        public void AddCurrentNode(INode current, IConverter converter)
+        public INode AddNode(INode currentParent, IConverter converter)
         {
-            throw new NotImplementedException();
+            INode textNode = null;
+
+            // If the currentParent is not an IMotherNode
+            if (!(currentParent is IMotherNode))
+            {
+                // If the currentParent has no parent
+                if (currentParent == null)
+                {
+                    var concat = new ConcatNode { Cardinality = new Cardinality() };
+                    currentParent = concat;
+                    textNode = new TextNode { Cardinality = new Cardinality(), Parent = currentParent };
+                    (currentParent as IMotherNode).AddChild(textNode);
+                }
+                // If the parent cannot host a child, dock it to its parent
+                else if (currentParent.Parent is IMotherNode)
+                {
+                    textNode = new TextNode { Cardinality = new Cardinality(), Parent = currentParent.Parent };
+                    (currentParent.Parent as IMotherNode).AddChild(textNode);
+                }
+                else
+                    throw new NotImplementedException("No correct node found for insertion");
+            }
+            
+            return textNode;
         }
 
-        public bool CanHandle(Function function)
+        public bool CanHandle(IConverter converter)
         {
-            return function.Name == FunctionName;
+            return converter is Text;
         }
     }
 
@@ -60,25 +81,32 @@ namespace SimpleExpressions.Core.AbstractTree
             if (convertersChain == null)
                 throw new ArgumentException("Cannot create an AST on a null chain");
 
-            INode root = null;
-            var current = root;
+            INode current = null;
 
             foreach (var converter in convertersChain)
             {
-                var builder = GetBuilder(converter.Function);
-                builder.AddCurrentNode(current, converter);
+                var builder = this.GetAdequateBuilder(converter);
+
+                current = builder.AddNode(current, converter);
             }
 
-            return root;
+            return GetRoot(current);
+        }
+
+        private INode GetRoot(INode current)
+        {
+            while (current.Parent != null)
+                current = current.Parent;
+            return current;
         }
 
         /// <summary>
         /// Searches for a corresponding Builder for the desired function
         /// </summary>
         /// <returns>If no builder is found, a "concat" builder is returned by default</returns>
-        private IBuilder GetBuilder(Function function)
+        private IBuilder GetAdequateBuilder(IConverter converter)
         {
-            foreach (var builder in this.SpecializedBuilders.Where(builder => builder.CanHandle(function)))
+            foreach (var builder in this.SpecializedBuilders.Where(builder => builder.CanHandle(converter)))
                 return builder;
 
             return new ConcatBuilder();
