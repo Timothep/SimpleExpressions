@@ -57,16 +57,104 @@ namespace SimpleExpression.UnitTests
         }
 
         [TestMethod]
-        public void AstTests_Group()
+        public void AstTests_SimpleGroup()
         {
-            var chain = new List<IConverter> { new Group(), new Text(), new Text(), new Together() };
+            var chain = new List<IConverter> { new Group(), new Text(), new Together() };
             var root = builder.GenerateAst(chain);
 
             Assert.IsTrue(root != null);
             Assert.IsTrue(root.Parent == null);
-            Assert.IsTrue(root is GroupNode);
+
             var groupNode = root as GroupNode;
+            Assert.IsNotNull(groupNode);
+            Assert.IsTrue(groupNode.Children.Count == 1);
+        }
+
+        [TestMethod]
+        public void AstTests_GroupAndConcat()
+        {
+            var chain = new List<IConverter>
+                {
+                    new Group(), 
+                        new Text(), 
+                        new Text(), 
+                    new Together()
+                };
+            var root = builder.GenerateAst(chain);
+
+            Assert.IsTrue(root != null);
+            Assert.IsTrue(root.Parent == null);
+
+            var groupNode = root as GroupNode;
+            Assert.IsNotNull(groupNode);
+            Assert.IsTrue(groupNode.Children.Count == 1);
+
+            var concatNode = groupNode.Children[0] as ConcatNode;
+            Assert.IsNotNull(concatNode);
             Assert.IsTrue(groupNode.Children.Count == 2);
+        }
+
+        [TestMethod]
+        public void AstTests_GroupContainsGroup()
+        {
+            var chain = new List<IConverter>
+                {
+                    new Group(), 
+                        new Group(), 
+                            new Text(), 
+                        new Together(),
+                    new Together()
+                };
+            var root = builder.GenerateAst(chain);
+
+            Assert.IsTrue(root != null);
+            Assert.IsTrue(root.Parent == null);
+
+            var groupNode = root as GroupNode;
+            Assert.IsNotNull(groupNode);
+            Assert.IsTrue(groupNode.Children.Count == 1);
+
+            var subGroupNode = groupNode.Children[0] as GroupNode;
+            Assert.IsNotNull(subGroupNode);
+            Assert.IsTrue(groupNode.Children.Count == 1);
+        }
+
+        [TestMethod]
+        public void AstTests_GroupConcatAndContainsGroupConcat()
+        {
+            var chain = new List<IConverter>
+                {
+                    new Group(), 
+                        new Text(),
+                        new Group(), 
+                            new Text(), 
+                            new Text(), 
+                        new Together(),
+                    new Together()
+                };
+            var root = builder.GenerateAst(chain);
+
+            Assert.IsTrue(root != null);
+            Assert.IsTrue(root.Parent == null);
+
+            var groupNode = root as GroupNode;
+            Assert.IsNotNull(groupNode);
+            Assert.IsTrue(groupNode.Children.Count == 1);
+
+            var concatNode = groupNode.Children[0] as ConcatNode;
+            Assert.IsNotNull(concatNode);
+            Assert.IsTrue(groupNode.Children.Count == 2);
+
+            var textNode = concatNode.Children[0] as TextNode;
+            Assert.IsNotNull(textNode);
+
+            var subGroupNode = concatNode.Children[1] as GroupNode;
+            Assert.IsNotNull(subGroupNode);
+            Assert.IsTrue(subGroupNode.Children.Count == 1);
+
+            var subConcatNode = subGroupNode.Children[0] as ConcatNode;
+            Assert.IsNotNull(subConcatNode);
+            Assert.IsTrue(subConcatNode.Children.Count == 2);
         }
     }
 }
