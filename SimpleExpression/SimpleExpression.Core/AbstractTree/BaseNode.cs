@@ -56,6 +56,9 @@ namespace SimpleExpressions.Core.AbstractTree
         OneOrMore,
     }
 
+    /// <summary>
+    /// Represents a grouping node, e.g. a node that can have children
+    /// </summary>
     public abstract class BlockNode: BaseNode, IMotherNode
     {
         public IList<INode> Children { get; set; }
@@ -71,19 +74,28 @@ namespace SimpleExpressions.Core.AbstractTree
         }
     }
 
-    public abstract class GroupNode : BlockNode
+    /// <summary>
+    /// Represents a group, e.g. a block that might have a name
+    /// </summary>
+    public class GroupNode : BlockNode
     {
         public string Name { get; set; }
     }
 
-    public class ClassNode : BlockNode
-    {
-    }
+    /// <summary>
+    /// Represents a class, e.g. a block which elements form a single Regular Expression entity
+    /// Ex: "Letters AND Numbers", per opposition to "Letters THEN Numbers"
+    /// </summary>
+    public class ClassNode : BlockNode { }
 
-    public class ConcatNode: BlockNode
-    {
-    }
+    /// <summary>
+    /// Represents a concatenation of elements
+    /// </summary>
+    public class ConcatNode: BlockNode { }
 
+    /// <summary>
+    /// A simple node having a text value
+    /// </summary>
     public class TextNode: BaseNode
     {
         public string Value { get; set; }

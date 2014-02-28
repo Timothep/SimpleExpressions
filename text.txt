@@ -1,0 +1,16 @@
+Group
+	.AtLeast(2)
+	.AtMost(4)
+	.Alphanumerics
+	.Together
+
+
+Nodes:
+
+INode -> Any node
+IMotherNode -> Node that can have children
+
+	Block
+		Group
+		Class
+	Text

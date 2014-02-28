@@ -44,6 +44,10 @@
   <ItemGroup>
     <Compile Include="AbstractTree\AstBuilder.cs" />
     <Compile Include="AbstractTree\BaseNode.cs" />
+    <Compile Include="AbstractTree\ConcatBuilder.cs" />
+    <Compile Include="AbstractTree\GroupBuilder.cs" />
+    <Compile Include="AbstractTree\IBuilder.cs" />
+    <Compile Include="AbstractTree\TextBuilder.cs" />
     <Compile Include="Converters\Anything.cs" />
     <Compile Include="Converters\Sets\SetEnd.cs" />
     <Compile Include="Converters\Sets\Letters.cs" />

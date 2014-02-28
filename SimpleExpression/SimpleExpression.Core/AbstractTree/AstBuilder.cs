@@ -5,63 +5,14 @@ using SimpleExpressions.Core.Converters;
 
 namespace SimpleExpressions.Core.AbstractTree
 {
-    public interface IBuilder
-    {
-        INode AddNode(INode currentParent, IConverter converter);
-        bool CanHandle(IConverter converter);
-    }
-
-    public class ConcatBuilder: IBuilder
-    {
-        public INode AddNode(INode currentParent, IConverter converter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanHandle(IConverter converter)
-        {
-            return false;
-        }
-    }
-
-    public class TextBuilder: IBuilder
-    {
-        public INode AddNode(INode currentParent, IConverter converter)
-        {
-            INode textNode = null;
-
-            // If the currentParent is not an IMotherNode
-            if (!(currentParent is IMotherNode))
-            {
-                // If the currentParent has no parent
-                if (currentParent == null)
-                {
-                    var concat = new ConcatNode { Cardinality = new Cardinality() };
-                    currentParent = concat;
-                    textNode = new TextNode { Cardinality = new Cardinality(), Parent = currentParent };
-                    (currentParent as IMotherNode).AddChild(textNode);
-                }
-                // If the parent cannot host a child, dock it to its parent
-                else if (currentParent.Parent is IMotherNode)
-                {
-                    textNode = new TextNode { Cardinality = new Cardinality(), Parent = currentParent.Parent };
-                    (currentParent.Parent as IMotherNode).AddChild(textNode);
-                }
-                else
-                    throw new NotImplementedException("No correct node found for insertion");
-            }
-            
-            return textNode;
-        }
-
-        public bool CanHandle(IConverter converter)
-        {
-            return converter is Text;
-        }
-    }
-
+    /// <summary>
+    /// Class wrapping the abstract syntax tree building logic
+    /// </summary>
     public class AstBuilder
     {
+        /// <summary>
+        /// The available builders
+        /// </summary>
         public IList<IBuilder> SpecializedBuilders { get; set; }
         
         public AstBuilder()
@@ -70,11 +21,13 @@ namespace SimpleExpressions.Core.AbstractTree
                 {
                     new ConcatBuilder(),
                     new TextBuilder(),
+                    new GroupBuilder(),
+                    new TransparentBuilder(),
                 };
         }
 
         /// <summary>
-        /// Chain in, Tree out
+        /// Generates the corresponding AST based on a chain of IConverters
         /// </summary>
         public INode GenerateAst(IList<IConverter> convertersChain)
         {
@@ -86,13 +39,15 @@ namespace SimpleExpressions.Core.AbstractTree
             foreach (var converter in convertersChain)
             {
                 var builder = this.GetAdequateBuilder(converter);
-
                 current = builder.AddNode(current, converter);
             }
 
             return GetRoot(current);
         }
 
+        /// <summary>
+        /// Navigates an AST and returns the root node
+        /// </summary>
         private INode GetRoot(INode current)
         {
             while (current.Parent != null)
