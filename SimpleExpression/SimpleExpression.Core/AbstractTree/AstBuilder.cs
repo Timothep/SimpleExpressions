@@ -42,7 +42,7 @@ namespace SimpleExpressions.Core.AbstractTree
                 current = builder.AddNode(current, converter);
             }
 
-            return GetRoot(current);
+            return current != null ? GetRoot(current) : null;
         }
 
         /// <summary>
