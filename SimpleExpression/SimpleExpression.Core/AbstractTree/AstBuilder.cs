@@ -22,7 +22,7 @@ namespace SimpleExpressions.Core.AbstractTree
                     new ConcatBuilder(),
                     new TextBuilder(),
                     new GroupBuilder(),
-                    new TransparentBuilder(),
+                    new TogetherBuilder(),
                 };
         }
 

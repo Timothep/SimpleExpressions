@@ -11,6 +11,7 @@ namespace SimpleExpressions.Core.AbstractTree
     public interface IMotherNode
     {
         void AddChild(INode node);
+        IList<INode> Children { get; set; }
     }
 
     public abstract class BaseNode: INode

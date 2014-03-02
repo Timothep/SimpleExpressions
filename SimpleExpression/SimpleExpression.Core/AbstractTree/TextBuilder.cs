@@ -1,30 +1,48 @@
 ﻿using System;
+using System.Collections.Generic;
 using SimpleExpressions.Core.Converters;
 
 namespace SimpleExpressions.Core.AbstractTree
 {
-    public class TextBuilder: BaseBuilder, IBuilder
+    public class TextBuilder: BaseBuilder
     {
         public override INode AddNode(INode currentParent, IConverter converter)
         {
             INode textNode = new TextNode { Cardinality = new Cardinality() };
 
-            // If the currentParent is not an IMotherNode
-            if (!(currentParent is IMotherNode))
+            // First element of a chain must be concatenated
+            if (currentParent == null)
             {
-                // If the currentParent has no parent
-                if (currentParent == null)
+                var concat = new ConcatNode { Cardinality = new Cardinality() };
+                currentParent = concat;
+            }
+            //If the parent is a concat node, add this node to the list
+            else if (currentParent is ConcatNode) { /* Do nothing special */ }
+            else if (currentParent is IMotherNode)
+            {
+                // If the parent is a group node, but not a concat, insert a concat in between
+                var concat = new ConcatNode {Cardinality = new Cardinality()};
+                
+                // Relink all the children of the group
+                var listClone = new List<INode>((currentParent as IMotherNode).Children);
+                foreach (var child in listClone)
                 {
-                    var concat = new ConcatNode { Cardinality = new Cardinality() };
-                    currentParent = concat;
+                    child.Parent = concat;
+                    (currentParent as IMotherNode).Children.Remove(child);
+                    concat.AddChild(child);
                 }
-                // If the parent cannot host a child, dock it to its parent
-                else if (currentParent.Parent is IMotherNode)
-                {
-                    currentParent = currentParent.Parent;
-                }
-                else
-                    throw new NotImplementedException("No correct node found for insertion");
+
+                (currentParent as IMotherNode).AddChild(concat);
+                concat.Parent = currentParent;
+                currentParent = concat;
+            }
+            else
+            {
+                //Try linking it to it's parent's parent
+                if(!(currentParent.Parent is IMotherNode))
+                    throw new ArgumentException("The chain being built is invalid");
+
+                currentParent = currentParent.Parent;
             }
 
             LinkNodeToParent(currentParent, textNode);

@@ -13,44 +13,21 @@ namespace SimpleExpressions.Core.AbstractTree
             // If it is the first element
             if (currentParent == null)
                 return newNode;
+            
+            if (currentParent is IMotherNode) { /* Do nothing else */ }
+            else if (currentParent.Parent is IMotherNode)
+                currentParent = currentParent.Parent;
+            else
+                throw new ArgumentException("The chain being built is invalid");
+            
+            LinkNodeToParent(currentParent, newNode);
 
-            if (currentParent as IMotherNode != null)
-                LinkNodeToParent(currentParent, newNode);
-
-            throw new NotImplementedException("No correct node found for insertion");
+            return newNode;
         }
 
         public override bool CanHandle(IConverter converter)
         {
             return converter is Group;
         }
-    }
-
-    public class TransparentBuilder: BaseBuilder
-    {
-        public override INode AddNode(INode currentParent, IConverter converter)
-        {
-            return currentParent;
-        }
-
-        public override bool CanHandle(IConverter converter)
-        {
-            return converter is Together;
-        }
-    }
-
-    public abstract class BaseBuilder: IBuilder
-    {
-        public void LinkNodeToParent(INode parent, INode newNode)
-        {
-            newNode.Parent = parent;
-            var motherNode = parent as IMotherNode;
-            if (motherNode != null) 
-                motherNode.AddChild(newNode);
-        }
-
-        public abstract INode AddNode(INode currentParent, IConverter converter);
-
-        public abstract bool CanHandle(IConverter converter);
     }
 }

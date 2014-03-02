@@ -91,7 +91,7 @@ namespace SimpleExpression.UnitTests
 
             var concatNode = groupNode.Children[0] as ConcatNode;
             Assert.IsNotNull(concatNode);
-            Assert.IsTrue(groupNode.Children.Count == 2);
+            Assert.IsTrue(concatNode.Children.Count == 2);
         }
 
         [TestMethod]
@@ -116,7 +116,7 @@ namespace SimpleExpression.UnitTests
 
             var subGroupNode = groupNode.Children[0] as GroupNode;
             Assert.IsNotNull(subGroupNode);
-            Assert.IsTrue(groupNode.Children.Count == 1);
+            Assert.IsTrue(subGroupNode.Children.Count == 1);
         }
 
         [TestMethod]
@@ -143,7 +143,7 @@ namespace SimpleExpression.UnitTests
 
             var concatNode = groupNode.Children[0] as ConcatNode;
             Assert.IsNotNull(concatNode);
-            Assert.IsTrue(groupNode.Children.Count == 2);
+            Assert.IsTrue(concatNode.Children.Count == 2);
 
             var textNode = concatNode.Children[0] as TextNode;
             Assert.IsNotNull(textNode);
@@ -155,6 +155,44 @@ namespace SimpleExpression.UnitTests
             var subConcatNode = subGroupNode.Children[0] as ConcatNode;
             Assert.IsNotNull(subConcatNode);
             Assert.IsTrue(subConcatNode.Children.Count == 2);
+        }
+
+        [TestMethod]
+        public void AstTests_GroupTogether()
+        {
+            var chain = new List<IConverter>
+                {
+                    new Group(), 
+                        new Group(), 
+                            new Text(), 
+                        new Together(),
+                        new Text(),
+                    new Together()
+                };
+            var root = builder.GenerateAst(chain);
+
+            Assert.IsTrue(root != null);
+            Assert.IsTrue(root.Parent == null);
+
+            var groupNode = root as GroupNode;
+            Assert.IsNotNull(groupNode);
+            Assert.IsTrue(groupNode.Children.Count == 1);
+
+            var concatNode = groupNode.Children[0] as ConcatNode;
+            Assert.IsNotNull(concatNode);
+            Assert.IsTrue(concatNode.Children.Count == 2);
+
+            var textNode = concatNode.Children[1] as TextNode;
+            Assert.IsNotNull(textNode);
+
+            var subGroupNode = concatNode.Children[0] as GroupNode;
+            Assert.IsNotNull(subGroupNode);
+            Assert.IsTrue(subGroupNode.Children.Count == 1);
+
+            var subConcatNode = subGroupNode.Children[0] as ConcatNode;
+            Assert.IsNotNull(subConcatNode);
+            Assert.IsTrue(subConcatNode.Children.Count == 1);
+
         }
     }
 }
