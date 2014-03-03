@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
-using SimpleExpressions.Core.Rewriters;
+using SimpleExpressions.Core.AbstractTree;
 
 namespace SimpleExpressions.Core
 {
@@ -10,8 +10,7 @@ namespace SimpleExpressions.Core
     public class SimpleExpression : DynamicObject
     {
         private readonly ConverterBoostrapper converterBootstrapper = new ConverterBoostrapper();
-        private readonly ExpressionRewriter expressionRewriter = new ExpressionRewriter();
-        private readonly ExpressionBuilder expressionBuilder = new ExpressionBuilder();
+        private readonly AstBuilder astBuilder = new AstBuilder();
 
         public SimpleExpression()
         {
@@ -27,10 +26,15 @@ namespace SimpleExpressions.Core
         public string WorkObject { get; set; }
         public IList<Function> SimpleExpressionChain { get; set; }
         public IList<string> RegularExpressionChain { get; set; }
+        private string RegularExpression { get; set; }
 
         public string Expression
         {
-            get { return string.Join("", this.RegularExpressionChain); }
+            get
+            {
+                return this.RegularExpression; 
+            }
+            set { this.RegularExpression = value; }
         }
 
         private void Initialize()
@@ -66,11 +70,11 @@ namespace SimpleExpressions.Core
             // Find the matching converters
             var converterChain = converterBootstrapper.CreateConverterChain(this.SimpleExpressionChain);
             
-            // Modify the SimpleExpression to be convertible
-            var completedConverterChain = expressionRewriter.CompleteConverterChain(converterChain);
+            // Generate the Abstract Syntax Tree
+            var astRoot = astBuilder.GenerateAst(converterChain);
             
             // Generate the regular expression
-            this.RegularExpressionChain = expressionBuilder.GenerateRegularExpression(completedConverterChain);
+            this.RegularExpression = astRoot.Generate();
 
             return this;
         }

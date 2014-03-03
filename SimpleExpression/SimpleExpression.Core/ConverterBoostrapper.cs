@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Exceptions;
 using SimpleExpressions.Core.Extensions;

@@ -8,12 +8,12 @@ namespace SimpleExpressions.Core.AbstractTree
     {
         public override INode AddNode(INode currentParent, IConverter converter)
         {
-            INode textNode = new TextNode { Cardinality = new Cardinality() };
+            INode textNode = new TextNode(converter) { Cardinality = new Cardinality() };
 
             // First element of a chain must be concatenated
             if (currentParent == null)
             {
-                var concat = new ConcatNode { Cardinality = new Cardinality() };
+                var concat = new ConcatNode(converter) { Cardinality = new Cardinality() };
                 currentParent = concat;
             }
             //If the parent is a concat node, add this node to the list
@@ -21,7 +21,7 @@ namespace SimpleExpressions.Core.AbstractTree
             else if (currentParent is IMotherNode)
             {
                 // If the parent is a group node, but not a concat, insert a concat in between
-                var concat = new ConcatNode {Cardinality = new Cardinality()};
+                var concat = new ConcatNode(converter) { Cardinality = new Cardinality() };
                 
                 // Relink all the children of the group
                 var listClone = new List<INode>((currentParent as IMotherNode).Children);

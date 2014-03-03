@@ -53,11 +53,8 @@
   <ItemGroup>
     <Compile Include="AstTests.cs" />
     <Compile Include="ConverterStaticHelperTests.cs" />
-    <Compile Include="SetRewriterTests.cs" />
-    <Compile Include="GroupRewriterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeBuilderTest.cs" />
-    <Compile Include="RepeatRewriterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleExpression.Core\SimpleExpression.Core.csproj">

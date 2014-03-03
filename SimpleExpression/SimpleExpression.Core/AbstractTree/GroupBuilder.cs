@@ -8,7 +8,7 @@ namespace SimpleExpressions.Core.AbstractTree
     {
         public override INode AddNode(INode currentParent, IConverter converter)
         {
-            INode newNode = new GroupNode {Cardinality = new Cardinality()};
+            INode newNode = new GroupNode(converter) {Cardinality = new Cardinality()};
 
             // If it is the first element
             if (currentParent == null)
