@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 
-namespace SimpleExpressions.Core.AbstractTree
+namespace SimpleExpressions.Core.AbstractTree.Builders
 {
     /// <summary>
-    /// Class wrapping the abstract syntax tree building logic
+    ///     Class wrapping the abstract syntax tree building logic
     /// </summary>
     public class AstBuilder
     {
-        /// <summary>
-        /// The available builders
-        /// </summary>
-        public IList<IBuilder> SpecializedBuilders { get; set; }
-        
         public AstBuilder()
         {
-            SpecializedBuilders = new List<IBuilder>
+            this.SpecializedBuilders = new List<IBuilder>
                 {
                     new ConcatBuilder(),
                     new TextBuilder(),
@@ -27,7 +23,12 @@ namespace SimpleExpressions.Core.AbstractTree
         }
 
         /// <summary>
-        /// Generates the corresponding AST based on a chain of IConverters
+        ///     The available builders
+        /// </summary>
+        public IList<IBuilder> SpecializedBuilders { get; set; }
+
+        /// <summary>
+        ///     Generates the corresponding AST based on a chain of IConverters
         /// </summary>
         public INode GenerateAst(IList<IConverter> convertersChain)
         {
@@ -42,11 +43,11 @@ namespace SimpleExpressions.Core.AbstractTree
                 current = builder.AddNode(current, converter);
             }
 
-            return current != null ? GetRoot(current) : null;
+            return current != null ? this.GetRoot(current) : null;
         }
 
         /// <summary>
-        /// Navigates an AST and returns the root node
+        ///     Navigates an AST and returns the root node
         /// </summary>
         private INode GetRoot(INode current)
         {
@@ -56,7 +57,7 @@ namespace SimpleExpressions.Core.AbstractTree
         }
 
         /// <summary>
-        /// Searches for a corresponding Builder for the desired function
+        ///     Searches for a corresponding Builder for the desired function
         /// </summary>
         /// <returns>If no builder is found, a "concat" builder is returned by default</returns>
         private IBuilder GetAdequateBuilder(IConverter converter)

@@ -1,7 +1,8 @@
-﻿using SimpleExpressions.Core.Converters;
+﻿using SimpleExpressions.Core.AbstractTree.Nodes;
+using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.Grouping;
 
-namespace SimpleExpressions.Core.AbstractTree
+namespace SimpleExpressions.Core.AbstractTree.Builders
 {
     public class TogetherBuilder: BaseBuilder
     {

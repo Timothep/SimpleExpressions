@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 
-namespace SimpleExpressions.Core.AbstractTree
+namespace SimpleExpressions.Core.AbstractTree.Builders
 {
     public class TextBuilder: BaseBuilder
     {
@@ -45,7 +46,7 @@ namespace SimpleExpressions.Core.AbstractTree
                 currentParent = currentParent.Parent;
             }
 
-            LinkNodeToParent(currentParent, textNode);
+            this.LinkNodeToParent(currentParent, textNode);
             return textNode;
         }
 

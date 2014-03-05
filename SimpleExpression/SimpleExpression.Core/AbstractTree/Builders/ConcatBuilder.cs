@@ -1,7 +1,8 @@
 ﻿using System;
+using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 
-namespace SimpleExpressions.Core.AbstractTree
+namespace SimpleExpressions.Core.AbstractTree.Builders
 {
     public class ConcatBuilder: IBuilder
     {

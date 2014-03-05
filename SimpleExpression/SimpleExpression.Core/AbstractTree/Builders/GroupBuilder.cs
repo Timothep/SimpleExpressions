@@ -1,10 +1,11 @@
 ﻿using System;
+using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.Grouping;
 
-namespace SimpleExpressions.Core.AbstractTree
+namespace SimpleExpressions.Core.AbstractTree.Builders
 {
-    public class GroupBuilder: BaseBuilder, IBuilder
+    public class GroupBuilder: BaseBuilder
     {
         public override INode AddNode(INode currentParent, IConverter converter)
         {
@@ -20,7 +21,7 @@ namespace SimpleExpressions.Core.AbstractTree
             else
                 throw new ArgumentException("The chain being built is invalid");
             
-            LinkNodeToParent(currentParent, newNode);
+            this.LinkNodeToParent(currentParent, newNode);
 
             return newNode;
         }

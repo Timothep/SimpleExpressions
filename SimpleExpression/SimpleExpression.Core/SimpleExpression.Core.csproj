@@ -42,14 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractTree\AstBuilder.cs" />
-    <Compile Include="AbstractTree\BaseBuilder.cs" />
-    <Compile Include="AbstractTree\BaseNode.cs" />
-    <Compile Include="AbstractTree\ConcatBuilder.cs" />
-    <Compile Include="AbstractTree\GroupBuilder.cs" />
-    <Compile Include="AbstractTree\IBuilder.cs" />
-    <Compile Include="AbstractTree\TextBuilder.cs" />
-    <Compile Include="AbstractTree\TogetherBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\AstBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\BaseBuilder.cs" />
+    <Compile Include="AbstractTree\Nodes\BaseNode.cs" />
+    <Compile Include="AbstractTree\Nodes\BlockNode.cs" />
+    <Compile Include="AbstractTree\Cardinality.cs" />
+    <Compile Include="AbstractTree\Nodes\ClassNode.cs" />
+    <Compile Include="AbstractTree\Builders\ConcatBuilder.cs" />
+    <Compile Include="AbstractTree\Nodes\ConcatNode.cs" />
+    <Compile Include="AbstractTree\Builders\GroupBuilder.cs" />
+    <Compile Include="AbstractTree\Nodes\GroupNode.cs" />
+    <Compile Include="AbstractTree\Builders\IBuilder.cs" />
+    <Compile Include="AbstractTree\Nodes\IMotherNode.cs" />
+    <Compile Include="AbstractTree\Nodes\INode.cs" />
+    <Compile Include="AbstractTree\Builders\TextBuilder.cs" />
+    <Compile Include="AbstractTree\Nodes\TextNode.cs" />
+    <Compile Include="AbstractTree\Builders\TogetherBuilder.cs" />
     <Compile Include="Converters\Anything.cs" />
     <Compile Include="Converters\Sets\SetEnd.cs" />
     <Compile Include="Converters\Sets\Letters.cs" />
