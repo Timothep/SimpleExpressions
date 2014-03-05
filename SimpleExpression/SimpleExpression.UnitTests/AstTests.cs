@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SimpleExpressions.Core;
 using SimpleExpressions.Core.AbstractTree;
 using SimpleExpressions.Core.AbstractTree.Builders;
 using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.Grouping;
+using SimpleExpressions.Core.Converters.Repetitions;
 
 namespace SimpleExpression.UnitTests
 {
@@ -194,7 +196,29 @@ namespace SimpleExpression.UnitTests
             var subConcatNode = subGroupNode.Children[0] as ConcatNode;
             Assert.IsNotNull(subConcatNode);
             Assert.IsTrue(subConcatNode.Children.Count == 1);
+        }
 
+        [TestMethod]
+        public void AstTests_GroupRepetition()
+        {
+            var chain = new List<IConverter>
+                {
+                    new Group(),
+                    new AtLeast { Function = new Function("AtLeast", new object[] {2})},
+                    new AtMost { Function = new Function("AtMost", new object[] {4})},
+                    new Text(),
+                    new Together()
+                };
+            var root = builder.GenerateAst(chain);
+
+            Assert.IsTrue(root != null);
+            Assert.IsTrue(root.Parent == null);
+
+            var groupNode = root as GroupNode;
+            Assert.IsNotNull(groupNode);
+            Assert.IsTrue(groupNode.Children.Count == 1);
+            Assert.AreEqual(2, groupNode.Cardinality.Min);
+            Assert.AreEqual(4, groupNode.Cardinality.Max);
         }
     }
 }
