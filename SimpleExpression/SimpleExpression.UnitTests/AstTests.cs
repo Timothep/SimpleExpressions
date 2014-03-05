@@ -37,7 +37,7 @@ namespace SimpleExpression.UnitTests
         [TestMethod]
         public void AstTests_SimpleConcat()
         {
-            var chain = new List<IConverter> { new Text(), new Text() };
+            var chain = new List<IConverter> {new Text(), new Text()};
             var root = builder.GenerateAst(chain);
 
             Assert.IsTrue(root != null);
@@ -50,7 +50,7 @@ namespace SimpleExpression.UnitTests
         [TestMethod]
         public void AstTests_MoreConcat()
         {
-            var chain = new List<IConverter> { new Text(), new Text(), new Text() };
+            var chain = new List<IConverter> {new Text(), new Text(), new Text()};
             var root = builder.GenerateAst(chain);
 
             Assert.IsTrue(root != null);
@@ -63,7 +63,7 @@ namespace SimpleExpression.UnitTests
         [TestMethod]
         public void AstTests_SimpleGroup()
         {
-            var chain = new List<IConverter> { new Group(), new Text(), new Together() };
+            var chain = new List<IConverter> {new Group(), new Text(), new Together()};
             var root = builder.GenerateAst(chain);
 
             Assert.IsTrue(root != null);
@@ -79,9 +79,9 @@ namespace SimpleExpression.UnitTests
         {
             var chain = new List<IConverter>
                 {
-                    new Group(), 
-                        new Text(), 
-                        new Text(), 
+                    new Group(),
+                    new Text(),
+                    new Text(),
                     new Together()
                 };
             var root = builder.GenerateAst(chain);
@@ -103,10 +103,10 @@ namespace SimpleExpression.UnitTests
         {
             var chain = new List<IConverter>
                 {
-                    new Group(), 
-                        new Group(), 
-                            new Text(), 
-                        new Together(),
+                    new Group(),
+                    new Group(),
+                    new Text(),
+                    new Together(),
                     new Together()
                 };
             var root = builder.GenerateAst(chain);
@@ -128,12 +128,12 @@ namespace SimpleExpression.UnitTests
         {
             var chain = new List<IConverter>
                 {
-                    new Group(), 
-                        new Text(),
-                        new Group(), 
-                            new Text(), 
-                            new Text(), 
-                        new Together(),
+                    new Group(),
+                    new Text(),
+                    new Group(),
+                    new Text(),
+                    new Text(),
+                    new Together(),
                     new Together()
                 };
             var root = builder.GenerateAst(chain);
@@ -166,11 +166,11 @@ namespace SimpleExpression.UnitTests
         {
             var chain = new List<IConverter>
                 {
-                    new Group(), 
-                        new Group(), 
-                            new Text(), 
-                        new Together(),
-                        new Text(),
+                    new Group(),
+                    new Group(),
+                    new Text(),
+                    new Together(),
+                    new Text(),
                     new Together()
                 };
             var root = builder.GenerateAst(chain);
@@ -204,8 +204,8 @@ namespace SimpleExpression.UnitTests
             var chain = new List<IConverter>
                 {
                     new Group(),
-                    new AtLeast { Function = new Function("AtLeast", new object[] {2})},
-                    new AtMost { Function = new Function("AtMost", new object[] {4})},
+                    new AtLeast {Function = new Function("AtLeast", new object[] {2})},
+                    new AtMost {Function = new Function("AtMost", new object[] {4})},
                     new Text(),
                     new Together()
                 };
@@ -219,6 +219,27 @@ namespace SimpleExpression.UnitTests
             Assert.IsTrue(groupNode.Children.Count == 1);
             Assert.AreEqual(2, groupNode.Cardinality.Min);
             Assert.AreEqual(4, groupNode.Cardinality.Max);
+        }
+
+        [TestMethod]
+        public void AstTests_Maybe()
+        {
+            var chain = new List<IConverter>
+                {
+                    new Text {Function = new Function("Text", new object[] {"http"})},
+                    new Maybe {Function = new Function("Maybe", new object[] {"s"})},
+                    new Text {Function = new Function("Text", new object[] {"://"})},
+                };
+            var root = builder.GenerateAst(chain);
+
+            Assert.IsTrue(root != null);
+            Assert.IsTrue(root.Parent == null);
+
+            var concatNode = root as ConcatNode;
+            Assert.IsNotNull(concatNode);
+            Assert.IsTrue(concatNode.Children.Count == 3);
+
+            Assert.IsTrue(concatNode.Children[1] is MaybeNode);
         }
     }
 }

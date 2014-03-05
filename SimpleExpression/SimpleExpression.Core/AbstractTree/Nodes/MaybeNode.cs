@@ -2,8 +2,8 @@
 
 namespace SimpleExpressions.Core.AbstractTree.Nodes
 {
-    public class TextNode : ValueNode
+    public class MaybeNode : ValueNode
     {
-        public TextNode(IConverter converter) : base(converter) { }
+        public MaybeNode(IConverter converter): base(converter) { }
     }
 }

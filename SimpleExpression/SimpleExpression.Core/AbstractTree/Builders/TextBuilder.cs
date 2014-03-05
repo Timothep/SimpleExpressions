@@ -5,11 +5,11 @@ using SimpleExpressions.Core.Converters;
 
 namespace SimpleExpressions.Core.AbstractTree.Builders
 {
-    public class TextBuilder: BaseBuilder
+    public abstract class LeafBuilder: BaseBuilder
     {
         public override INode AddNode(INode currentParent, IConverter converter)
         {
-            INode textNode = new TextNode(converter) { Cardinality = new Cardinality() };
+            INode textNode = GetNode(converter);
 
             // First element of a chain must be concatenated
             if (currentParent == null)
@@ -48,6 +48,21 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
 
             this.LinkNodeToParent(currentParent, textNode);
             return textNode;
+        }
+
+        protected abstract INode GetNode(IConverter converter);
+
+        public override bool CanHandle(IConverter converter)
+        {
+            return converter is Text;
+        }
+    }
+
+    public class TextBuilder : LeafBuilder
+    {
+        protected override INode GetNode(IConverter converter)
+        {
+            return new TextNode(converter) { Cardinality = new Cardinality() };
         }
 
         public override bool CanHandle(IConverter converter)
