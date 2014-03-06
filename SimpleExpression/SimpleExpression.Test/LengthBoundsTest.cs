@@ -7,6 +7,7 @@ using SimpleExpressions.Core;
 
 namespace SimpleExpressions.Test
 {
+    [Ignore]
     [TestClass]
     public class LengthBoundsTest
     {

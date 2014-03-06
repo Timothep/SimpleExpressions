@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractTree\Builders\AsBuilder.cs" />
     <Compile Include="AbstractTree\Builders\AstBuilder.cs" />
     <Compile Include="AbstractTree\Builders\BaseBuilder.cs" />
     <Compile Include="AbstractTree\Builders\CardinalityBuilder.cs" />

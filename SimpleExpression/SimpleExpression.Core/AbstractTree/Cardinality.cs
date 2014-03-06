@@ -25,6 +25,18 @@
             }
         }
 
+        public override string ToString()
+        {
+            if (Min == 1 && Max == Min)
+                return "";
+            
+            var result = "{";
+            if (Min != null)
+                result += Min;
+            result += "," + Max + "}";
+            return result;
+        }
+
         public int? Min { get; set; }
         public int Max { get; set; }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
+using TinyIoC;
 
 namespace SimpleExpressions.Core.AbstractTree.Builders
 {
@@ -13,15 +14,21 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
     {
         public AstBuilder()
         {
-            this.SpecializedBuilders = new List<IBuilder>
-                {
-                    new ConcatBuilder(),
-                    new TextBuilder(),
-                    new GroupBuilder(),
-                    new TogetherBuilder(),
-                    new CardinalityBuilder(),
-                    new MaybeBuilder(),
-                };
+            // Lazy load all the available builders
+            var container = TinyIoCContainer.Current;
+            container.AutoRegister(DuplicateImplementationActions.RegisterMultiple);
+            this.SpecializedBuilders = container.ResolveAll<IBuilder>().ToList();
+
+            //this.SpecializedBuilders = new List<IBuilder>
+            //    {
+            //        new ConcatBuilder(),
+            //        new TextBuilder(),
+            //        new GroupBuilder(),
+            //        new TogetherBuilder(),
+            //        new CardinalityBuilder(),
+            //        new MaybeBuilder(),
+            //        new AsBuilder(),
+            //    };
         }
 
         /// <summary>

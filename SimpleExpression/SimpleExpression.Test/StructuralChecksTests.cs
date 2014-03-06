@@ -10,6 +10,7 @@ using Group = System.Text.RegularExpressions.Group;
 
 namespace SimpleExpressions.Test
 {
+    [Ignore]
     [TestClass]
     public class StructuralChecksTests
     {

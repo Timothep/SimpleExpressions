@@ -11,7 +11,8 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Letters.AtMost(5)
+                .Letters
+                .AtMost(5)
                 .Generate();
 
             Assert.AreEqual(@"[a-zA-Z]{5}", result.Expression);

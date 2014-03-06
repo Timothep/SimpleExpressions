@@ -199,6 +199,31 @@ namespace SimpleExpression.UnitTests
         }
 
         [TestMethod]
+        public void AstTests_GroupTogetherAs()
+        {
+            var chain = new List<IConverter>
+                {
+                    new Group(),
+                    new Text(),
+                    new Text(),
+                    new Together(),
+                    new As()
+                };
+            var root = builder.GenerateAst(chain);
+
+            Assert.IsTrue(root != null);
+            Assert.IsTrue(root.Parent == null);
+
+            var groupNode = root as GroupNode;
+            Assert.IsNotNull(groupNode);
+            Assert.IsTrue(groupNode.Children.Count == 1);
+
+            var concatNode = groupNode.Children[0] as ConcatNode;
+            Assert.IsNotNull(concatNode);
+            Assert.IsTrue(concatNode.Children.Count == 2);
+        }
+
+        [TestMethod]
         public void AstTests_GroupRepetition()
         {
             var chain = new List<IConverter>
