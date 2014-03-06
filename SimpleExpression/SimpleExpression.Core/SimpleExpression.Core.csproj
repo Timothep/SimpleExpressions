@@ -46,7 +46,13 @@
     <Compile Include="AbstractTree\Builders\AstBuilder.cs" />
     <Compile Include="AbstractTree\Builders\BaseBuilder.cs" />
     <Compile Include="AbstractTree\Builders\CardinalityBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\NumbersBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\AlphanumericsBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\LeafBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\LettersBuilder.cs" />
     <Compile Include="AbstractTree\Builders\MaybeBuilder.cs" />
+    <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
+    <Compile Include="AbstractTree\Nodes\LettersNode.cs" />
     <Compile Include="AbstractTree\Nodes\MaybeNode.cs" />
     <Compile Include="AbstractTree\Nodes\BaseNode.cs" />
     <Compile Include="AbstractTree\Nodes\BlockNode.cs" />
@@ -60,6 +66,7 @@
     <Compile Include="AbstractTree\Nodes\IMotherNode.cs" />
     <Compile Include="AbstractTree\Nodes\INode.cs" />
     <Compile Include="AbstractTree\Builders\TextBuilder.cs" />
+    <Compile Include="AbstractTree\Nodes\NumbersNode.cs" />
     <Compile Include="AbstractTree\Nodes\TextNode.cs" />
     <Compile Include="AbstractTree\Builders\TogetherBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\ValueNode.cs" />

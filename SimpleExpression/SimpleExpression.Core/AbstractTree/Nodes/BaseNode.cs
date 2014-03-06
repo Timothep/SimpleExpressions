@@ -12,6 +12,7 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
         protected BaseNode(IConverter converter)
         {
             this.Converter = converter;
+            this.Cardinality = new Cardinality();
         }
     }
 }

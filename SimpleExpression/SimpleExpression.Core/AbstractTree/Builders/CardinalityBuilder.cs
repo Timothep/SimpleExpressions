@@ -18,7 +18,7 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
                 card.Max = Convert.ToInt32(converter.Function.Arguments[0]);
             else if (converter is Exactly)
             {
-                card.Min = null;
+                card.Min = Convert.ToInt32(converter.Function.Arguments[0]);
                 card.Max = Convert.ToInt32(converter.Function.Arguments[0]);
             }
             else

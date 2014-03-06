@@ -7,7 +7,7 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
     {
         protected override INode GetNode(IConverter converter)
         {
-            return new MaybeNode(converter) { Cardinality = new Cardinality() };
+            return new MaybeNode(converter);
         }
 
         public override bool CanHandle(IConverter converter)

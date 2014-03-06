@@ -1,11 +1,17 @@
-﻿namespace SimpleExpressions.Core.AbstractTree
+﻿using System;
+
+namespace SimpleExpressions.Core.AbstractTree
 {
     public class Cardinality
     {
-        public Cardinality(CardinalityEnum card = CardinalityEnum.ExactlyOne)
+        public Cardinality(CardinalityEnum card = CardinalityEnum.Undefined)
         {
             switch (card)
             {
+                case CardinalityEnum.Undefined:
+                    this.Min = null;
+                    this.Max = null;
+                    break;
                 case CardinalityEnum.ZeroOrMore:
                     this.Min = 0;
                     this.Max = int.MaxValue;
@@ -27,23 +33,36 @@
 
         public override string ToString()
         {
-            if (Min == 1 && Max == Min)
+            //If no cardinality was given... ever
+            if (Min == null && Max == null)
                 return "";
-            
-            var result = "{";
-            if (Min != null)
-                result += Min;
-            result += "," + Max + "}";
-            return result;
+
+            //If only a min Bound was given
+            if (Min != null && Max == null)
+                return "{" + Min + ",}";
+
+            if (this.Min != null && this.Max != null)
+            {
+                // Case of exactly
+                if (this.Min == this.Max)
+                    return "{" + this.Min + "}";
+
+                // If both were entered
+                return "{" + Min + ", " + Max + "}";
+            }
+
+            //if (Min == null && Max != null)
+            throw new ArgumentException("AtMost alone is not supported");
         }
 
         public int? Min { get; set; }
-        public int Max { get; set; }
+        public int? Max { get; set; }
     }
 
     public enum CardinalityEnum
     {
-        ZeroOrMore = 0,
+        Undefined = 0,
+        ZeroOrMore,
         ZeroToOne,
         ExactlyOne,
         OneOrMore,
