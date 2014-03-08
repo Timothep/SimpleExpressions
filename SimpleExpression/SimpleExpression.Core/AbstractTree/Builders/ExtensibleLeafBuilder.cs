@@ -2,8 +2,5 @@
 
 namespace SimpleExpressions.Core.AbstractTree.Builders
 {
-    public abstract class ExtensibleLeafBuilder : LeafBuilder
-    {
-        
-    }
+    public abstract class ExtensibleLeafBuilder : LeafBuilder { }
 }
