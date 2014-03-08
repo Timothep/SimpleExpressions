@@ -39,22 +39,19 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"(aei){3,}", result.Expression);
         }
 
-
-        [Ignore]
          //The "Group/Repeat...Times/Together" Produces a double "(())"
         [TestMethod]
         public void GroupRepetition()
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                    .Repeat
-                        .Group
-                            .Text("aeiou")
-                        .As("vowels")
-                    .AtLeast(3).Times
+                    .Group.AtLeast(3)
+                        .Text("houuu")
+                    .Together
+                    .As("ghost")
                     .Generate();
 
-            Assert.AreEqual(@"(?<vowels>aeiou){3,}", result.Expression);
+            Assert.AreEqual(@"(?<ghost>houuu){3,}", result.Expression);
         }
 
         [Ignore]

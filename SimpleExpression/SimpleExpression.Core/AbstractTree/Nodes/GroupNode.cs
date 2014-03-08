@@ -20,7 +20,7 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
             var childrenAggregate = this.AggregateChildren();
 
             var alias = string.IsNullOrEmpty(this.Name) ? "" : string.Format("?<{0}>", this.Name);
-            var cardinality = string.IsNullOrEmpty(this.Cardinality.ToString()) ? "" : "{" + this.Cardinality.ToString() + "}";
+            var cardinality = string.IsNullOrEmpty(this.Cardinality.ToString()) ? "" : this.Cardinality.ToString();
 
             return string.Format("({0}{1}){2}", alias, childrenAggregate, cardinality);
         }
