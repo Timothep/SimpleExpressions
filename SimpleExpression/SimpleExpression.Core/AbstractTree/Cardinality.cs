@@ -48,7 +48,7 @@ namespace SimpleExpressions.Core.AbstractTree
                     return "{" + this.Min + "}";
 
                 // If both were entered
-                return "{" + Min + ", " + Max + "}";
+                return "{" + Min + "," + Max + "}";
             }
 
             //if (Min == null && Max != null)

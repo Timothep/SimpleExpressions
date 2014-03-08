@@ -3,12 +3,13 @@ using SimpleExpressions.Core;
 
 namespace SimpleExpressions.Test
 {
-    [Ignore]
+     
     [TestClass]
     public class RepetitionsMultiTests
     {
         private readonly CardinalityTests cardinalityTests = new CardinalityTests();
 
+        [Ignore]
         [TestMethod]
         public void SequenceRepeatTest()
         {
@@ -23,6 +24,7 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"(http){3}", result.Expression);
         }
         
+        [Ignore]
         [TestMethod]
         public void BlockRepetition()
         {
@@ -37,7 +39,9 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"(aei){3,}", result.Expression);
         }
 
-        [Ignore]//The "Group/Repeat...Times/Together" Produces a double "(())"
+
+        [Ignore]
+         //The "Group/Repeat...Times/Together" Produces a double "(())"
         [TestMethod]
         public void GroupRepetition()
         {
@@ -53,6 +57,7 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"(?<vowels>aeiou){3,}", result.Expression);
         }
 
+        [Ignore]
         [TestMethod]
         public void BountRepetitionTests()
         {
@@ -68,6 +73,7 @@ namespace SimpleExpressions.Test
         Assert.AreEqual(@"(42){2,4}", result.Expression);
         }
 
+        [Ignore]
         [TestMethod]
         public void FixedRepetitionTests()
         {

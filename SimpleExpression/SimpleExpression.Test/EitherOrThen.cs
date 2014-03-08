@@ -6,7 +6,7 @@ namespace SimpleExpressions.Test
     [TestClass]
     public class EitherOrThen
     {
-        [Ignore]
+         
         [TestMethod]
         public void SimpleEitherOr()
         {

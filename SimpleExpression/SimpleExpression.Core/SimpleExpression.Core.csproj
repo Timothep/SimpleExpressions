@@ -53,7 +53,9 @@
     <Compile Include="AbstractTree\Builders\LeafBuilder.cs" />
     <Compile Include="AbstractTree\Builders\LettersBuilder.cs" />
     <Compile Include="AbstractTree\Builders\MaybeBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\NumbersInRangeBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
+    <Compile Include="AbstractTree\Nodes\NumbersInRangeNode.cs" />
     <Compile Include="AbstractTree\Nodes\OneOfNode.cs" />
     <Compile Include="AbstractTree\Nodes\OneNode.cs" />
     <Compile Include="AbstractTree\Nodes\LettersNode.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="AbstractTree\Builders\TogetherBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\ValueNode.cs" />
     <Compile Include="Converters\Anything.cs" />
+    <Compile Include="AbstractTree\Nodes\InRangeStaticHelper.cs" />
     <Compile Include="Converters\Sets\SetEnd.cs" />
     <Compile Include="Converters\Sets\Letters.cs" />
     <Compile Include="Converters\Sets\Numbers.cs" />
@@ -100,7 +103,7 @@
     <Compile Include="Converters\Except.cs" />
     <Compile Include="Converters\Grouping\Group.cs" />
     <Compile Include="Converters\IConverter.cs" />
-    <Compile Include="Converters\InRange.cs" />
+    <Compile Include="Converters\NumbersInRange.cs" />
     <Compile Include="Converters\OneOf.cs" />
     <Compile Include="Converters\Repetitions\Repeat.cs" />
     <Compile Include="Converters\Sets\Alphanumerics.cs" />

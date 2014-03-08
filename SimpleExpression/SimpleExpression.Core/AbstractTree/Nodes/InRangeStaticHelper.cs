@@ -1,38 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
- 
 
-namespace SimpleExpressions.Core.Converters
+namespace SimpleExpressions.Core.AbstractTree.Nodes
 {
-    public class InRange : BaseConverter
-    {
-        private readonly IList<string> supportedFunctionNames = new List<string> { "InRange" };
-        public override IList<string> SupportedFunctionNames
-        {
-            get { return this.supportedFunctionNames; }
-        }
-
-        public override IList<string> Generate(IList<string> regularExpressionSofar)
-        {
-            var currentToken = this.Function;
-
-            if (currentToken.Arguments == null)
-                throw new ArgumentException("Missing argument");
-
-            regularExpressionSofar.Add(RangeBuilder.CreateRange(currentToken.Arguments[0].ToString()));
-
-            return regularExpressionSofar;
-        }
-    }
-
-    public static class RangeBuilder
+    public static class InRangeStaticHelper
     {
         /// <summary>
         /// Does not work yet, not sure what we actually want
         /// </summary>
-        /// <param name="argument"></param>
-        /// <returns></returns>
         public static string CreateRange(string argument)
         {
             var from = Convert.ToInt64(argument.Substring(0, argument.IndexOf('-')));

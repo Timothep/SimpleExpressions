@@ -14,8 +14,8 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Letters
-                .Numbers
+                .Many.Letters
+                .Many.Numbers
                 .Generate();
 
             Assert.AreEqual(@"[a-zA-Z]*[0-9]*", result.Expression);

@@ -39,7 +39,6 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(4, matches.Count);
         }
 
-        [Ignore]
             /* 
              * Make "ponys and unicorns" return one match
              * Make "ponys and rainbows" return zero matches             * 

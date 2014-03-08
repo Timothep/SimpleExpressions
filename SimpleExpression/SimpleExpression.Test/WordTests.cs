@@ -11,9 +11,9 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Word("ponys")
-                .AlphanumericsAndWhitespaces
-                .Word("rainbows")
+                .Text("ponys")
+                .Alphanumerics.And.One(" ")
+                .Text("rainbows")
                 .Generate();
 
             Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", result.Expression);

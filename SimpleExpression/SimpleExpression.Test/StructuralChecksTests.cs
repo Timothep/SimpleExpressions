@@ -68,7 +68,7 @@ namespace SimpleExpressions.Test
         }
 
         [TestMethod]
-        [Ignore]
+         
         public void RepeatAtLeastAtMostTimesStructuralChecksTest2()
         {
             dynamic se = new SimpleExpression();
