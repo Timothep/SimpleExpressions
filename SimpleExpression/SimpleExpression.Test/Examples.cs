@@ -21,10 +21,10 @@ namespace SimpleExpressions.Test
                 .Then
                 .Text("://")
                 .Maybe("www.")
-                .AnythingBut(" ")
+                .Alphanumerics
                 .Generate();
 
-            //Match the result...
+            Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", result.Expression);
         }
     }
 }

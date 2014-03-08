@@ -13,16 +13,15 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
 
             var result = se
-                .OneOrMore.Numbers
+                .Numbers.AtLeast(1)
                 .Maybe(" ")
-                .Either
-                    .One("€")
+                .One("€")
                 .Or
-                    .Text("EURO")
-                .Then //Can be omited
+                .Text("EURO")
+                //.Then //Can be omited
                 .Generate();
 
-            Assert.IsFalse(true);
+            Assert.AreEqual("[0-9]{1,}( )?(€|EURO)", result.Expression);
         }
     }
 }

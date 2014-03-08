@@ -17,9 +17,10 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
                 var concat = new ConcatNode(converter);
                 currentParent = concat;
             }
-                //If the parent is a concat node, add this node to the list
-            else if (currentParent is ConcatNode) { /* Do nothing special */ }
-            else if (currentParent is IMotherNode)
+            //If the parent is a CONCAT or OR node, add this node to the list
+            else if (currentParent is ConcatNode || currentParent is OrNode) { /* Do nothing special */ }
+            //else if (currentParent is IMotherNode)
+            else if (currentParent is GroupNode)
             {
                 // If the parent is a group node, but not a concat, insert a concat in between
                 var concat = new ConcatNode(converter);

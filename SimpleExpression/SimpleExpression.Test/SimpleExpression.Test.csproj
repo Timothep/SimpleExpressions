@@ -61,6 +61,7 @@
     <Compile Include="GroupTests.cs" />
     <Compile Include="InRangeTests.cs" />
     <Compile Include="MaybeTests.cs" />
+    <Compile Include="OrTests.cs" />
     <Compile Include="RepetitionsMultiTests.cs" />
     <Compile Include="StructuralChecksTests.cs" />
     <Compile Include="WordTests.cs" />

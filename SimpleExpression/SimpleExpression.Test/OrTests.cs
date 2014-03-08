@@ -4,19 +4,19 @@ using SimpleExpressions.Core;
 namespace SimpleExpressions.Test
 {
     [TestClass]
-    public class WordTests
+    public class OrTests
     {
         [TestMethod]
-        public void SimpleWordTest()
+        public void SimpleOr()
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .Text("ponys")
-                .Alphanumerics.And.One(" ")
-                .Text("rainbows")
+                .Text("http")
+                .Or
+                .Text("ftp")
                 .Generate();
 
-            Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", result.Expression);
+            Assert.AreEqual("(http|ftp)", result.Expression);
         }
     }
 }

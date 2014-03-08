@@ -54,7 +54,9 @@
     <Compile Include="AbstractTree\Builders\LettersBuilder.cs" />
     <Compile Include="AbstractTree\Builders\MaybeBuilder.cs" />
     <Compile Include="AbstractTree\Builders\NumbersInRangeBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\OrBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
+    <Compile Include="AbstractTree\Nodes\OrNode.cs" />
     <Compile Include="AbstractTree\Nodes\NumbersInRangeNode.cs" />
     <Compile Include="AbstractTree\Nodes\OneOfNode.cs" />
     <Compile Include="AbstractTree\Nodes\OneNode.cs" />
