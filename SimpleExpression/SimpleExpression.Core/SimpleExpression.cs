@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
+using System.Text.RegularExpressions;
 using SimpleExpressions.Core.AbstractTree;
 using SimpleExpressions.Core.AbstractTree.Builders;
 
@@ -28,6 +29,8 @@ namespace SimpleExpressions.Core
         public IList<Function> SimpleExpressionChain { get; set; }
         public IList<string> RegularExpressionChain { get; set; }
         private string RegularExpression { get; set; }
+
+        private Regex Regex { get; set; }
 
         public string Expression
         {
@@ -78,6 +81,25 @@ namespace SimpleExpressions.Core
             this.RegularExpression = astRoot.Generate();
 
             return this;
+        }
+
+        /// REGEX STUFF
+
+        public MatchCollection Matches(string stringToValidate)
+        {
+            this.Regex = new Regex(this.Expression);
+            return this.Regex.Matches(stringToValidate);
+        }
+
+        public bool IsMatch(string stringToValidate)
+        {
+            this.Regex = new Regex(this.Expression);
+            return this.Regex.IsMatch(stringToValidate);
+        }
+
+        public string[] GetGroupNames()
+        {
+            return this.Regex != null ? this.Regex.GetGroupNames() : null;
         }
     }
 }

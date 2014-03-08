@@ -35,9 +35,8 @@ namespace SimpleExpressions.Test
             var pattern = (result as SimpleExpression).Expression;
             Assert.AreEqual(@"(?<vowels>aeiou)", pattern);
 
-            var reg = new Regex(pattern);
-            Assert.IsTrue(reg.IsMatch("aeiou"));
-            var names = reg.GetGroupNames();
+            Assert.IsTrue(result.IsMatch("aeiou"));
+            var names = result.GetGroupNames();
             Assert.AreEqual("vowels", names[1]);
         }
     }
