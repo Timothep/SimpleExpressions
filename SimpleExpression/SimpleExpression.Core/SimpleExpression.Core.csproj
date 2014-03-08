@@ -46,6 +46,7 @@
     <Compile Include="AbstractTree\Builders\AstBuilder.cs" />
     <Compile Include="AbstractTree\Builders\BaseBuilder.cs" />
     <Compile Include="AbstractTree\Builders\CardinalityBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\EitherOfBuilder.cs" />
     <Compile Include="AbstractTree\Builders\OneOfBuilder.cs" />
     <Compile Include="AbstractTree\Builders\OneBuilder.cs" />
     <Compile Include="AbstractTree\Builders\NumbersBuilder.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="AbstractTree\Builders\NumbersInRangeBuilder.cs" />
     <Compile Include="AbstractTree\Builders\OrBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
+    <Compile Include="AbstractTree\Nodes\EitherOfNode.cs" />
     <Compile Include="AbstractTree\Nodes\OrNode.cs" />
     <Compile Include="AbstractTree\Nodes\NumbersInRangeNode.cs" />
     <Compile Include="AbstractTree\Nodes\OneOfNode.cs" />

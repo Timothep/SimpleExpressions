@@ -18,16 +18,16 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"a|e|i|o|u", result.Expression);
         }
 
-        [TestMethod]
-        public void NoPipeEither()
-        {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .EitherOf("aeiou")
-                .Generate();
+        //[TestMethod]
+        //public void NoPipeEither()
+        //{
+        //    dynamic se = new SimpleExpression();
+        //    SimpleExpression result = se
+        //        .EitherOf("aeiou")
+        //        .Generate();
 
-            Assert.AreEqual(@"[aeiou]", result.Expression);
-        }
+        //    Assert.AreEqual(@"[aeiou]", result.Expression);
+        //}
 
         [TestMethod]
         public void CharsAndStringsEither()
