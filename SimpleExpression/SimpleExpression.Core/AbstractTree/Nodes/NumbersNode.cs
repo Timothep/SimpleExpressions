@@ -8,8 +8,8 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
 
         public override string Generate()
         {
-            const string result = "0-9";
-            return string.IsNullOrEmpty(this.Cardinality.ToString()) ? result : string.Format("[{0}]{1}", result, this.Cardinality);
+            const string result = "[0-9]";
+            return string.IsNullOrEmpty(this.Cardinality.ToString()) ? result : string.Format("{0}{1}", result, this.Cardinality);
         }
     }
 }

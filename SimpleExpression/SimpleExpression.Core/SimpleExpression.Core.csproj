@@ -42,10 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractTree\Builders\AndBuilder.cs" />
     <Compile Include="AbstractTree\Builders\AsBuilder.cs" />
     <Compile Include="AbstractTree\Builders\AstBuilder.cs" />
     <Compile Include="AbstractTree\Builders\BaseBuilder.cs" />
     <Compile Include="AbstractTree\Builders\CardinalityBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\ExtensibleLeafBuilder.cs" />
     <Compile Include="AbstractTree\Builders\EitherOfBuilder.cs" />
     <Compile Include="AbstractTree\Builders\OneOfBuilder.cs" />
     <Compile Include="AbstractTree\Builders\OneBuilder.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="AbstractTree\Builders\NumbersInRangeBuilder.cs" />
     <Compile Include="AbstractTree\Builders\OrBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
+    <Compile Include="AbstractTree\Nodes\AndNode.cs" />
     <Compile Include="AbstractTree\Nodes\EitherOfNode.cs" />
     <Compile Include="AbstractTree\Nodes\OrNode.cs" />
     <Compile Include="AbstractTree\Nodes\NumbersInRangeNode.cs" />
@@ -82,6 +85,7 @@
     <Compile Include="AbstractTree\Nodes\ValueNode.cs" />
     <Compile Include="Converters\Anything.cs" />
     <Compile Include="AbstractTree\Nodes\InRangeStaticHelper.cs" />
+    <Compile Include="Converters\And.cs" />
     <Compile Include="Converters\Sets\SetEnd.cs" />
     <Compile Include="Converters\Sets\Letters.cs" />
     <Compile Include="Converters\Sets\Numbers.cs" />

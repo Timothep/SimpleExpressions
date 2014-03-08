@@ -4,7 +4,7 @@ using SimpleExpressions.Core.Converters.Sets;
 
 namespace SimpleExpressions.Core.AbstractTree.Builders
 {
-    public class AlphanumericsBuilder : LeafBuilder
+    public class AlphanumericsBuilder : ExtensibleLeafBuilder
     {
         protected override INode GetNode(IConverter converter)
         {

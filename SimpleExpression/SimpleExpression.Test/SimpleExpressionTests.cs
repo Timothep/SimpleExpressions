@@ -34,15 +34,28 @@ namespace SimpleExpressions.Test
         }
 
         [TestMethod]
+        public void SimpleLettersAndMinusRegex()
+        {
+            dynamic se = new SimpleExpression();
+            SimpleExpression result = se
+                .Letters
+                .And("_")
+                .Generate();
+
+            Assert.AreEqual(@"[a-zA-Z_]*", result.Expression);
+        }
+
+        [TestMethod]
         public void SimpleWildcardsWithWhitespacesRegex()
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .LettersAndWhitespaces
+                .Letters
+                .And(" ")
                 .Numbers
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z\s]*[0-9]{1}", result.Expression);
+            Assert.AreEqual(@"[a-zA-Z ]*[0-9]", result.Expression);
         }
 
         [TestMethod]
