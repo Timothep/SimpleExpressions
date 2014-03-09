@@ -14,7 +14,7 @@ namespace SimpleExpressions.Test
                 .EitherOf("a|e|iy|uo")
                 .Generate();
 
-            Assert.AreEqual("http(s)?://", result.Expression);
+            Assert.AreEqual("a|e|iy|uo", result.Expression);
         }
     }
 }

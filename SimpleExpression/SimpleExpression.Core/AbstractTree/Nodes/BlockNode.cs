@@ -16,11 +16,6 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
 
         public IList<INode> Children { get; set; }
 
-        public void AddChild(INode node)
-        {
-            this.Children.Add(node);
-        }
-
         protected string AggregateChildren()
         {
             return this.Children.Aggregate("", (current, child) => current + child.Generate());

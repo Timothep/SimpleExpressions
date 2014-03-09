@@ -9,12 +9,14 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Leaves
     {
         public override INode AddNode(INode currentParent, IConverter converter)
         {
-            INode textNode = this.GetNode(converter);
+            var textNode = this.GetNode(converter);
 
             // First element of a chain must be concatenated
-            if (currentParent == null)
+            if (currentParent is RootNode)
             {
                 var concat = new ConcatNode(converter);
+                (currentParent as IMotherNode).Children.Add(concat);
+                concat.Parent = currentParent;
                 currentParent = concat;
             }
             //If the parent is a CONCAT or OR node, add this node to the list
@@ -31,10 +33,10 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Leaves
                 {
                     child.Parent = concat;
                     (currentParent as IMotherNode).Children.Remove(child);
-                    concat.AddChild(child);
+                    concat.Children.Add(child);
                 }
 
-                (currentParent as IMotherNode).AddChild(concat);
+                (currentParent as IMotherNode).Children.Add(concat);
                 concat.Parent = currentParent;
                 currentParent = concat;
             }

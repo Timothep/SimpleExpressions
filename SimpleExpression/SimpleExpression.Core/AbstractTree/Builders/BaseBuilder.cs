@@ -10,7 +10,7 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
             newNode.Parent = parent;
             var motherNode = parent as IMotherNode;
             if (motherNode != null) 
-                motherNode.AddChild(newNode);
+                motherNode.Children.Add(newNode);
         }
 
         public abstract INode AddNode(INode currentParent, IConverter converter);

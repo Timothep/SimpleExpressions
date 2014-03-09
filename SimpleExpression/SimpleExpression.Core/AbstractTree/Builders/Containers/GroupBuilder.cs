@@ -9,13 +9,11 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Containers
     {
         public override INode AddNode(INode currentParent, IConverter converter)
         {
-            INode newNode = new GroupNode(converter);
+            var newNode = new GroupNode(converter);
 
             // If it is the first element
-            if (currentParent == null)
-                return newNode;
-            
-            if (currentParent is IMotherNode) { /* Do nothing else */ }
+            if (currentParent is RootNode) { /* Do nothing */ }
+            else if (currentParent is IMotherNode) { /* Do nothing else */ }
             else if (currentParent.Parent is IMotherNode)
                 currentParent = currentParent.Parent;
             else

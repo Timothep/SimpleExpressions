@@ -22,7 +22,8 @@ namespace SimpleExpression.UnitTests
         {
             var root = this.builder.GenerateAst(null);
 
-            Assert.IsNull(root);
+            Assert.IsTrue(root is RootNode);
+            Assert.IsTrue(root.Parent == null);
         }
 
         [TestMethod]
@@ -31,19 +32,18 @@ namespace SimpleExpression.UnitTests
             var chain = new List<IConverter>(0);
             var root = builder.GenerateAst(chain);
 
-            Assert.IsNull(root);
+            Assert.IsTrue(root is RootNode);
+            Assert.IsTrue(root.Parent == null);
         }
 
         [TestMethod]
         public void AstTests_SimpleConcat()
         {
             var chain = new List<IConverter> {new Text(), new Text()};
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-            Assert.IsTrue(root is ConcatNode);
-            var concatNode = root as ConcatNode;
+            Assert.IsTrue(root.Children[0] is ConcatNode);
+            var concatNode = root.Children[0] as ConcatNode;
             Assert.IsTrue(concatNode.Children.Count == 2);
         }
 
@@ -51,12 +51,10 @@ namespace SimpleExpression.UnitTests
         public void AstTests_MoreConcat()
         {
             var chain = new List<IConverter> {new Text(), new Text(), new Text()};
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-            Assert.IsTrue(root is ConcatNode);
-            var concatNode = root as ConcatNode;
+            Assert.IsTrue(root.Children[0] is ConcatNode);
+            var concatNode = root.Children[0] as ConcatNode;
             Assert.IsTrue(concatNode.Children.Count == 3);
         }
 
@@ -64,12 +62,10 @@ namespace SimpleExpression.UnitTests
         public void AstTests_SimpleGroup()
         {
             var chain = new List<IConverter> {new Group(), new Text(), new Together()};
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-
-            var groupNode = root as GroupNode;
+            Assert.IsTrue(root.Children[0] is GroupNode);
+            var groupNode = root.Children[0] as GroupNode;
             Assert.IsNotNull(groupNode);
             Assert.IsTrue(groupNode.Children.Count == 1);
         }
@@ -84,12 +80,9 @@ namespace SimpleExpression.UnitTests
                     new Text(),
                     new Together()
                 };
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-
-            var groupNode = root as GroupNode;
+            var groupNode = root.Children[0] as GroupNode;
             Assert.IsNotNull(groupNode);
             Assert.IsTrue(groupNode.Children.Count == 1);
 
@@ -109,12 +102,9 @@ namespace SimpleExpression.UnitTests
                     new Together(),
                     new Together()
                 };
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-
-            var groupNode = root as GroupNode;
+            var groupNode = root.Children[0] as GroupNode;
             Assert.IsNotNull(groupNode);
             Assert.IsTrue(groupNode.Children.Count == 1);
 
@@ -136,12 +126,9 @@ namespace SimpleExpression.UnitTests
                     new Together(),
                     new Together()
                 };
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-
-            var groupNode = root as GroupNode;
+            var groupNode = root.Children[0] as GroupNode;
             Assert.IsNotNull(groupNode);
             Assert.IsTrue(groupNode.Children.Count == 1);
 
@@ -173,12 +160,9 @@ namespace SimpleExpression.UnitTests
                     new Text(),
                     new Together()
                 };
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-
-            var groupNode = root as GroupNode;
+            var groupNode = root.Children[0] as GroupNode;
             Assert.IsNotNull(groupNode);
             Assert.IsTrue(groupNode.Children.Count == 1);
 
@@ -209,12 +193,9 @@ namespace SimpleExpression.UnitTests
                     new Together(),
                     new As()
                 };
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-
-            var groupNode = root as GroupNode;
+            var groupNode = root.Children[0] as GroupNode;
             Assert.IsNotNull(groupNode);
             Assert.IsTrue(groupNode.Children.Count == 1);
 
@@ -234,12 +215,9 @@ namespace SimpleExpression.UnitTests
                     new Text(),
                     new Together()
                 };
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-
-            var groupNode = root as GroupNode;
+            var groupNode = root.Children[0] as GroupNode;
             Assert.IsNotNull(groupNode);
             Assert.IsTrue(groupNode.Children.Count == 1);
             Assert.AreEqual(2, groupNode.Cardinality.Min);
@@ -255,12 +233,9 @@ namespace SimpleExpression.UnitTests
                     new Maybe {Function = new Function("Maybe", new object[] {"s"})},
                     new Text {Function = new Function("Text", new object[] {"://"})},
                 };
-            var root = builder.GenerateAst(chain);
+            var root = builder.GenerateAst(chain) as IMotherNode;
 
-            Assert.IsTrue(root != null);
-            Assert.IsTrue(root.Parent == null);
-
-            var concatNode = root as ConcatNode;
+            var concatNode = root.Children[0] as ConcatNode;
             Assert.IsNotNull(concatNode);
             Assert.IsTrue(concatNode.Children.Count == 3);
 

@@ -5,6 +5,5 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
     public interface IMotherNode
     {
         IList<INode> Children { get; set; }
-        void AddChild(INode node);
     }
 }

@@ -12,11 +12,17 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Containers
             INode orNode = new OrNode(converter);
 
             // First element of a chain
-            if (currentParent == null)
+            if (currentParent is RootNode)
                 throw new NotImplementedException("Or cannot be the first element");
 
+            // Insert at root
+            if (currentParent.Parent == null)
+            {
+                (orNode as OrNode).Children.Add(currentParent);
+                currentParent = null;
+            }
             // Insert before its parent
-            if (currentParent.Parent != null && currentParent.Parent as IMotherNode != null)
+            else if (currentParent.Parent != null && currentParent.Parent as IMotherNode != null)
             {
                 var grandParent = currentParent.Parent as IMotherNode;
                 grandParent.Children.Remove(currentParent);

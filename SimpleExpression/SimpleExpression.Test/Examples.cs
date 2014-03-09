@@ -22,9 +22,10 @@ namespace SimpleExpressions.Test
                 .Text("://")
                 .Maybe("www.")
                 .Alphanumerics
+                //.And("-_").AtLeast(1)
                 .Generate();
 
-            Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", result.Expression);
+            Assert.AreEqual(@"((http(s)?)|ftp)://(www\.)?[a-zA-Z0-9]*", result.Expression);
         }
     }
 }

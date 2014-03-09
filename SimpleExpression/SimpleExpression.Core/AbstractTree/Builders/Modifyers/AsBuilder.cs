@@ -8,27 +8,29 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Modifyers
 {
     public class AsBuilder : BaseBuilder
     {
+        private const string CheckString =
+            " Please double check your expression, the structure should be Group.XYZ.Together.As()";
+
         public override INode AddNode(INode currentParent, IConverter converter)
         {
-            //Assumptions
-            // "AS" comes after "TOGETHER"
-            // Current pointer should be on the parent of the GROUP
-            // Group should be the last of the children
+            //If the current parent is neither the root nor a group
+            if(!(currentParent is IMotherNode))
+                throw new ArgumentException("Trying to insert an 'AS' node, but the current node's type '" + currentParent.GetType() + "' is illegal. " + CheckString);
 
-            //Navigate to the group
-            if(currentParent == null || currentParent as IMotherNode == null)
-                throw new ArgumentException("Something aweful must have happened, poor AS operator... alone like this...");
+            GroupNode group;
 
             //If the current parent is the root
-            GroupNode group;
-            if (currentParent.Parent == null && currentParent is GroupNode)
-                group = currentParent as GroupNode;
-            else
+            if (currentParent is RootNode)
             {
                 group = (currentParent as IMotherNode).Children.Last() as GroupNode;
                 if (group == null)
-                    throw new ArgumentException("Something aweful must have happened, poor AS operator... without a group to hangout with...");    
+                    throw new ArgumentException("Trying to insert an 'AS' node, but no Group found at root nor in its children. " + CheckString);
             }
+            // The current parent is the group
+            else if (currentParent is GroupNode)
+                group = currentParent as GroupNode;
+            else
+                throw new ArgumentException("Trying to insert an 'AS' node, but the current node is neither a group nor contains a group as children. " + CheckString);
 
             if (converter != null && converter.Function != null && converter.Function.Arguments != null && converter.Function.Arguments.Any())
                 group.Name = converter.Function.Arguments[0].ToString();

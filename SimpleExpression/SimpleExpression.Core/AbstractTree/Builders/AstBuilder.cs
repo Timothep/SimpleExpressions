@@ -45,7 +45,7 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
             if (convertersChain == null)
                 throw new ArgumentException("Cannot create an AST on a null chain");
 
-            INode current = null;
+            INode current = new RootNode();
 
             foreach (var converter in convertersChain)
             {
