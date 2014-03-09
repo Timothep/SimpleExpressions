@@ -1,9 +1,10 @@
 ﻿using System;
+using SimpleExpressions.Core.AbstractTree.DomainObjects;
 using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.Repetitions;
 
-namespace SimpleExpressions.Core.AbstractTree.Builders
+namespace SimpleExpressions.Core.AbstractTree.Builders.Modifyers
 {
     public class CardinalityBuilder : BaseBuilder
     {
@@ -11,7 +12,7 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
         {
             // Do not add a node but instead modify the parent
             var card = currentParent.Cardinality ?? new Cardinality();
-            
+
             if (converter is AtLeast)
                 card.Min = Convert.ToInt32(converter.Function.Arguments[0]);
             else if (converter is AtMost)
@@ -29,9 +30,9 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
 
         public override bool CanHandle(IConverter converter)
         {
-            return  converter is AtLeast 
-                    || converter is AtMost
-                    || converter is Exactly;
+            return converter is AtLeast
+                   || converter is AtMost
+                   || converter is Exactly;
         }
     }
 }

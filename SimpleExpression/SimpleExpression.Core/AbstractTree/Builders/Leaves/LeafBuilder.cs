@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 
-namespace SimpleExpressions.Core.AbstractTree.Builders
+namespace SimpleExpressions.Core.AbstractTree.Builders.Leaves
 {
     public abstract class LeafBuilder: BaseBuilder
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleExpressions.Core.AbstractTree
+namespace SimpleExpressions.Core.AbstractTree.DomainObjects
 {
     public class Cardinality
     {
@@ -34,12 +34,12 @@ namespace SimpleExpressions.Core.AbstractTree
         public override string ToString()
         {
             //If no cardinality was given... ever
-            if (Min == null && Max == null)
+            if (this.Min == null && this.Max == null)
                 return "";
 
             //If only a min Bound was given
-            if (Min != null && Max == null)
-                return "{" + Min + ",}";
+            if (this.Min != null && this.Max == null)
+                return "{" + this.Min + ",}";
 
             if (this.Min != null && this.Max != null)
             {
@@ -48,7 +48,7 @@ namespace SimpleExpressions.Core.AbstractTree
                     return "{" + this.Min + "}";
 
                 // If both were entered
-                return "{" + Min + "," + Max + "}";
+                return "{" + this.Min + "," + this.Max + "}";
             }
 
             //if (Min == null && Max != null)

@@ -2,7 +2,7 @@
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.Grouping;
 
-namespace SimpleExpressions.Core.AbstractTree.Builders
+namespace SimpleExpressions.Core.AbstractTree.Builders.Modifyers
 {
     public class TogetherBuilder: BaseBuilder
     {

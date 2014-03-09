@@ -2,18 +2,18 @@
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.Sets;
 
-namespace SimpleExpressions.Core.AbstractTree.Builders
+namespace SimpleExpressions.Core.AbstractTree.Builders.Leaves
 {
-    public class LettersBuilder: ExtensibleLeafBuilder
+    public class NumbersBuilder: LeafBuilder
     {
         protected override INode GetNode(IConverter converter)
         {
-            return new LettersNode(converter);
+            return new NumbersNode(converter);
         }
 
         public override bool CanHandle(IConverter converter)
         {
-            return converter is Letters;
+            return converter is Numbers;
         }
     }
 }

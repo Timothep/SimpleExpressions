@@ -1,7 +1,7 @@
 ﻿using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 
-namespace SimpleExpressions.Core.AbstractTree.Builders
+namespace SimpleExpressions.Core.AbstractTree.Builders.Modifyers
 {
     public class AndBuilder : BaseBuilder
     {
@@ -11,7 +11,7 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
 
             //Qualify the parent
             var extensibleNode = currentParent as ExtensibleNode;
-            if (extensibleNode != null) 
+            if (extensibleNode != null)
                 extensibleNode.ExtensionNode = andNode;
 
             return currentParent;

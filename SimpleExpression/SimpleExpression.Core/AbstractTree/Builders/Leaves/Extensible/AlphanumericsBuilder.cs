@@ -2,7 +2,7 @@
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.Sets;
 
-namespace SimpleExpressions.Core.AbstractTree.Builders
+namespace SimpleExpressions.Core.AbstractTree.Builders.Leaves.Extensible
 {
     public class AlphanumericsBuilder : ExtensibleLeafBuilder
     {

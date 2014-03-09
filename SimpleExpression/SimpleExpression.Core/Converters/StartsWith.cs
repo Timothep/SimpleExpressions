@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
- 
 
 namespace SimpleExpressions.Core.Converters
 {
@@ -9,12 +8,6 @@ namespace SimpleExpressions.Core.Converters
         public override IList<string> SupportedFunctionNames
         {
             get { return this.supportedFunctionNames; }
-        }
-
-        public override IList<string> Generate(IList<string> regularExpressionSofar)
-        {
-            regularExpressionSofar.Add("^"); //Should be the very first?
-            return regularExpressionSofar;
         }
     }
 }

@@ -1,19 +1,18 @@
 ﻿using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
-using SimpleExpressions.Core.Converters.Sets;
 
-namespace SimpleExpressions.Core.AbstractTree.Builders
+namespace SimpleExpressions.Core.AbstractTree.Builders.Leaves
 {
-    public class NumbersBuilder: LeafBuilder
+    public class NumberInRangeBuilder: LeafBuilder
     {
         protected override INode GetNode(IConverter converter)
         {
-            return new NumbersNode(converter);
+            return new NumberInRangeNode(converter);
         }
 
         public override bool CanHandle(IConverter converter)
         {
-            return converter is Numbers;
+            return converter is NumberInRange;
         }
     }
 }

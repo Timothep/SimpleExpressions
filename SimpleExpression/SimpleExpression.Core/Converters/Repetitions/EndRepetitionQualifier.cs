@@ -9,11 +9,5 @@ namespace SimpleExpressions.Core.Converters.Repetitions
         {
             get { return this.supportedFunctionNames; }
         }
-
-        public override IList<string> Generate(IList<string> regularExpressionSofar)
-        {
-            regularExpressionSofar.Add("}");
-            return regularExpressionSofar;
-        }
     }
 }

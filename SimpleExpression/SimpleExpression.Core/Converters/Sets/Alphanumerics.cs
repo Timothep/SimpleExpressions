@@ -10,11 +10,5 @@ namespace SimpleExpressions.Core.Converters.Sets
         {
             get { return this.supportedFunctionNames; }
         }
-
-        public override IList<string> Generate(IList<string> regularExpressionSofar)
-        {
-            regularExpressionSofar.Add("a-zA-Z0-9");
-            return regularExpressionSofar;
-        }
     }
 }

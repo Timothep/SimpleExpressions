@@ -1,4 +1,5 @@
-﻿using SimpleExpressions.Core.Converters;
+﻿using SimpleExpressions.Core.AbstractTree.DomainObjects;
+using SimpleExpressions.Core.Converters;
 
 namespace SimpleExpressions.Core.AbstractTree.Nodes
 {

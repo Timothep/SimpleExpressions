@@ -42,23 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractTree\Builders\AndBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\AsBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Modifyers\AndBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Modifyers\AsBuilder.cs" />
     <Compile Include="AbstractTree\Builders\AstBuilder.cs" />
     <Compile Include="AbstractTree\Builders\BaseBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\CardinalityBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\LetterInRangeBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\ExtensibleLeafBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\EitherOfBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\OneOfBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\OneBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\NumbersBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\AlphanumericsBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\LeafBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\LettersBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\MaybeBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\NumberInRangeBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\OrBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Modifyers\CardinalityBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\LetterInRangeBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\Extensible\ExtensibleLeafBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\EitherOfBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\OneOfBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\OneBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\NumbersBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\Extensible\AlphanumericsBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\LeafBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\Extensible\LettersBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\MaybeBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\NumberInRangeBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Containers\OrBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
     <Compile Include="AbstractTree\Nodes\AndNode.cs" />
     <Compile Include="AbstractTree\Nodes\InRangeAbstractNode.cs" />
@@ -72,23 +72,24 @@
     <Compile Include="AbstractTree\Nodes\MaybeNode.cs" />
     <Compile Include="AbstractTree\Nodes\BaseNode.cs" />
     <Compile Include="AbstractTree\Nodes\BlockNode.cs" />
-    <Compile Include="AbstractTree\Cardinality.cs" />
+    <Compile Include="AbstractTree\DomainObjects\Cardinality.cs" />
     <Compile Include="AbstractTree\Nodes\ClassNode.cs" />
-    <Compile Include="AbstractTree\Builders\ConcatBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Containers\ConcatBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\ConcatNode.cs" />
-    <Compile Include="AbstractTree\Builders\GroupBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Containers\GroupBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\GroupNode.cs" />
     <Compile Include="AbstractTree\Builders\IBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\IMotherNode.cs" />
     <Compile Include="AbstractTree\Nodes\INode.cs" />
-    <Compile Include="AbstractTree\Builders\TextBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\TextBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\NumbersNode.cs" />
     <Compile Include="AbstractTree\Nodes\TextNode.cs" />
-    <Compile Include="AbstractTree\Builders\TogetherBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Modifyers\TogetherBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\ValueNode.cs" />
     <Compile Include="Converters\Anything.cs" />
     <Compile Include="AbstractTree\Nodes\InRangeStaticHelper.cs" />
     <Compile Include="Converters\And.cs" />
+    <Compile Include="Converters\ExceptWord.cs" />
     <Compile Include="Converters\InRangeAbstractConverter.cs" />
     <Compile Include="Converters\LetterInRange.cs" />
     <Compile Include="Converters\Sets\SetEnd.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="SimpleExpression.cs" />
     <Compile Include="TinyIoC.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

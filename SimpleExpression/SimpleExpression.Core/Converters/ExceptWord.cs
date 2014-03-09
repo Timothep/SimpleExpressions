@@ -2,9 +2,12 @@
 
 namespace SimpleExpressions.Core.Converters
 {
-    public class EndOfLine : BaseConverter
+    /// <summary>
+    /// ExceptWord("blah") -> ^(.(?!blah))*$
+    /// </summary>
+    public class ExceptWord : BaseConverter
     {
-        private readonly IList<string> supportedFunctionNames = new List<string> { "EndOfLine" };
+        private readonly IList<string> supportedFunctionNames = new List<string> { "ExceptWord" };
         public override IList<string> SupportedFunctionNames
         {
             get { return this.supportedFunctionNames; }

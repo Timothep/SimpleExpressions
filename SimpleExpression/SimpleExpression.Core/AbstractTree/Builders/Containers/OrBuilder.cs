@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.EitherOr;
 
-namespace SimpleExpressions.Core.AbstractTree.Builders
+namespace SimpleExpressions.Core.AbstractTree.Builders.Containers
 {
     public class OrBuilder: BaseBuilder
     {
