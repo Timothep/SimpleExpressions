@@ -1,10 +1,10 @@
-﻿using SimpleExpressions.Core.Converters;
+using SimpleExpressions.Core.Converters;
 
 namespace SimpleExpressions.Core.AbstractTree.Nodes
 {
-    public class NumbersInRangeNode : ValueNode
+    public class InRangeAbstractNode : ValueNode
     {
-        public NumbersInRangeNode(IConverter converter) : base(converter) { }
+        public InRangeAbstractNode(IConverter converter) : base(converter) { }
 
         public override string Generate()
         {

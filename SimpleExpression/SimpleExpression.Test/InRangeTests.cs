@@ -13,10 +13,32 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .NumbersInRange("1-5")
+                .NumberInRange("1-5")
                 .Generate();
 
             Assert.AreEqual(@"([1-4]|5)", result.Expression);
+        }
+
+        [TestMethod]
+        public void SimpleLetterRangeTest()
+        {
+            dynamic se = new SimpleExpression();
+            SimpleExpression result = se
+                .LetterInRange("a-d")
+                .Generate();
+
+            Assert.AreEqual(@"([a-d])", result.Expression);
+        }
+
+        [TestMethod]
+        public void MultipleLettersRangeTest()
+        {
+            dynamic se = new SimpleExpression();
+            SimpleExpression result = se
+                .LetterInRange("a-d").AtLeast(3).AtMost(10)
+                .Generate();
+
+            Assert.AreEqual(@"([a-d]{3,10})", result.Expression);
         }
 
         [TestMethod]
@@ -24,11 +46,11 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .NumbersInRange("1-9999")
+                .NumberInRange("1-9999")
                 .One('/')
-                .NumbersInRange("1-12")
+                .NumberInRange("1-12")
                 .One('/')
-                .NumbersInRange("1-31")
+                .NumberInRange("1-31")
                 .Generate();
 
             Assert.AreEqual(@"([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-8][0-9][0-9][0-9]|9[0-8][0-9][0-9]|99[0-8][0-9]|999[0-9])/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3[0-1])",

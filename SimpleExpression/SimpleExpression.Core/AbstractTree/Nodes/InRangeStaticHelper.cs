@@ -11,6 +11,19 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
         /// </summary>
         public static string CreateRange(string argument)
         {
+            if (argument != null)
+                return char.IsNumber(argument[0]) ? CreateNumericRange(argument) : CreateLitteralRange(argument);
+
+            throw new NotImplementedException("Attempted to create a range without an argument");
+        }
+
+        private static string CreateLitteralRange(string argument)
+        {
+            return "[" + argument + "]";
+        }
+
+        public static string CreateNumericRange(string argument)
+        {
             var from = Convert.ToInt64(argument.Substring(0, argument.IndexOf('-')));
             var to = Convert.ToInt64(argument.Substring(argument.IndexOf('-') + 1));
 
@@ -21,7 +34,7 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
             }
             if (from > to)
             {
-                //throw new Exception("Invalid range from..to, from > to"); 
+                //throw new Exception("Invalid range from..to, from > to");
                 return null;
             }
 

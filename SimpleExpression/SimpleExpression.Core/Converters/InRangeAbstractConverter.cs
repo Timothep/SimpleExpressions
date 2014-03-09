@@ -1,13 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using SimpleExpressions.Core.AbstractTree.Nodes;
 
-
 namespace SimpleExpressions.Core.Converters
 {
-    public class NumbersInRange : BaseConverter
+    public abstract class InRangeAbstractConverter : BaseConverter
     {
-        private readonly IList<string> supportedFunctionNames = new List<string> { "NumbersInRange" };
+        protected IList<string> supportedFunctionNames { get; set; }
         public override IList<string> SupportedFunctionNames
         {
             get { return this.supportedFunctionNames; }

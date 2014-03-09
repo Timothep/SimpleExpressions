@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Dynamic;
 using System.Text.RegularExpressions;
-using SimpleExpressions.Core.AbstractTree;
 using SimpleExpressions.Core.AbstractTree.Builders;
 
 namespace SimpleExpressions.Core

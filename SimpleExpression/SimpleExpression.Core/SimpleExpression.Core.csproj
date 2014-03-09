@@ -47,6 +47,7 @@
     <Compile Include="AbstractTree\Builders\AstBuilder.cs" />
     <Compile Include="AbstractTree\Builders\BaseBuilder.cs" />
     <Compile Include="AbstractTree\Builders\CardinalityBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\LetterInRangeBuilder.cs" />
     <Compile Include="AbstractTree\Builders\ExtensibleLeafBuilder.cs" />
     <Compile Include="AbstractTree\Builders\EitherOfBuilder.cs" />
     <Compile Include="AbstractTree\Builders\OneOfBuilder.cs" />
@@ -56,13 +57,15 @@
     <Compile Include="AbstractTree\Builders\LeafBuilder.cs" />
     <Compile Include="AbstractTree\Builders\LettersBuilder.cs" />
     <Compile Include="AbstractTree\Builders\MaybeBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\NumbersInRangeBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\NumberInRangeBuilder.cs" />
     <Compile Include="AbstractTree\Builders\OrBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
     <Compile Include="AbstractTree\Nodes\AndNode.cs" />
+    <Compile Include="AbstractTree\Nodes\InRangeAbstractNode.cs" />
+    <Compile Include="AbstractTree\Nodes\LetterInRangeNode.cs" />
     <Compile Include="AbstractTree\Nodes\EitherOfNode.cs" />
     <Compile Include="AbstractTree\Nodes\OrNode.cs" />
-    <Compile Include="AbstractTree\Nodes\NumbersInRangeNode.cs" />
+    <Compile Include="AbstractTree\Nodes\NumberInRangeNode.cs" />
     <Compile Include="AbstractTree\Nodes\OneOfNode.cs" />
     <Compile Include="AbstractTree\Nodes\OneNode.cs" />
     <Compile Include="AbstractTree\Nodes\LettersNode.cs" />
@@ -86,6 +89,8 @@
     <Compile Include="Converters\Anything.cs" />
     <Compile Include="AbstractTree\Nodes\InRangeStaticHelper.cs" />
     <Compile Include="Converters\And.cs" />
+    <Compile Include="Converters\InRangeAbstractConverter.cs" />
+    <Compile Include="Converters\LetterInRange.cs" />
     <Compile Include="Converters\Sets\SetEnd.cs" />
     <Compile Include="Converters\Sets\Letters.cs" />
     <Compile Include="Converters\Sets\Numbers.cs" />
@@ -111,7 +116,7 @@
     <Compile Include="Converters\Except.cs" />
     <Compile Include="Converters\Grouping\Group.cs" />
     <Compile Include="Converters\IConverter.cs" />
-    <Compile Include="Converters\NumbersInRange.cs" />
+    <Compile Include="Converters\NumberInRange.cs" />
     <Compile Include="Converters\OneOf.cs" />
     <Compile Include="Converters\Repetitions\Repeat.cs" />
     <Compile Include="Converters\Sets\Alphanumerics.cs" />
