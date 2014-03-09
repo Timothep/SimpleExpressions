@@ -15,7 +15,12 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Leaves
             if (currentParent is RootNode)
             {
                 var concat = new ConcatNode(converter);
-                (currentParent as IMotherNode).Children.Add(concat);
+
+                foreach(var child in (currentParent as IMotherNode).Children)
+                    concat.Children.Add(child);
+
+                (currentParent as IMotherNode).Children = new List<INode> { concat };
+
                 concat.Parent = currentParent;
                 currentParent = concat;
             }

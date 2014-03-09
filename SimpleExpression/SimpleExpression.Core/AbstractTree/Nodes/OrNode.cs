@@ -1,5 +1,4 @@
-﻿using System;
-using SimpleExpressions.Core.Converters;
+﻿using SimpleExpressions.Core.Converters;
 
 namespace SimpleExpressions.Core.AbstractTree.Nodes
 {
@@ -15,11 +14,7 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
                 if (concat != "")
                     concat += "|";
 
-                if (child == null || child.Converter == null || child.Converter.Function == null
-                    || child.Converter.Function.Arguments == null || child.Converter.Function.Arguments.Length < 1)
-                    throw new NotImplementedException("Oh Oh");
-
-                concat += child.Converter.Function.Arguments[0];
+                concat += child.Generate();
             }
 
             return string.Format("({0})", concat);

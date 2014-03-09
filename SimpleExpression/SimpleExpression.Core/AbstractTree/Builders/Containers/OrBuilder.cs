@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Converters.EitherOr;
@@ -11,15 +12,19 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Containers
         {
             INode orNode = new OrNode(converter);
 
-            // First element of a chain
-            if (currentParent is RootNode)
-                throw new NotImplementedException("Or cannot be the first element");
+            //// First element of a chain
+            //if (currentParent is RootNode)
+            //    throw new NotImplementedException("Or cannot be the first element");
 
             // Insert at root
-            if (currentParent.Parent == null)
+            if (currentParent is RootNode)
             {
-                (orNode as OrNode).Children.Add(currentParent);
-                currentParent = null;
+                var root = (currentParent as RootNode);
+                var firstChild = root.Children.First();
+                firstChild.Parent = orNode;
+                (orNode as OrNode).Children.Add(firstChild);
+                orNode.Parent = root;
+                root.Children.Remove(firstChild);
             }
             // Insert before its parent
             else if (currentParent.Parent != null && currentParent.Parent as IMotherNode != null)
