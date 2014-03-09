@@ -59,8 +59,10 @@
     <Compile Include="AbstractTree\Builders\Leaves\MaybeBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Leaves\NumberInRangeBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Containers\OrBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Modifyers\ExceptBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
     <Compile Include="AbstractTree\Nodes\AndNode.cs" />
+    <Compile Include="AbstractTree\Nodes\ExceptNode.cs" />
     <Compile Include="AbstractTree\Nodes\ExtensibleNode.cs" />
     <Compile Include="AbstractTree\Nodes\InRangeAbstractNode.cs" />
     <Compile Include="AbstractTree\Nodes\LetterInRangeNode.cs" />
