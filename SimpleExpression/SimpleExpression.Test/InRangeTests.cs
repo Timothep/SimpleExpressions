@@ -27,7 +27,7 @@ namespace SimpleExpressions.Test
                 .LetterInRange("a-d")
                 .Generate();
 
-            Assert.AreEqual(@"([a-d])", result.Expression);
+            Assert.AreEqual(@"[a-d]", result.Expression);
         }
 
         [TestMethod]
