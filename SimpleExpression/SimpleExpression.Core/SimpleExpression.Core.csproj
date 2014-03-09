@@ -61,6 +61,7 @@
     <Compile Include="AbstractTree\Builders\Containers\OrBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
     <Compile Include="AbstractTree\Nodes\AndNode.cs" />
+    <Compile Include="AbstractTree\Nodes\ExtensibleNode.cs" />
     <Compile Include="AbstractTree\Nodes\InRangeAbstractNode.cs" />
     <Compile Include="AbstractTree\Nodes\LetterInRangeNode.cs" />
     <Compile Include="AbstractTree\Nodes\EitherOfNode.cs" />

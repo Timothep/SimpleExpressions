@@ -6,7 +6,7 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
     {
         public AlphanumericsNode(IConverter converter) : base(converter)
         {
-            this.Pattern = "a-zA-Z0-9";
+            this.Pattern = "[a-zA-Z0-9]";
         }
     }
 }
