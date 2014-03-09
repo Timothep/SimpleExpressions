@@ -43,6 +43,7 @@ namespace SimpleExpressions.Test
              * Make "ponys and unicorns" return one match
              * Make "ponys and rainbows" return zero matches             * 
              */
+        [Ignore]
         [TestMethod]
         public void ExceptWordRegex()
         {

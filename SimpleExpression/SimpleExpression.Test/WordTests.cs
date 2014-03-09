@@ -12,11 +12,11 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
                 .Text("ponys")
-                .Alphanumerics.And.One(" ")
+                .Alphanumerics.And(" ")
                 .Text("rainbows")
                 .Generate();
 
-            Assert.AreEqual(@"\bponys\b[a-zA-Z0-9\s]\brainbows\b", result.Expression);
+            Assert.AreEqual(@"ponys[a-zA-Z0-9 ]*rainbows", result.Expression);
         }
     }
 }
