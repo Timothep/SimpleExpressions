@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SimpleExpressions.Core.Converters
+﻿namespace SimpleExpressions.Core.Converters
 {
     public interface IConverter
     {
