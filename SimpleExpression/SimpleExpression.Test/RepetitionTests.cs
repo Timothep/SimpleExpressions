@@ -34,10 +34,10 @@ namespace SimpleExpressions.Test
             Assert.AreEqual("[a-cA-C]{2,}", se.LetterInRange("a-c").AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("([a-zA-Z]*){2,}", se.Group(Siex.New().AtLeast(2).Letters()).Expression);
+            Assert.AreEqual("([a-zA-Z]*){2,}", se.Group(Siex.New().Letters()).AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("(?<letters>[a-zA-Z]*){2,}", se.Group(Siex.New().AtLeast(2).Letters()).As("letters").Expression);
+            Assert.AreEqual("(?<letters>[a-zA-Z]*){2,}", se.Group(Siex.New().Letters()).AtLeast(2).As("letters").Expression);
 
             se = new SimpleExpression();
             Assert.AreEqual("[a-zA-Z~]{2,}", se.Letters().And("~").AtLeast(2).Expression);

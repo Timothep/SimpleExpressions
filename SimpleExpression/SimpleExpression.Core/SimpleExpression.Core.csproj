@@ -55,12 +55,11 @@
     <Compile Include="AbstractTree\Builders\Leaves\OneBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Leaves\NumbersBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Leaves\Extensible\AlphanumericsBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\Leaves\LeafBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\LeafBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Leaves\Extensible\LettersBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Leaves\MaybeBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Leaves\NumberInRangeBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Containers\OrBuilder.cs" />
-    <Compile Include="AbstractTree\Builders\Modifyers\ThenBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Modifyers\ExceptBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Leaves\SubExpressionBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
@@ -93,7 +92,6 @@
     <Compile Include="AbstractTree\Nodes\RootNode.cs" />
     <Compile Include="AbstractTree\Nodes\SubExpressionNode.cs" />
     <Compile Include="AbstractTree\Nodes\TextNode.cs" />
-    <Compile Include="AbstractTree\Builders\Modifyers\TogetherBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\ValueNode.cs" />
     <Compile Include="Converters\Anything.cs" />
     <Compile Include="AbstractTree\Nodes\InRangeStaticHelper.cs" />

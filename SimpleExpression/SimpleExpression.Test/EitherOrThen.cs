@@ -12,10 +12,15 @@ namespace SimpleExpressions.Test
             var result = Siex.New()
                 .Numbers().AtLeast(1)
                 .Maybe(" ")
-                    .Either(Siex.New().One("€"))
-                    .Or(Siex.New().Text("EURO"));
+                .Either(Siex.New().One("€"))
+                .Or(Siex.New().Text("EURO"));
 
-            Assert.AreEqual("[0-9]{1,}( )?(€|EURO)", result.Expression);
+            Assert.IsTrue(result.IsMatch("125€"));
+            Assert.IsTrue(result.IsMatch("1 €"));
+            Assert.IsTrue(result.IsMatch("0 EURO"));
+
+            Assert.IsFalse(result.IsMatch("d DOLLAR"));
+            Assert.IsFalse(result.IsMatch("0 DOLLAR"));
         }
     }
 }

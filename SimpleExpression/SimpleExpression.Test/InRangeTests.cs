@@ -30,16 +30,18 @@ namespace SimpleExpressions.Test
             Assert.AreEqual(@"[a-dA-D]", result.Expression);
         }
 
-        [Ignore] //Cardinality in LetterInRange is not correct, LetterInRange should also be an ExtensibleNode
         [TestMethod]
         public void MultipleLettersRangeTest()
         {
-            
-            var result = Siex.New()
-                .LetterInRange("a-d").AtLeast(3).AtMost(10)
-                ;
+            var result = Siex.New().LetterInRange("a-d").AtLeast(3).AtMost(10);
 
-            Assert.AreEqual(@"([a-d]{3,10})", result.Expression);
+            Assert.AreEqual(@"[a-dA-D]{3,10}", result.Expression);
+
+            Assert.IsTrue(result.IsMatch("aaa"));
+            Assert.IsTrue(result.IsMatch("abd"));
+
+            Assert.IsFalse(result.IsMatch("akakak"));
+            Assert.IsFalse(result.IsMatch("fdg"));
         }
 
         [TestMethod]

@@ -6,18 +6,18 @@ namespace SimpleExpressions.Test
     [TestClass]
     public class OrTests
     {
-        [Ignore]
         [TestMethod]
         public void SimpleOr()
         {
             
             var result = Siex.New()
-                .Text("http")
-                //.Or()
-                .Text("ftp")
-                ;
+                .Either(Siex.New().Text("http"))
+                .Or(Siex.New().Text("ftp"));
 
-            Assert.AreEqual("(http|ftp)", result.Expression);
+            Assert.IsTrue(result.IsMatch("http"));
+            Assert.IsTrue(result.IsMatch("ftp"));
+            Assert.IsFalse(result.IsMatch("htts"));
+            Assert.IsFalse(result.IsMatch("godzilla"));
         }
     }
 }
