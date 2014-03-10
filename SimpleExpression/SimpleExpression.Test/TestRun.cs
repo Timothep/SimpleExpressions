@@ -9,7 +9,8 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void TestRunner()
         {
-            
+            dynamic se = new SimpleExpression();
+            Assert.AreEqual("","");
         }
     }
 }

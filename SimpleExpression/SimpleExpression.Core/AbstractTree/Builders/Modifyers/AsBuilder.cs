@@ -29,6 +29,9 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Modifyers
             // The current parent is the group
             else if (currentParent is GroupNode)
                 group = currentParent as GroupNode;
+            // The group is the last child of the current parent
+            else if ((currentParent as IMotherNode).Children.Last() is GroupNode)
+                group = (currentParent as IMotherNode).Children.Last() as GroupNode;
             else
                 throw new ArgumentException("Trying to insert an 'AS' node, but the current node is neither a group nor contains a group as children. " + CheckString);
 
