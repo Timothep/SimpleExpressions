@@ -15,7 +15,10 @@ namespace SimpleExpressions.Test
                 .EitherOf("a|e|i|o|u")
                 .Generate();
 
-            Assert.AreEqual(@"a|e|i|o|u", result.Expression);
+            Assert.AreEqual(@"(a|e|i|o|u)", result.Expression);
+
+            Assert.IsTrue(result.IsMatch("a"));
+            Assert.IsFalse(result.IsMatch("k"));
         }
 
         //[TestMethod]
@@ -34,10 +37,13 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .EitherOf("ae|io|u")
+                .EitherOf("ab|cd|e")
                 .Generate();
 
-            Assert.AreEqual(@"ae|io|u", result.Expression);
+            Assert.AreEqual(@"(ab|cd|e)", result.Expression);
+
+            Assert.IsTrue(result.IsMatch("cd"));
+            Assert.IsFalse(result.IsMatch("bd"));
         }
 
         [TestMethod]
@@ -48,7 +54,7 @@ namespace SimpleExpressions.Test
                 .EitherOf("vowels|consons")
                 .Generate();
 
-            Assert.AreEqual(@"vowels|consons", result.Expression);
+            Assert.AreEqual(@"(vowels|consons)", result.Expression);
         }
     }
 }

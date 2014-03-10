@@ -35,8 +35,9 @@ Head over [to the Wiki](https://github.com/Timothep/SimpleExpressions/wiki) for 
 
 ### Requirements:
 
-* .NET 4.0
+* > .NET 4.0
 
 ### Installation
 
-The project is in its early stages and for now only available via Github. You will ultimately be able to install it via Nuget.
+Nuget: `Install-Package SimpleExpressions`
+Package Page: https://www.nuget.org/packages/SimpleExpressions/

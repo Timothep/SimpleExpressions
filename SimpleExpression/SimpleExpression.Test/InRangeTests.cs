@@ -27,7 +27,7 @@ namespace SimpleExpressions.Test
                 .LetterInRange("a-d")
                 .Generate();
 
-            Assert.AreEqual(@"[a-d]", result.Expression);
+            Assert.AreEqual(@"[a-dA-D]", result.Expression);
         }
 
         [Ignore] //Cardinality in LetterInRange is not correct, LetterInRange should also be an ExtensibleNode

@@ -16,7 +16,7 @@ namespace SimpleExpressions.Test
                 .Except("aeiou")
                 .Generate();
 
-            Assert.AreEqual(@"[a-zA-Z-[aeiou]]*", result.Expression);
+            Assert.AreEqual(@"[a-zA-Z-[aeiouAEIOU]]*", result.Expression);
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace SimpleExpressions.Test
                 .Generate();
 
             var pattern =  (result as SimpleExpression).Expression;
-            Assert.AreEqual(@"[a-zA-Z-[a-e]]*", pattern);
+            Assert.AreEqual(@"[a-zA-Z-[a-eA-E]]*", pattern);
 
             var reg = new Regex(pattern);
             var matches = reg.Matches("smthng");

@@ -20,7 +20,7 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
 
         public override string Generate()
         {
-            return this.Value;
+            return this.Value + this.Cardinality;
         }
     }
 }

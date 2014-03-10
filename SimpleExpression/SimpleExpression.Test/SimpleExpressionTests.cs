@@ -87,10 +87,10 @@ namespace SimpleExpressions.Test
         {
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
-                .OneOf("az")
+                .OneOf("a|z")
                 .Generate();
 
-            Assert.AreEqual(@"[az]", result.Expression);
+            Assert.AreEqual(@"(a|z)", result.Expression);
         }
 
         [TestMethod]
@@ -99,11 +99,17 @@ namespace SimpleExpressions.Test
             dynamic se = new SimpleExpression();
             SimpleExpression result = se
                 .One('a')
-                .OneOf("ij")
-                .OneOf("x-z")
+                .OneOf("i|j")
+                .OneOf("x|y|z")
                 .Generate();
 
-            Assert.AreEqual(@"a[ij][x-z]", result.Expression);
+            Assert.AreEqual(@"a(i|j)(x|y|z)", result.Expression);
+
+            Assert.IsTrue(result.IsMatch("aix"));
+            Assert.IsTrue(result.IsMatch("ajy"));
+            Assert.IsFalse(result.IsMatch("jy"));
+            Assert.IsFalse(result.IsMatch("ij"));
+            Assert.IsFalse(result.IsMatch("x-z"));
         }
     }
 }

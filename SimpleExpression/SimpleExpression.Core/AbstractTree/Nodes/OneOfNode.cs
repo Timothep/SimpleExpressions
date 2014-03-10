@@ -8,7 +8,7 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
 
         public override string Generate()
         {
-            return string.Format("[{0}]", this.Value);
+            return string.Format("({0}){1}", this.Value, this.Cardinality.ToString());
         }
     }
 }

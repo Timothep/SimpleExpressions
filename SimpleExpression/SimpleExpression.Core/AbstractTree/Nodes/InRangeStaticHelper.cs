@@ -19,7 +19,7 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
 
         private static string CreateLitteralRange(string argument)
         {
-            return "[" + argument + "]";
+            return string.Format("[{0}{1}]", argument, argument.ToUpperInvariant());
         }
 
         public static string CreateNumericRange(string argument)
