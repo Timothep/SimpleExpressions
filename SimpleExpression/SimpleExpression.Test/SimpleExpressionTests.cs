@@ -12,11 +12,11 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void MultiWildcardsRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .Letters
-                .Numbers
-                .Generate();
+            
+            var result = Siex.New()
+                .Letters()
+                .Numbers()
+                ;
 
             Assert.AreEqual(@"[a-zA-Z]*[0-9]*", result.Expression);
         }
@@ -24,11 +24,11 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleWildcardsRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .Letters.Exactly(1)
-                .Numbers.Exactly(1)
-                .Generate();
+            
+            var result = Siex.New()
+                .Letters().Exactly(1)
+                .Numbers().Exactly(1)
+                ;
 
             Assert.AreEqual(@"[a-zA-Z]{1}[0-9]{1}", result.Expression);
         }
@@ -36,11 +36,11 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleLettersAndMinusRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .Letters
+            
+            var result = Siex.New()
+                .Letters()
                 .And("_")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"[a-zA-Z_]*", result.Expression);
         }
@@ -48,12 +48,12 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleWildcardsWithWhitespacesRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .Letters
+            
+            var result = Siex.New()
+                .Letters()
                 .And(" ")
-                .Numbers
-                .Generate();
+                .Numbers()
+                ;
 
             Assert.AreEqual(@"[a-zA-Z ]*[0-9]*", result.Expression);
         }
@@ -61,12 +61,12 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void ExactMatchRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .One('a')
+            
+            var result = Siex.New()
+                .One("a")
                 .Text("ei")
                 .Text("ou")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"aeiou", result.Expression);
         }
@@ -74,10 +74,8 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CharacterDotRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .One('.')
-                .Generate();
+            var result = Siex.New()
+                .One(".");
 
             Assert.AreEqual(@"\.", result.Expression);
         }
@@ -85,10 +83,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CharactersRangeRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
+            
+            var result = Siex.New()
                 .OneOf("a|z")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"(a|z)", result.Expression);
         }
@@ -96,12 +94,12 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CharactersMixRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .One('a')
+            
+            var result = Siex.New()
+                .One("a")
                 .OneOf("i|j")
                 .OneOf("x|y|z")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"a(i|j)(x|y|z)", result.Expression);
 

@@ -18,7 +18,12 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
 
         protected string AggregateChildren()
         {
-            return this.Children.Aggregate("", (current, child) => current + child.Generate());
+            string result = "";
+            foreach (INode child in this.Children)
+            {
+                result = result + child.Generate();
+            }
+            return result;
         }
     }
 }

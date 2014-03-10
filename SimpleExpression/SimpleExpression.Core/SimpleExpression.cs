@@ -27,17 +27,15 @@ namespace SimpleExpressions.Core
         public string WorkObject { get; set; }
         public IList<Function> SimpleExpressionChain { get; set; }
         public IList<string> RegularExpressionChain { get; set; }
-        private string RegularExpression { get; set; }
-
+        
         private Regex Regex { get; set; }
-
+        
         public string Expression
         {
             get
             {
-                return this.RegularExpression; 
+                return this.Generate();
             }
-            set { this.RegularExpression = value; }
         }
 
         private void Initialize()
@@ -46,29 +44,9 @@ namespace SimpleExpressions.Core
         }
 
         /// <summary>
-        ///     Called for a function with parameters
-        /// </summary>
-        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
-        {
-            this.SimpleExpressionChain.Add(new Function(binder.Name, args));
-            result = this;
-            return true;
-        }
-
-        /// <summary>
-        ///     Called for a parameterless function
-        /// </summary>
-        public override bool TryGetMember(GetMemberBinder binder, out object result)
-        {
-            this.SimpleExpressionChain.Add(new Function(binder.Name));
-            result = this;
-            return true;
-        }
-
-        /// <summary>
         ///     Attempts to generates the regular expression
         /// </summary>
-        public SimpleExpression Generate()
+        public string Generate()
         {
             // Find the matching converters
             var converterChain = converterBootstrapper.CreateConverterChain(this.SimpleExpressionChain);
@@ -77,9 +55,7 @@ namespace SimpleExpressions.Core
             var astRoot = astBuilder.GenerateAst(converterChain);
             
             // Generate the regular expression
-            this.RegularExpression = astRoot.Generate();
-
-            return this;
+            return astRoot.Generate();
         }
 
         /// REGEX STUFF

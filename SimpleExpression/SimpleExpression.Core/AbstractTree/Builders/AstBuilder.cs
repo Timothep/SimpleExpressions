@@ -45,15 +45,24 @@ namespace SimpleExpressions.Core.AbstractTree.Builders
             if (convertersChain == null)
                 throw new ArgumentException("Cannot create an AST on a null chain");
 
-            INode current = new RootNode();
+            INode root = new RootNode();
+
+            if (convertersChain.Count > 1)
+            {
+                var concatNode = new ConcatNode(null);
+                (root as IMotherNode).Children.Add(concatNode);
+                concatNode.Parent = root;
+                root = concatNode;
+            }
 
             foreach (var converter in convertersChain)
             {
                 var builder = this.GetAdequateBuilder(converter);
-                current = builder.AddNode(current, converter);
+                //root = builder.AddNode(root, converter);
+                builder.AddNode(root, converter);
             }
 
-            return current != null ? this.GetRoot(current) : null;
+            return root != null ? this.GetRoot(root) : null;
         }
 
         /// <summary>

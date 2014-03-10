@@ -9,7 +9,7 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Modifyers
     public class AsBuilder : BaseBuilder
     {
         private const string CheckString =
-            " Please double check your expression, the structure should be Group.XYZ.Together.As()";
+            " Please double check your expression, the structure should be Group.XYZ).As()";
 
         public override INode AddNode(INode currentParent, IConverter converter)
         {

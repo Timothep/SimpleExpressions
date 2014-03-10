@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
-using SimpleExpressions.Core.AbstractTree;
 using SimpleExpressions.Core.AbstractTree.Builders;
 using SimpleExpressions.Core.AbstractTree.Nodes;
 using SimpleExpressions.Core.Converters;
@@ -11,6 +10,7 @@ using SimpleExpressions.Core.Converters.Repetitions;
 
 namespace SimpleExpression.UnitTests
 {
+    [Ignore]
     [TestClass]
     public class AstTests
     {

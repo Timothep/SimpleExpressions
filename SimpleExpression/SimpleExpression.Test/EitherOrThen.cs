@@ -6,20 +6,14 @@ namespace SimpleExpressions.Test
     [TestClass]
     public class EitherOrThen
     {
-         
         [TestMethod]
         public void SimpleEitherOr()
         {
-            dynamic se = new SimpleExpression();
-
-            var result = se
-                .Numbers.AtLeast(1)
+            var result = Siex.New()
+                .Numbers().AtLeast(1)
                 .Maybe(" ")
-                .One("€")
-                .Or
-                .Text("EURO")
-                //.Then //Can be omited
-                .Generate();
+                    .Either(Siex.New().One("€"))
+                    .Or(Siex.New().Text("EURO"));
 
             Assert.AreEqual("[0-9]{1,}( )?(€|EURO)", result.Expression);
         }

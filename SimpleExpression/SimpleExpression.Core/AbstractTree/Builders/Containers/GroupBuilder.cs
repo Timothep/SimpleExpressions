@@ -11,16 +11,15 @@ namespace SimpleExpressions.Core.AbstractTree.Builders.Containers
         {
             var newNode = new GroupNode(converter);
 
-            // If it is the first element
-            if (currentParent is RootNode) { /* Do nothing */ }
-            else if (currentParent is IMotherNode) { /* Do nothing else */ }
-            else if (currentParent.Parent is IMotherNode)
-                currentParent = currentParent.Parent;
-            else
-                throw new ArgumentException("The chain being built is invalid");
+            //// If it is the first element
+            //if (currentParent is RootNode) { /* Do nothing */ }
+            //else if (currentParent is IMotherNode) { /* Do nothing else */ }
+            //else if (currentParent.Parent is IMotherNode)
+            //    currentParent = currentParent.Parent;
+            //else
+            //    throw new ArgumentException("The chain being built is invalid");
             
             this.LinkNodeToParent(currentParent, newNode);
-
             return newNode;
         }
 

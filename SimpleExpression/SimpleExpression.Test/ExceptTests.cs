@@ -10,11 +10,9 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void OneConson()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .Letters
-                .Except("aeiou")
-                .Generate();
+            var result = Siex.New()
+                .Letters()
+                .Except("aeiou");
 
             Assert.AreEqual(@"[a-zA-Z-[aeiouAEIOU]]*", result.Expression);
         }
@@ -22,11 +20,9 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void ExceptRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .Letters
-                .Except("a-e")
-                .Generate();
+            var result = Siex.New()
+                .Letters()
+                .Except("a-e");
 
             var pattern =  (result as SimpleExpression).Expression;
             Assert.AreEqual(@"[a-zA-Z-[a-eA-E]]*", pattern);
@@ -47,11 +43,9 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void ExceptWordRegex()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .Letters
-                .ExceptWord("rainbow")
-                .Generate();
+            var result = Siex.New()
+                .Letters();
+                //.ExceptWord("rainbow");
 
             var pattern =  (result as SimpleExpression).Expression;
             Assert.AreEqual(@"^(.(?!rainbow))*$", pattern);

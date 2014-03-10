@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
-using SimpleExpressions.Core.Converters;
-using Group = System.Text.RegularExpressions.Group;
 
 namespace SimpleExpressions.Test
 {
@@ -17,38 +11,32 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void GroupTogetherAsStructuralChecksTest()
         {
-            dynamic se = new SimpleExpression();
+            
 
-            SimpleExpression result = se
-                .Text("Group").Anything
+            var result = Siex.New()
+                .Text("Group")//.Anything()
                 .Text("Together").Maybe(".As")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"Group.*Together(.As)?", result.Expression);
 
             var regex = new Regex(result.Expression);
-            Assert.IsTrue(regex.IsMatch("Group.http.Together.As(\"Something\")"));
+            Assert.IsTrue(regex.IsMatch("Group.http).As(\"Something\")"));
         }
 
         [TestMethod]
         public void RepeatAtLeastAtMostTimesStructuralChecksTest()
         {
-            dynamic se = new SimpleExpression();
-
-            SimpleExpression result = se
-                .StartsWith
-                .Either
-                    .Group
-                        .Text("AtLeast").One("\\(").Numbers.AtLeast(1).One("\\)")
-                        .Maybe("\\.AtMost").One("\\(").Numbers.AtLeast(1).One("\\)")
-                    .Together
-                .Or
-                    .Group
-                        .Text("Exactly").One("\\(").Numbers.AtLeast(1).One("\\)")
-                    .Together
-                    .Then
+            var result = Siex.New()
+                //.StartsWith
+                .Either(Siex.New()
+                    .Group(Siex.New()
+                        .Text("AtLeast").One("\\(").Numbers().AtLeast(1).One("\\)")
+                        .Maybe("\\.AtMost").One("\\(").Numbers().AtLeast(1).One("\\)")))
+                .Or(Siex.New()
+                    .Group(Siex.New().Text("Exactly").One("\\(").Numbers().AtLeast(1).One("\\)")))
                 .Text("\\.Times")
-                .Generate();
+                ;
 
 
             const string desiredPattern = @"^((AtLeast\([0-9]{1,}\)(\.AtMost\([0-9]{1,}\))?)|(Exactly\([0-9]{1,}\))).Times";
@@ -71,21 +59,22 @@ namespace SimpleExpressions.Test
          
         public void RepeatAtLeastAtMostTimesStructuralChecksTest2()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                 .StartsWith
-                 .Group
-                 .Text("Repeat").Anything
-                    .Either
-                        .Text("AtLeast").Anything
-                        .Maybe("AtMost").Anything
-                    .Or
-                        .Text("Exactly").Anything
-                    .Then
+            
+            var result = Siex.New()
+                 //.StartsWith
+                 .Group(Siex.New()
+                 .Text("Repeat")//.Anything
+                    .Either(Siex.New()
+                        .Text("AtLeast")//.Anything
+                        .Maybe("AtMost")//.Anything
+                    )
+                    .Or(Siex.New()
+                        .Text("Exactly")//.Anything
+                    )
                     .Text("Times")
-                .Together.As("Whole")
-                .EndOfLine
-                .Generate();
+                ).As("Whole")
+                //.EndOfLine
+                ;
 
             var regex = new Regex(result.Expression, RegexOptions.ExplicitCapture);
             Assert.IsTrue(regex.IsMatch("Repeat.http.AtLeast(2).Times"), "AtLeast");

@@ -13,19 +13,19 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleSubExpression()
         {
-            dynamic subSe = new SimpleExpression();
+            var subSe = new SimpleExpression();
             SimpleExpression subResult = subSe
                 .Text("DEF")
-                .Generate();
+                ;
 
             Assert.AreEqual("DEF", subResult.Expression);
 
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
+            
+            var result = Siex.New()
                 .Text("ABC")
                 .SubExpression(subSe)
                 .Text("GHI")
-                .Generate();
+                ;
 
             Assert.AreEqual("ABCDEFGHI", result.Expression);
             Assert.IsTrue(result.IsMatch("ABCDEFGHI"));

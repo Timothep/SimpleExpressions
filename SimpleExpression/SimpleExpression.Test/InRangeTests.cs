@@ -11,10 +11,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleRangeTest()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
+            
+            var result = Siex.New()
                 .NumberInRange("1-5")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"([1-4]|5)", result.Expression);
         }
@@ -22,10 +22,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleLetterRangeTest()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
+            
+            var result = Siex.New()
                 .LetterInRange("a-d")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"[a-dA-D]", result.Expression);
         }
@@ -34,10 +34,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void MultipleLettersRangeTest()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
+            
+            var result = Siex.New()
                 .LetterInRange("a-d").AtLeast(3).AtMost(10)
-                .Generate();
+                ;
 
             Assert.AreEqual(@"([a-d]{3,10})", result.Expression);
         }
@@ -45,14 +45,14 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleDateWithRanges()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
+            
+            var result = Siex.New()
                 .NumberInRange("1-9999")
-                .One('/')
+                .One("/")
                 .NumberInRange("1-12")
-                .One('/')
+                .One("/")
                 .NumberInRange("1-31")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-8][0-9][0-9][0-9]|9[0-8][0-9][0-9]|99[0-8][0-9]|999[0-9])/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3[0-1])",
                 result.Expression);

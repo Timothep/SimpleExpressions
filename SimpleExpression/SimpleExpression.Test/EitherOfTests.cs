@@ -3,17 +3,14 @@ using SimpleExpressions.Core;
 
 namespace SimpleExpressions.Test
 {
-     
     [TestClass]
     public class EitherOfTests
     {
         [TestMethod]
         public void CharsOnlyEither()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .EitherOf("a|e|i|o|u")
-                .Generate();
+            var result = Siex.New()
+                .EitherOf("a|e|i|o|u");
 
             Assert.AreEqual(@"(a|e|i|o|u)", result.Expression);
 
@@ -24,10 +21,10 @@ namespace SimpleExpressions.Test
         //[TestMethod]
         //public void NoPipeEither()
         //{
-        //    dynamic se = new SimpleExpression();
-        //    SimpleExpression result = se
+        //    
+        //    var result = Siex.New()
         //        .EitherOf("aeiou")
-        //        .Generate();
+        //        ;
 
         //    Assert.AreEqual(@"[aeiou]", result.Expression);
         //}
@@ -35,10 +32,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CharsAndStringsEither()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
+            
+            var result = Siex.New()
                 .EitherOf("ab|cd|e")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"(ab|cd|e)", result.Expression);
 
@@ -49,10 +46,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void StringsEither()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
+            
+            var result = Siex.New()
                 .EitherOf("vowels|consons")
-                .Generate();
+                ;
 
             Assert.AreEqual(@"(vowels|consons)", result.Expression);
         }

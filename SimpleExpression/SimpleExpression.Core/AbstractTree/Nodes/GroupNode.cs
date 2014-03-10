@@ -17,12 +17,13 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
 
         public override string Generate()
         {
-            var childrenAggregate = this.AggregateChildren();
+            //var childrenAggregate = this.AggregateChildren();
 
             var alias = string.IsNullOrEmpty(this.Name) ? "" : string.Format("?<{0}>", this.Name);
             var cardinality = string.IsNullOrEmpty(this.Cardinality.ToString()) ? "" : this.Cardinality.ToString();
 
-            return string.Format("({0}{1}){2}", alias, childrenAggregate, cardinality);
+            var expression = (this.Converter.Function.Arguments[0] as SimpleExpression).Expression;
+            return string.Format("({0}{1}){2}", alias, expression, cardinality);
         }
     }
 }

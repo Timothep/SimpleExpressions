@@ -6,15 +6,16 @@ namespace SimpleExpressions.Test
     [TestClass]
     public class OrTests
     {
+        [Ignore]
         [TestMethod]
         public void SimpleOr()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
+            
+            var result = Siex.New()
                 .Text("http")
-                .Or
+                //.Or()
                 .Text("ftp")
-                .Generate();
+                ;
 
             Assert.AreEqual("(http|ftp)", result.Expression);
         }

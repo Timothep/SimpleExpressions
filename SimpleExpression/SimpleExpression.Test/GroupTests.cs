@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
 
 namespace SimpleExpressions.Test
@@ -10,13 +9,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleGroup()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .Group
-                    .Text("aei")
-                    .Text("ou")
-                .Together
-                .Generate();
+            var result = new SimpleExpression()
+                    .Group(Siex.New()
+                        .Text("aei")
+                        .Text("ou"));
 
             Assert.AreEqual(@"(aeiou)", result.Expression);
         }
@@ -24,15 +20,14 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleNamedGroup()
         {
-            dynamic se = new SimpleExpression();
-            SimpleExpression result = se
-                .Group
+            var result = Siex.New()
+                .Group(Siex.New()
                     .Text("aei")
-                    .Text("ou")
-                .Together.As("vowels")
-                .Generate();
+                    .Text("ou"))
+                .As("vowels")
+                ;
 
-            var pattern = (result as SimpleExpression).Expression;
+            var pattern = result.Expression;
             Assert.AreEqual(@"(?<vowels>aeiou)", pattern);
 
             Assert.IsTrue(result.IsMatch("aeiou"));

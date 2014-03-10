@@ -9,21 +9,15 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void HttpFtpLinkMatch()
         {
-            dynamic se = new SimpleExpression();
-
-            var result = se
-                .Group
-                    .Text("http")
-                    .Maybe("s")
-                .Together
-                .Or
-                    .Text("ftp")
-                .Then
-                .Text("://")
-                .Maybe("www.")
-                .Alphanumerics
-                //.And("-_").AtLeast(1)
-                .Generate();
+            var result = Siex.New()
+                            .Either(Siex.New()
+                                .Group(Siex.New().Text("http").Maybe("s")))
+                            .Or(Siex.New().Text("ftp"))
+                            //.Text("://")
+                            //.Maybe("www.")
+                            .Alphanumerics()
+                            //.And("-_").AtLeast(1)
+                            ;
 
             Assert.AreEqual(@"((http(s)?)|ftp)://(www\.)?[a-zA-Z0-9]*", result.Expression);
         }
