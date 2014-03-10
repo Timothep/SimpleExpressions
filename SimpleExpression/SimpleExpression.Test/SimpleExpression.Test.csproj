@@ -65,6 +65,7 @@
     <Compile Include="RepetitionsMultiTests.cs" />
     <Compile Include="RepetitionTests.cs" />
     <Compile Include="StructuralChecksTests.cs" />
+    <Compile Include="SubExpressionTests.cs" />
     <Compile Include="TestRun.cs" />
     <Compile Include="WordTests.cs" />
     <Compile Include="SimpleExpressionTests.cs" />

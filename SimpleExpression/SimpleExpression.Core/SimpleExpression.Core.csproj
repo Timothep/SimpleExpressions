@@ -61,6 +61,7 @@
     <Compile Include="AbstractTree\Builders\Containers\OrBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Modifyers\ThenBuilder.cs" />
     <Compile Include="AbstractTree\Builders\Modifyers\ExceptBuilder.cs" />
+    <Compile Include="AbstractTree\Builders\Leaves\SubExpressionBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\AlphanumericsNode.cs" />
     <Compile Include="AbstractTree\Nodes\AndNode.cs" />
     <Compile Include="AbstractTree\Nodes\ExceptNode.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="AbstractTree\Builders\Leaves\TextBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\NumbersNode.cs" />
     <Compile Include="AbstractTree\Nodes\RootNode.cs" />
+    <Compile Include="AbstractTree\Nodes\SubExpressionNode.cs" />
     <Compile Include="AbstractTree\Nodes\TextNode.cs" />
     <Compile Include="AbstractTree\Builders\Modifyers\TogetherBuilder.cs" />
     <Compile Include="AbstractTree\Nodes\ValueNode.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Converters\Repetitions\RepetitionQualifier.cs" />
     <Compile Include="Converters\Sets\SetBegin.cs" />
     <Compile Include="Converters\StartsWith.cs" />
+    <Compile Include="Converters\SubExpression.cs" />
     <Compile Include="Converters\_ConverterStaticHelper.cs" />
     <Compile Include="Converters\Maybe.cs" />
     <Compile Include="Converters\Repetitions\Exactly.cs" />
