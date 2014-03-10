@@ -3,18 +3,14 @@ using SimpleExpressions.Core;
 
 namespace SimpleExpressions.Test
 {
-     
     [TestClass]
     public class InRangeTests
     {
-          //SetBegin and InRange are creating a [()] structure that is not allowed by the C# Regex compiler
         [TestMethod]
         public void SimpleRangeTest()
         {
-            
             var result = Siex.New()
-                .NumberInRange("1-5")
-                ;
+                .NumberInRange("1-5");
 
             Assert.AreEqual(@"([1-4]|5)", result.Expression);
         }
@@ -22,10 +18,8 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleLetterRangeTest()
         {
-            
             var result = Siex.New()
-                .LetterInRange("a-d")
-                ;
+                .LetterInRange("a-d");
 
             Assert.AreEqual(@"[a-dA-D]", result.Expression);
         }
@@ -47,17 +41,21 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleDateWithRanges()
         {
-            
             var result = Siex.New()
                 .NumberInRange("1-9999")
                 .One("/")
                 .NumberInRange("1-12")
                 .One("/")
-                .NumberInRange("1-31")
-                ;
+                .NumberInRange("1-31");
+
+            //([1-9]|([1-9][0-9])|([1-9][0-9]{2})|((999[0-9])|(99[0-8][0-9])|(9[0-8][0-9]{2})|(0[0-8][0-9]{3})))
 
             Assert.AreEqual(@"([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-8][0-9][0-9][0-9]|9[0-8][0-9][0-9]|99[0-8][0-9]|999[0-9])/([1-9]|1[0-2])/([1-9]|[1-2][0-9]|3[0-1])",
                 result.Expression);
+
+            Assert.IsTrue(result.IsMatch("2014/03/10"));
+            Assert.IsFalse(result.IsMatch("20142/033/130"));
+
         }
     }
 }

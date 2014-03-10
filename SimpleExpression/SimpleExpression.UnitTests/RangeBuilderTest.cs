@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core.AbstractTree.Nodes;
-using SimpleExpressions.Core.Converters;
 
 namespace SimpleExpression.UnitTests
 {

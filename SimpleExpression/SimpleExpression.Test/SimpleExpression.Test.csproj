@@ -64,7 +64,7 @@
     <Compile Include="OrTests.cs" />
     <Compile Include="RepetitionTests.cs" />
     <Compile Include="SubExpressionTests.cs" />
-    <Compile Include="TestRun.cs" />
+    <Compile Include="Runner.cs" />
     <Compile Include="WordTests.cs" />
     <Compile Include="SimpleExpressionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

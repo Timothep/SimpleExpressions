@@ -24,7 +24,7 @@ namespace SimpleExpressions.Test
                 .Letters()
                 .Except("a-e");
 
-            var pattern =  (result as SimpleExpression).Expression;
+            var pattern = result.Expression;
             Assert.AreEqual(@"[a-zA-Z-[a-eA-E]]*", pattern);
 
             var reg = new Regex(pattern);

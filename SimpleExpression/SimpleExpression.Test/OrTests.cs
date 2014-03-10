@@ -9,7 +9,6 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleOr()
         {
-            
             var result = Siex.New()
                 .Either(Siex.New().Text("http"))
                 .Or(Siex.New().Text("ftp"));

@@ -24,8 +24,7 @@ namespace SimpleExpressions.Test
                 .Group(Siex.New()
                     .Text("aei")
                     .Text("ou"))
-                .As("vowels")
-                ;
+                .As("vowels");
 
             var pattern = result.Expression;
             Assert.AreEqual(@"(?<vowels>aeiou)", pattern);

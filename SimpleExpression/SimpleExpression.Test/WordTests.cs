@@ -9,12 +9,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleWordTest()
         {
-            
             var result = Siex.New()
                 .Text("ponys")
                 .Alphanumerics().And(" ")
-                .Text("rainbows")
-                ;
+                .Text("rainbows");
 
             Assert.AreEqual(@"ponys[a-zA-Z0-9 ]*rainbows", result.Expression);
         }

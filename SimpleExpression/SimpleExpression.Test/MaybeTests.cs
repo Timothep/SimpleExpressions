@@ -9,12 +9,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleMaybeTest()
         {
-            
             var result = Siex.New()
                 .Text("http")
                 .Maybe("s")
-                .Text("://")
-                ;
+                .Text("://");
 
             Assert.AreEqual(@"http(s)?://", result.Expression);
         }

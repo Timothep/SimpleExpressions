@@ -18,24 +18,11 @@ namespace SimpleExpressions.Test
             Assert.IsFalse(result.IsMatch("k"));
         }
 
-        //[TestMethod]
-        //public void NoPipeEither()
-        //{
-        //    
-        //    var result = Siex.New()
-        //        .EitherOf("aeiou")
-        //        ;
-
-        //    Assert.AreEqual(@"[aeiou]", result.Expression);
-        //}
-
         [TestMethod]
         public void CharsAndStringsEither()
         {
-            
             var result = Siex.New()
-                .EitherOf("ab|cd|e")
-                ;
+                .EitherOf("ab|cd|e");
 
             Assert.AreEqual(@"(ab|cd|e)", result.Expression);
 
@@ -46,10 +33,8 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void StringsEither()
         {
-            
             var result = Siex.New()
-                .EitherOf("vowels|consons")
-                ;
+                .EitherOf("vowels|consons");
 
             Assert.AreEqual(@"(vowels|consons)", result.Expression);
         }

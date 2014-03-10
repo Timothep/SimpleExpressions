@@ -18,7 +18,6 @@ namespace SimpleExpressions.Test
                             .Alphanumerics()
                             .And("-_.").AtLeast(1);
 
-            //Assert.AreEqual(@"((http(s)?)|ftp)://(www\.)?[a-zA-Z0-9]*", result.Expression);
             Assert.IsTrue(result.IsMatch("http://www.something"));
             Assert.IsTrue(result.IsMatch("https://www.something"));
             Assert.IsTrue(result.IsMatch("ftp://www.something"));

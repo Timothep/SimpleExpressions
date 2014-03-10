@@ -9,11 +9,9 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CardinalityMultipleBoundTests()
         {
-            
             var result = Siex.New()
                 .Letters()
-                .AtLeast(5)
-                ;
+                .AtLeast(5);
 
             Assert.AreEqual(@"[a-zA-Z]{5,}", result.Expression);
         }
