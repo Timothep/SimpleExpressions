@@ -11,16 +11,16 @@ namespace SimpleExpressions.Test
         public void SimpleRepetitionTests()
         {
             var se = new SimpleExpression();
-            Assert.AreEqual("[0-9]{2,}", se.Numbers().AtLeast(2).Expression);
+            Assert.AreEqual("[0-9]{2,}", se.Number().AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("[a-zA-Z]{2,}", se.Letters().AtLeast(2).Expression);
+            Assert.AreEqual("[a-zA-Z]{2,}", se.Letter().AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("[a-zA-Z0-9]{2,}", se.Alphanumerics().AtLeast(2).Expression);
+            Assert.AreEqual("[a-zA-Z0-9]{2,}", se.Alphanumeric().AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("a{2,}", se.One("a").AtLeast(2).Expression);
+            Assert.AreEqual("a{2,}", se.One('a').AtLeast(2).Expression);
 
             se = new SimpleExpression();
             Assert.AreEqual("(a|b|cd){2,}", se.OneOf("a|b|cd").AtLeast(2).Expression);
@@ -35,16 +35,16 @@ namespace SimpleExpressions.Test
             Assert.AreEqual("[a-cA-C]{2,}", se.LetterInRange("a-c").AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("([a-zA-Z]*){2,}", se.Group(S.Exp().Letters()).AtLeast(2).Expression);
+            Assert.AreEqual("([a-zA-Z]*){2,}", se.Group(S.Exp().Letter()).AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("(?<letters>[a-zA-Z]*){2,}", se.Group(S.Exp().Letters()).AtLeast(2).As("letters").Expression);
+            Assert.AreEqual("(?<letters>[a-zA-Z]*){2,}", se.Group(S.Exp().Letter()).AtLeast(2).As("letters").Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("[a-zA-Z~]{2,}", se.Letters().And("~").AtLeast(2).Expression);
+            Assert.AreEqual("[a-zA-Z~]{2,}", se.Letter().And("~").AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("[a-zA-Z-[zZ]]{2,}", se.Letters().Except("z").AtLeast(2).Expression);
+            Assert.AreEqual("[a-zA-Z-[zZ]]{2,}", se.Letter().Except("z").AtLeast(2).Expression);
         }
     }
 }

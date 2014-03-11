@@ -4,7 +4,7 @@ namespace SimpleExpressions.Core.Converters.Sets
 {
     public class Alphanumerics : BaseConverter
     {
-        private readonly IList<string> supportedFunctionNames = new List<string> {"Alphanumerics"};
+        private readonly IList<string> supportedFunctionNames = new List<string> {"Alphanumeric"};
 
         public override IList<string> SupportedFunctionNames
         {

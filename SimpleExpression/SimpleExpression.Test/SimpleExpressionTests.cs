@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Test
 {
@@ -13,8 +14,8 @@ namespace SimpleExpressions.Test
         public void MultiWildcardsRegex()
         {
             var result = S.Exp()
-                .Letters()
-                .Numbers();
+                .Letter()
+                .Number();
 
             Assert.AreEqual(@"[a-zA-Z]*[0-9]*", result.Expression);
         }
@@ -23,8 +24,8 @@ namespace SimpleExpressions.Test
         public void SimpleWildcardsRegex()
         {
             var result = S.Exp()
-                .Letters().Exactly(1)
-                .Numbers().Exactly(1);
+                .Letter().Exactly(1)
+                .Number().Exactly(1);
 
             Assert.AreEqual(@"[a-zA-Z]{1}[0-9]{1}", result.Expression);
         }
@@ -33,7 +34,7 @@ namespace SimpleExpressions.Test
         public void SimpleLettersAndMinusRegex()
         {
             var result = S.Exp()
-                .Letters()
+                .Letter()
                 .And("_");
 
             Assert.AreEqual(@"[a-zA-Z_]*", result.Expression);
@@ -43,9 +44,9 @@ namespace SimpleExpressions.Test
         public void SimpleWildcardsWithWhitespacesRegex()
         {
             var result = S.Exp()
-                .Letters()
+                .Letter()
                 .And(" ")
-                .Numbers();
+                .Number();
 
             Assert.AreEqual(@"[a-zA-Z ]*[0-9]*", result.Expression);
         }
@@ -54,7 +55,7 @@ namespace SimpleExpressions.Test
         public void ExactMatchRegex()
         {
             var result = S.Exp()
-                .One("a")
+                .One('a')
                 .Text("ei")
                 .Text("ou");
 
@@ -65,7 +66,7 @@ namespace SimpleExpressions.Test
         public void CharacterDotRegex()
         {
             var result = S.Exp()
-                .One(".");
+                .One('.');
 
             Assert.AreEqual(@"\.", result.Expression);
         }
@@ -83,7 +84,7 @@ namespace SimpleExpressions.Test
         public void CharactersMixRegex()
         {
             var result = S.Exp()
-                .One("a")
+                .One('a')
                 .OneOf("i|j")
                 .OneOf("x|y|z");
 

@@ -35,7 +35,15 @@ namespace SimpleExpressions.Core.AbstractTree.DomainObjects
         {
             //If no cardinality was given... ever
             if (this.Min == null && this.Max == null)
-                return "";
+                return string.Empty;
+
+            //Star => {0,infinite}
+            if (this.Min == 0 && this.Max == null)
+                return "*";
+
+            //Plus => {1,infinite}
+            if (this.Min == 1 && this.Max == null)
+                return "+";
 
             //If only a min Bound was given
             if (this.Min != null && this.Max == null)
@@ -51,8 +59,11 @@ namespace SimpleExpressions.Core.AbstractTree.DomainObjects
                 return "{" + this.Min + "," + this.Max + "}";
             }
 
-            //if (Min == null && Max != null)
-            throw new ArgumentException("AtMost alone is not supported");
+            // AtMost only
+            if (Min == null && Max != null)
+                return "{0," + this.Max + "}";
+
+            throw new NotImplementedException(string.Format("Not implemented cardinality case. Min={0}, Max={1}", Min, Max));
         }
 
         public int? Min { get; set; }

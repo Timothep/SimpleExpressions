@@ -32,10 +32,13 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
                 result = result.Insert(result.Length - 1, aggregate);
             }
 
-            if (this.Cardinality.Min == null && this.Cardinality.Min == this.Cardinality.Max)
-                result += "*";
+            // Default cardinality is "nothing", otherwise compute it:
+            if (this.Cardinality.Min != null && this.Cardinality.Min != this.Cardinality.Max)
+            {
+                result += this.Cardinality;
+            }
 
-            return string.IsNullOrEmpty(this.Cardinality.ToString()) ? result : string.Format("{0}{1}", result, this.Cardinality);
+            return result;
         }
     }
 }

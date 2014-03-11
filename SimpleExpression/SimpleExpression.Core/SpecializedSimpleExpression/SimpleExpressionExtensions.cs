@@ -1,39 +1,58 @@
-﻿using SimpleExpressions.Core.SpecializedSimpleExpression;
-
-namespace SimpleExpressions.Core
+﻿namespace SimpleExpressions.Core.SpecializedSimpleExpression
 {
     public static class SimpleExpressionExtensions
     {
-        public static SimpleExpression Letters(this SimpleExpression se)
+        /// <summary>
+        /// Matches a single letter in lower-case, between a and z, with a default cardinality of min 1 & max 1
+        /// </summary>
+        public static SimpleExpression Letter(this SimpleExpression se)
         {
-            se.SimpleExpressionChain.Add(new Function("Letters"));
+            se.SimpleExpressionChain.Add(new Function("Letter"));
             return se;
         }
 
-        public static SimpleExpression Numbers(this SimpleExpression se)
+        /// <summary>
+        /// Matches a single number, between 0 and 9, with a default cardinality of min 1 & max 1
+        /// </summary>
+        public static SimpleExpression Number(this SimpleExpression se)
         {
-            se.SimpleExpressionChain.Add(new Function("Numbers"));
+            se.SimpleExpressionChain.Add(new Function("Number"));
             return se;
         }
 
-        public static SimpleExpression Alphanumerics(this SimpleExpression se)
+        /// <summary>
+        /// Matches a single letter in lower-case between a and z, or a single number between 0 and 9, with a default cardinality of min 1 & max 1
+        /// </summary>
+        public static SimpleExpression Alphanumeric(this SimpleExpression se)
         {
-            se.SimpleExpressionChain.Add(new Function("Alphanumerics"));
+            se.SimpleExpressionChain.Add(new Function("Alphanumeric"));
             return se;
         }
 
+        /// <summary>
+        /// Matches the argument.
+        /// </summary>
+        /// <param name="argument">A string to match</param>
         public static SimpleExpression Text(this SimpleExpression se, string argument)
         {
             se.SimpleExpressionChain.Add(new Function("Text", new object[] { argument }));
             return se;
         }
 
-        public static SimpleExpression One(this SimpleExpression se, string argument)
+        /// <summary>
+        /// Matches the argument.
+        /// </summary>
+        /// <param name="argument">A character to match</param>
+        public static SimpleExpression One(this SimpleExpression se, char argument)
         {
             se.SimpleExpressionChain.Add(new Function("One", new object[] { argument }));
             return se;
         }
 
+        /// <summary>
+        /// Matches one of the subparts of the argument. The argument format must be "arg1|arg2|arg3". ex: "http|ftp".
+        /// </summary>
+        /// <param name="argument">A pipe-separated string of elements to match</param>
         public static SimpleExpression OneOf(this SimpleExpression se, string argument)
         {
             se.SimpleExpressionChain.Add(new Function("OneOf", new object[] { argument }));

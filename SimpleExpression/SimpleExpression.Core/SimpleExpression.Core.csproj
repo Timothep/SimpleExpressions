@@ -140,7 +140,7 @@
     <Compile Include="ConverterBoostrapper.cs" />
     <Compile Include="S.cs" />
     <Compile Include="SimpleExpression.cs" />
-    <Compile Include="SimpleExpressionExtensions.cs" />
+    <Compile Include="SpecializedSimpleExpression\SimpleExpressionExtensions.cs" />
     <Compile Include="SpecializedSimpleExpression\OrSimpleExpression.cs" />
     <Compile Include="SpecializedSimpleExpression\SimpleExpression.cs" />
     <Compile Include="TinyIoC.cs" />

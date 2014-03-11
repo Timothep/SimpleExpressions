@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Test
 {
@@ -11,7 +12,7 @@ namespace SimpleExpressions.Test
         {
             var result = S.Exp()
                 .Text("ponys")
-                .Alphanumerics().And(" ")
+                .Alphanumeric().And(" ")
                 .Text("rainbows");
 
             Assert.AreEqual(@"ponys[a-zA-Z0-9 ]*rainbows", result.Expression);

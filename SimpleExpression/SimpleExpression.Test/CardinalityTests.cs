@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Test
 {
@@ -10,7 +11,7 @@ namespace SimpleExpressions.Test
         public void CardinalityMultipleBoundTests()
         {
             var result = S.Exp()
-                .Letters()
+                .Letter()
                 .AtLeast(5);
 
             Assert.AreEqual(@"[a-zA-Z]{5,}", result.Expression);

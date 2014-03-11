@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Test
 {
@@ -43,9 +44,9 @@ namespace SimpleExpressions.Test
         {
             var result = S.Exp()
                 .NumberInRange("1-9999")
-                .One("/")
+                .One('/')
                 .NumberInRange("1-12")
-                .One("/")
+                .One('/')
                 .NumberInRange("1-31");
 
             //([1-9]|([1-9][0-9])|([1-9][0-9]{2})|((999[0-9])|(99[0-8][0-9])|(9[0-8][0-9]{2})|(0[0-8][0-9]{3})))

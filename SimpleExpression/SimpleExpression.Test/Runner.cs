@@ -15,8 +15,8 @@ namespace SimpleExpressions.Test
 
             //const string allowedChars = @"!#$%&'*+/=?^_`{|}~-";
             
-            //emailDetection.Group(S.Exp().Letters().And(allowedChars).AtLeast(1)
-            //                .Group(S.Exp().One(".").Alphanumerics().And(allowedChars).AtLeast(1))
+            //emailDetection.Group(S.Exp().Letter().And(allowedChars).AtLeast(1)
+            //                .Group(S.Exp().One('.").Alphanumeric().And(allowedChars).AtLeast(1))
             //                .As("dotAndAfter"));
 
             //Assert.AreEqual("", emailDetection.Expression);
@@ -29,25 +29,25 @@ namespace SimpleExpressions.Test
 
             string allowedChars = @"!#$%&'*+/=?^_`{|}~-";
 
-            beforeDot.Alphanumerics().And(allowedChars).AtLeast(1);
+            beforeDot.Alphanumeric().And(allowedChars).AtLeast(1);
 
-            dotAndAfter.One(".")
-                    .Alphanumerics()
+            dotAndAfter.One('.')
+                    .Alphanumeric()
                     .And(allowedChars).AtLeast(1);
 
-            dotAndBefore.Alphanumerics().And("-")
-                .Alphanumerics().Exactly(1);
+            dotAndBefore.Alphanumeric().And("-")
+                .Alphanumeric().Exactly(1);
 
             emailDetection
                 .SubExpression(beforeDot)
                 .Group(dotAndAfter).AtLeast(0)
-                .One("@")
+                .One('@')
                 .Group(new SimpleExpression()
-                    .Letters().Exactly(1)
-                    .Alphanumerics()
+                    .Letter().Exactly(1)
+                    .Alphanumeric()
                     .Group(dotAndBefore).AtMost(1)
-                    .One("."))        
-                    .Either(S.Exp().Letter()).Or(S.Exp().Letters())
+                    .One('.'))        
+                    .Either(S.Exp().Letter()).Or(S.Exp().Letter())
                 .AtLeast(1);
 
             Console.WriteLine(emailDetection.Expression);

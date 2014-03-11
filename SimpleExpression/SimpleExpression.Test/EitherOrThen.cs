@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Test
 {
@@ -10,9 +11,9 @@ namespace SimpleExpressions.Test
         public void SimpleEitherOr()
         {
             var result = S.Exp()
-                .Numbers().AtLeast(1)
+                .Number().AtLeast(1)
                 .Maybe(" ")
-                .Either(S.Exp().One("€"))
+                .Either(S.Exp().One('€'))
                 .Or(S.Exp().Text("EURO"));
 
             Assert.IsTrue(result.IsMatch("125€"));

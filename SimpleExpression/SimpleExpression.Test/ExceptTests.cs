@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Test
 {
@@ -11,7 +12,7 @@ namespace SimpleExpressions.Test
         public void OneConson()
         {
             var result = S.Exp()
-                .Letters()
+                .Letter()
                 .Except("aeiou");
 
             Assert.AreEqual(@"[a-zA-Z-[aeiouAEIOU]]*", result.Expression);
@@ -21,7 +22,7 @@ namespace SimpleExpressions.Test
         public void ExceptRegex()
         {
             var result = S.Exp()
-                .Letters()
+                .Letter()
                 .Except("a-e");
 
             var pattern = result.Expression;

@@ -4,7 +4,7 @@ namespace SimpleExpressions.Core.AbstractTree.Nodes
 {
     /// <summary>
     ///     Represents a class, e.g. a block which elements form a single Regular Expression entity
-    ///     Ex: "Letters AND Numbers", per opposition to "Letters THEN Numbers"
+    ///     Ex: "Letter AND Number", per opposition to "Letter THEN Number"
     /// </summary>
     public class ClassNode : BlockNode
     {
