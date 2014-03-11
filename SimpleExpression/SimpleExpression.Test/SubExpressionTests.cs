@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Test
 {
@@ -14,7 +15,7 @@ namespace SimpleExpressions.Test
 
             Assert.AreEqual("DEF", subResult.Expression);
 
-            var result = Siex.New()
+            var result = S.Exp()
                 .Text("ABC")
                 .SubExpression(subSe)
                 .Text("GHI");

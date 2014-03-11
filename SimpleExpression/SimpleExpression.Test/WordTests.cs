@@ -9,7 +9,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleWordTest()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Text("ponys")
                 .Alphanumerics().And(" ")
                 .Text("rainbows");

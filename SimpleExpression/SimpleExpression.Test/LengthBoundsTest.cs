@@ -9,7 +9,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void EmailRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Alphanumerics().AtLeast(1)
                 .One("@")
                 .Alphanumerics().AtLeast(1)
@@ -22,7 +22,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleDate()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Numbers().AtLeast(1).AtMost(4)
                 .One("/")
                 .Numbers().AtLeast(1).AtMost(2)

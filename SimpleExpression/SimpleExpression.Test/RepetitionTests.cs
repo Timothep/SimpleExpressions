@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Test
 {
@@ -34,10 +35,10 @@ namespace SimpleExpressions.Test
             Assert.AreEqual("[a-cA-C]{2,}", se.LetterInRange("a-c").AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("([a-zA-Z]*){2,}", se.Group(Siex.New().Letters()).AtLeast(2).Expression);
+            Assert.AreEqual("([a-zA-Z]*){2,}", se.Group(S.Exp().Letters()).AtLeast(2).Expression);
 
             se = new SimpleExpression();
-            Assert.AreEqual("(?<letters>[a-zA-Z]*){2,}", se.Group(Siex.New().Letters()).AtLeast(2).As("letters").Expression);
+            Assert.AreEqual("(?<letters>[a-zA-Z]*){2,}", se.Group(S.Exp().Letters()).AtLeast(2).As("letters").Expression);
 
             se = new SimpleExpression();
             Assert.AreEqual("[a-zA-Z~]{2,}", se.Letters().And("~").AtLeast(2).Expression);

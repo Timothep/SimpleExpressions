@@ -9,7 +9,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleRangeTest()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .NumberInRange("1-5");
 
             Assert.AreEqual(@"([1-4]|5)", result.Expression);
@@ -18,7 +18,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleLetterRangeTest()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .LetterInRange("a-d");
 
             Assert.AreEqual(@"[a-dA-D]", result.Expression);
@@ -27,7 +27,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void MultipleLettersRangeTest()
         {
-            var result = Siex.New().LetterInRange("a-d").AtLeast(3).AtMost(10);
+            var result = S.Exp().LetterInRange("a-d").AtLeast(3).AtMost(10);
 
             Assert.AreEqual(@"[a-dA-D]{3,10}", result.Expression);
 
@@ -41,7 +41,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleDateWithRanges()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .NumberInRange("1-9999")
                 .One("/")
                 .NumberInRange("1-12")

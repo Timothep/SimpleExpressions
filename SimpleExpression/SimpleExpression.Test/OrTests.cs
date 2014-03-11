@@ -9,9 +9,9 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleOr()
         {
-            var result = Siex.New()
-                .Either(Siex.New().Text("http"))
-                .Or(Siex.New().Text("ftp"));
+            var result = S.Exp()
+                .Either(S.Exp().Text("http"))
+                .Or(S.Exp().Text("ftp"));
 
             Assert.IsTrue(result.IsMatch("http"));
             Assert.IsTrue(result.IsMatch("ftp"));

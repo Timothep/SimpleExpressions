@@ -9,11 +9,11 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleEitherOr()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Numbers().AtLeast(1)
                 .Maybe(" ")
-                .Either(Siex.New().One("€"))
-                .Or(Siex.New().Text("EURO"));
+                .Either(S.Exp().One("€"))
+                .Or(S.Exp().Text("EURO"));
 
             Assert.IsTrue(result.IsMatch("125€"));
             Assert.IsTrue(result.IsMatch("1 €"));

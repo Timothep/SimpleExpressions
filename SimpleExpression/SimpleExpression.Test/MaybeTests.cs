@@ -9,7 +9,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleMaybeTest()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Text("http")
                 .Maybe("s")
                 .Text("://");

@@ -9,7 +9,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CharsOnlyEither()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .EitherOf("a|e|i|o|u");
 
             Assert.AreEqual(@"(a|e|i|o|u)", result.Expression);
@@ -21,7 +21,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CharsAndStringsEither()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .EitherOf("ab|cd|e");
 
             Assert.AreEqual(@"(ab|cd|e)", result.Expression);
@@ -33,7 +33,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void StringsEither()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .EitherOf("vowels|consons");
 
             Assert.AreEqual(@"(vowels|consons)", result.Expression);

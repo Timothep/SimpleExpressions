@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SimpleExpressions.Core.Converters;
 using SimpleExpressions.Core.Exceptions;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Core.AbstractTree.Nodes
 {

@@ -9,7 +9,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CardinalityMultipleBoundTests()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Letters()
                 .AtLeast(5);
 

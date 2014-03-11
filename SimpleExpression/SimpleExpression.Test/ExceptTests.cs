@@ -10,7 +10,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void OneConson()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Letters()
                 .Except("aeiou");
 
@@ -20,7 +20,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void ExceptRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Letters()
                 .Except("a-e");
 

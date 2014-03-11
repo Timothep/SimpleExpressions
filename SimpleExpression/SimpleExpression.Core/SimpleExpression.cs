@@ -8,25 +8,25 @@ namespace SimpleExpressions.Core
     /// <summary>
     ///     Use this object to construct SimpleExpressions, see https://github.com/Timothep/SimpleExpressions for more details
     /// </summary>
-    public class SimpleExpression : DynamicObject
+    public abstract class AbstractSimpleExpression : DynamicObject
     {
         private readonly ConverterBoostrapper converterBootstrapper = new ConverterBoostrapper();
         private readonly AstBuilder astBuilder = new AstBuilder();
 
-        public SimpleExpression()
+        protected AbstractSimpleExpression()
         {
             this.Initialize();
         }
 
-        public SimpleExpression(string workObject)
-        {
-            this.Initialize();
-            this.WorkObject = workObject;
-        }
+        //public SimpleExpression()//string workObject)
+        //{
+        //    this.Initialize();
+        //    //this.WorkObject = workObject;
+        //}
 
-        public string WorkObject { get; set; }
+        //public string WorkObject { get; set; }
         public IList<Function> SimpleExpressionChain { get; set; }
-        public IList<string> RegularExpressionChain { get; set; }
+        //public IList<string> RegularExpressionChain { get; set; }
         
         private Regex Regex { get; set; }
         

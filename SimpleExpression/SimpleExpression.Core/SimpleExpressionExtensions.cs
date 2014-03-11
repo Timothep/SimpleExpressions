@@ -1,4 +1,6 @@
-﻿namespace SimpleExpressions.Core
+﻿using SimpleExpressions.Core.SpecializedSimpleExpression;
+
+namespace SimpleExpressions.Core
 {
     public static class SimpleExpressionExtensions
     {
@@ -116,16 +118,11 @@
 
         /* COMPLEX FUNCTIONS */
 
-        public static SimpleExpression Either(this SimpleExpression se, SimpleExpression argument)
+        public static OrSimpleExpression Either(this SimpleExpression se, SimpleExpression argument)
         {
-            se.SimpleExpressionChain.Add(new Function("Either", new object[] { argument }));
-            return se;
-        }
-
-        public static SimpleExpression Or(this SimpleExpression se, SimpleExpression argument)
-        {
-            se.SimpleExpressionChain.Add(new Function("Or", new object[] { argument }));
-            return se;
+            var ose = new OrSimpleExpression { SimpleExpressionChain = se.SimpleExpressionChain };
+            ose.SimpleExpressionChain.Add(new Function("Either", new object[] { argument }));
+            return ose;
         }
 
         public static SimpleExpression Group(this SimpleExpression se, SimpleExpression argument)

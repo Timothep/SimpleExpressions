@@ -9,10 +9,10 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void HttpFtpLinkMatch()
         {
-            var result = Siex.New()
-                            .Either(Siex.New()
-                                .Group(Siex.New().Text("http").Maybe("s")))
-                            .Or(Siex.New().Text("ftp"))
+            var result = S.Exp()
+                            .Either(S.Exp()
+                                .Group(S.Exp().Text("http").Maybe("s")))
+                            .Or(S.Exp().Text("ftp"))
                             .Text("://")
                             .Maybe("www.")
                             .Alphanumerics()

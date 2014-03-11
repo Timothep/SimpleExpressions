@@ -12,7 +12,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void MultiWildcardsRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Letters()
                 .Numbers();
 
@@ -22,7 +22,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleWildcardsRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Letters().Exactly(1)
                 .Numbers().Exactly(1);
 
@@ -32,7 +32,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleLettersAndMinusRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Letters()
                 .And("_");
 
@@ -42,7 +42,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleWildcardsWithWhitespacesRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .Letters()
                 .And(" ")
                 .Numbers();
@@ -53,7 +53,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void ExactMatchRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .One("a")
                 .Text("ei")
                 .Text("ou");
@@ -64,7 +64,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CharacterDotRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .One(".");
 
             Assert.AreEqual(@"\.", result.Expression);
@@ -73,7 +73,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CharactersRangeRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .OneOf("a|z");
 
             Assert.AreEqual(@"(a|z)", result.Expression);
@@ -82,7 +82,7 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void CharactersMixRegex()
         {
-            var result = Siex.New()
+            var result = S.Exp()
                 .One("a")
                 .OneOf("i|j")
                 .OneOf("x|y|z");

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleExpressions.Core;
+using SimpleExpressions.Core.SpecializedSimpleExpression;
 
 namespace SimpleExpressions.Test
 {
@@ -10,7 +11,7 @@ namespace SimpleExpressions.Test
         public void SimpleGroup()
         {
             var result = new SimpleExpression()
-                    .Group(Siex.New()
+                    .Group(S.Exp()
                         .Text("aei")
                         .Text("ou"));
 
@@ -20,8 +21,8 @@ namespace SimpleExpressions.Test
         [TestMethod]
         public void SimpleNamedGroup()
         {
-            var result = Siex.New()
-                .Group(Siex.New()
+            var result = S.Exp()
+                .Group(S.Exp()
                     .Text("aei")
                     .Text("ou"))
                 .As("vowels");
