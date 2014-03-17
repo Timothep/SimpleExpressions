@@ -1,3 +1,5 @@
+## SimpleExpression is on hold while we work on an alternative semantic. Head over to [MagicExpression](https://github.com/ghusse/magicexpression) to get your mind blown
+
 ### SimpleExpressions
 
 Wouldn't it be easier if you could write stuff like...
